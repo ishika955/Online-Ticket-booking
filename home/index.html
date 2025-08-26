@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+<nav id="navbar">
+    <div class="nav-item">
+        <input type="radio" name="nav1" id="bus" onclick="navbar()" style="display:none;" >
+        <label for="bus">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M249-120q-13 0-23-7.5T216-147v-84q-29-16-42.5-46T160-341v-397q0-74 76.5-108T481-880q166 0 242.5 34T800-738v397q0 34-13.5 64T744-231v84q0 12-10 19.5t-23 7.5h-19q-14 0-24-7.5T658-147v-55H302v55q0 12-10 19.5t-24 7.5h-19Zm232-644h259-520 261Zm177 293H220h520-82Zm-438-60h520v-173H220v173Zm106 219q23 0 39-16t16-39q0-23-16-39t-39-16q-23 0-39 16t-16 39q0 23 16 39t39 16Zm308 0q23 0 39-16t16-39q0-23-16-39t-39-16q-23 0-39 16t-16 39q0 23 16 39t39 16ZM220-764h520q-24-26-92-41t-167-15q-118 0-181 13.5T220-764Zm82 502h356q35 0 58.5-27t23.5-62v-120H220v120q0 35 23.5 62t58.5 27Z"/></svg>
+        <br>
+        Buses</label>
+    </div>
+
+    <div class="nav-item">
+        <input type="radio" name="nav1" id="cab"  onclick="navbar()" style="display:none;">
+        <label for="cab">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M200-204v54q0 12.75-8.62 21.37Q182.75-120 170-120h-20q-12.75 0-21.37-8.63Q120-137.25 120-150v-324l85-256q5-14 16.5-22t26.5-8h464q15 0 26.5 8t16.5 22l85 256v324q0 12.75-8.62 21.37Q822.75-120 810-120h-21q-13 0-21-8.63-8-8.62-8-21.37v-54H200Zm3-330h554l-55-166H258l-55 166Zm-23 60v210-210Zm105.76 160q23.24 0 38.74-15.75Q340-345.5 340-368q0-23.33-15.75-39.67Q308.5-424 286-424q-23.33 0-39.67 16.26Q230-391.47 230-368.24q0 23.24 16.26 38.74 16.27 15.5 39.5 15.5ZM675-314q23.33 0 39.67-15.75Q731-345.5 731-368q0-23.33-16.26-39.67Q698.47-424 675.24-424q-23.24 0-38.74 16.26-15.5 16.27-15.5 39.5 0 23.24 15.75 38.74Q652.5-314 675-314Zm-495 50h600v-210H180v210Z"/></svg>
+        <br>   
+        Cabs</label>
+    </div>
+
+     <div class="nav-item">
+        <label for="train">
+        <input type="radio" name="nav1" id="train"  onclick="navbar()" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M160-340v-380q0-41 19-71.5t58.5-50q39.5-19.5 100-29T480-880q86 0 146.5 9t99 28.5Q764-823 782-793t18 73v380q0 59-40.5 99.5T660-200l60 60v20h-70l-80-80H390l-80 80h-70v-20l60-60q-59 0-99.5-40.5T160-340Zm320-480q-120 0-173 15.5T231-760h501q-18-27-76.5-43.5T480-820ZM220-545h234v-155H220v155Zm440 60H220h520-80Zm-146-60h226v-155H514v155ZM335-315q23 0 39-16t16-39q0-23-16-39t-39-16q-23 0-39 16t-16 39q0 23 16 39t39 16Zm290 0q23 0 39-16t16-39q0-23-16-39t-39-16q-23 0-39 16t-16 39q0 23 16 39t39 16Zm-325 60h360q34 0 57-25t23-60v-145H220v145q0 35 23 60t57 25Zm180-505h252-501 249Z"/></svg>    
+        <br>
+        Trains</label>
+    </div>
+    
+    <div class="nav-item">
+        <label for="flight">
+        <input type="radio" name="nav1" id="flight"  onclick="navbar()" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M285-80v-83l124-86v-172L80-288v-102l329-231v-188q0-29 21-50t50-21q29 0 50 21t21 50v188l329 231v102L551-421v172l123 86v83l-194-59-195 59Z"/></svg>    
+        <br>
+        Flights</label>
+    </div>
+
+     <div class="nav-item">
+        <label for="hotel">
+        <input type="radio" name="nav1" id="hotel"  onclick="navbar()" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M120-120v-555h165v-165h390v330h165v390H533v-165H427v165H120Zm60-60h105v-105H180v105Zm0-165h105v-105H180v105Zm0-165h105v-105H180v105Zm165 165h105v-105H345v105Zm0-165h105v-105H345v105Zm0-165h105v-105H345v105Zm165 330h105v-105H510v105Zm0-165h105v-105H510v105Zm0-165h105v-105H510v105Zm165 495h105v-105H675v105Zm0-165h105v-105H675v105Z"/></svg>
+        <br>
+         Hotels</label> 
+    </div>
+
+    <div class="nav-item">
+        <label for="login">
+        <input type="radio" name="nav1" id="login"  onclick="navbar()" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="33px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.81-195q-57.81 0-97.31-39.69-39.5-39.68-39.5-97.5 0-57.81 39.69-97.31 39.68-39.5 97.5-39.5 57.81 0 97.31 39.69 39.5 39.68 39.5 97.5 0 57.81-39.69 97.31-39.68 39.5-97.5 39.5Zm.66 370Q398-80 325-111.5t-127.5-86q-54.5-54.5-86-127.27Q80-397.53 80-480.27 80-563 111.5-635.5q31.5-72.5 86-127t127.27-86q72.76-31.5 155.5-31.5 82.73 0 155.23 31.5 72.5 31.5 127 86t86 127.03q31.5 72.53 31.5 155T848.5-325q-31.5 73-86 127.5t-127.03 86Q562.94-80 480.47-80Zm-.47-60q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/></svg>
+        <br>
+        Login</label>
+    </div>
+    <div class="nav-item">
+        <label for="feedback">
+        <input type="radio" name="nav1" id="feedback"  onclick="navbar()" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="48px" fill="#666666"><path d="M479.98-367q14.02 0 23.52-9.48t9.5-23.5q0-14.02-9.48-23.52t-23.5-9.5q-14.02 0-23.52 9.48t-9.5 23.5q0 14.02 9.48 23.52t23.5 9.5ZM450-509h60v-251h-60v251ZM80-80v-740q0-24 18-42t42-18h680q24 0 42 18t18 42v520q0 24-18 42t-42 18H240L80-80Zm134-220h606v-520H140v600l74-80Zm-74 0v-520 520Z"/></svg>    
+       <br>
+        Feedback</label>
+    </div>
+    </nav>
+
+<div class="form-section" style="justify-content: center;">
+<!-- Flights Section -->
+<section class="flights-section" id="flights-section"> 
+<p>Book your Flight ticket with us and get best deals and offers.</p>
+<form>
+    <label for="from" >From:</label>
+    <input type="text" id="from" name="from" required>
+    <label for="to">To:</label>
+    <input type="text" id="to" name="to" required>
+    <label for="departure">Departure</label>
+    <input type="date" id="departure" name="departure" required>
+    <label for="return">Return</label>
+    <input type="date" id="return" name="return">
+    <label for="travelers">Travelers:</label>
+    <input type="number" id="travelers" name="travelers" min="1" max="10" required>
+    <label for="class">Class:</label>   
+    <select id="class" name="class" required>
+        <option value="economy">Economy</option>
+        <option value="business">Business</option>
+        <option value="first">First Class</option>
+    </select>
+    <p>
+    <button type="submit">Search</button>
+    </p>
+</form>
+    </section>
+
+<!--Buses section-->
+<section class="buses-section" id="buses-section">
+    <p>Book your Bus ticket with us and get best deals and offers.</p>
+    <form>
+        <label for="from">Form:</label>
+        <input type="text" id="from" name="from" required>
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" required>
+        <label for="departure">Departure</label>
+        <input type="date" id="departure" name="departure" required>
+        <label for="return">Return</label>
+        <input type="date" id="return" name="return">
+        <label for="travelers">Travelers:</label>
+        <input type="number" id="travelers" name="travelers" min="1" max="10" required>
+        <p>
+        <button type="submit">Search</button>
+        </p>
+        </form>
+</section>
+
+<!--Train section-->
+<section class="trains-section"  id="trains-section">
+    <p>Book your Train ticket with us and get best deals and offers.</p>
+    <form>
+        <label for="from">Form:</label>
+        <input type="text" id="from" name="from" required>
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" required>
+        <label for="departure">Departure</label>
+        <input type="date" id="departure" name="departure" required>
+        <label for="return">Return</label>
+        <input type="date" id="return" name="return">
+        <label for="travelers">Travelers:</label>
+        <input type="number" id="travelers" name="travelers" min="1" max="10" required>
+        <p>
+        <button type="submit">Search</button>
+        </p>
+        </form>
+</section>
+
+<!--Cabs section-->
+<section class="cabs-section" id="cabs-section">
+    <p>Book your Cab with us and get best deals and offers.</p>
+    <form>
+        <label for="pickup">Pickup Location:</label>
+        <input type="text" id="pickup" name="pickup" required>
+        <label for="drop">Drop Location:</label>
+        <input type="text" id="drop" name="drop" required>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+        <label for="car-type">Car Type:</label>
+        <select id="car-type" name="car-type" required>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="van">Van</option>
+        </select>
+        <p>
+        <button type="submit">Search</button>
+        </p>
+        </form>
+</section>
+
+<!--Hotels section-->
+<section class="hotels-section" id="hotels-section">
+    <p>Book your Hotel with us and get best deals and offers.</p>
+    <form>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <label for="checkin">Check-in:</label>
+        <input type="date" id="checkin" name="checkin" required>
+        <label for="checkout">Check-out:</label>
+        <input type="date" id="checkout" name="checkout" required>
+        <label for="rooms">Rooms:</label>
+        <input type="number" id="rooms" name="rooms" min="1" max="10" required>
+        <label for="guests">Guests:</label>
+        <input type="number" id="guests" name="guests" min="1" max="20" required>
+        <p>
+        <button type="submit">Search</button>
+        </p>
+        </form>
+</section>
+</div>
+<script src="../js/script.js"></script>
+    
+</body>
+</html>
