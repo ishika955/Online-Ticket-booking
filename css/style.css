@@ -6,7 +6,6 @@ body{
 
 /* Navbar styling */
 .container{
-    background-image: url("../img/bgimg.jpg");
     background-size: cover;
     background-position: center;
     height: 500px;
@@ -14,6 +13,19 @@ body{
     justify-content: center;
     position: relative;
 }
+.container::before{
+    background-image: url("../img/bgimg.jpg");
+    background-size: cover;
+    background-position: center;
+    content: "";
+    position: absolute;
+    inset:0;
+    filter: blur(1px) brightness(1);
+    z-index: 0;
+
+
+}
+
 #navbar{
     background-color: #fff;
     width: 70%;
@@ -46,9 +58,12 @@ body{
     color:#333;
     cursor: pointer;
     margin-top: 4px;
-    
-    
 }
+.nav-item label:hover{
+    color:rgb(57, 58, 58);
+
+}
+
 /* flight-section */
 .flights-section,
 .cabs-section,
@@ -70,6 +85,69 @@ body{
     border: 1px solid #ddd;
     box-sizing: border-box;
     position: relative;
+}
+
+/* login form section */
+.login-container{
+    position: relative;
+    width: 850px;
+    height: 550px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0,0,0,.2);
+}
+.form-box{
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: lightblue;
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-align: center;
+}
+form{
+    width: 100%;
+}
+.login-container h1{
+    font-size: 36px;
+    margin: -10px 0;
+}
+.input-box{
+    position: relative;
+    margin: 30px 0;
+}
+.input-box input{
+    width: 100%;
+    padding: 13px 50px 13px 20px;
+    background: #eee;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+.input-box input::placeholder{
+    color: #888;
+    font-weight: 400;
+}
+.input-box i{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+}
+.forget-link{
+    margin: -15px 0 15px;
+}
+.forget-link a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
 }
 
 
