@@ -41,6 +41,7 @@ body{
   border-radius: 100%;
   font-size: 32px;
   color:#a0a0b0;
+  margin-right: 5px;
 }
 
 /*Navbar links*/
@@ -449,10 +450,12 @@ body{
 }
 .navbar ul{
     width:100%;
-    margin-bottom: 15px;
-    justify-content: center;
+  margin-bottom: 15px;
+   justify-content: center;;
   }
-
+  .navbar ul.active{
+    left:0;
+  }
   .navbar ul li{
     margin: 15px 0;
   }

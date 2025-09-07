@@ -265,20 +265,48 @@ body{
 }
 
 /* responsive design */
+@media screen and (max-width: 900px) {
+.navbar {
+ padding: 15px 20px;
+ flex-wrap: wrap;
+justify-content: center;
+ gap: 12px;
+}
+  
+.navbar ul {
+width: 100%;
+padding-bottom: 8px;
+justify-content: flex-start;
+
+}
+  
+.navbar ul li {
+margin: 0;
+width: 100%;
+border-bottom: 1px solid #2e2e42;
+  }
+  
+
+.navbar ul li a {
+display: block;
+padding: 12px;
+width: 100%;
+}
+}
 @media screen and (max-width:768px){
   .navbar{
     padding:15px 20px; 
+  }
+  .logout-container{
+    padding:30px 20px;
+    margin: 0 15px;
   }
   .navbar ul{
     width:100%;
    margin-bottom: 15px;
    justify-content: center;
   }
-  
 
-.navbar ul.active{
-  left:0;
-}
 .navbar ul li{
   margin:0;
   text-align: center;
@@ -306,6 +334,13 @@ body{
 }
 
 @media screen and (max-width:480px){
+  .navbar ul{
+    gap: 10px;
+  }
+  .navbar ul li a {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
   .nav-logo{
     font-size: 20px;
   }
