@@ -149,7 +149,7 @@ body{
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-  url("../img/offer-img.avif")no-repeat center/cover;
+  url("../img/offer-img.avif")no-repeat center;
   position: relative;
   color:white;
   max-width: 1200px;
@@ -184,7 +184,6 @@ body{
   font-weight:bold;
   font-size: 1.2rem;
   box-shadow: 0 4px 12px rgba(211,141,255,0.4);
-  animation:pulse 2s infinite;
   }
 
   /* Offer Section */
