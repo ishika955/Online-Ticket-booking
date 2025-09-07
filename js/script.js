@@ -1,4 +1,3 @@
-
 document.querySelector('.menu-button').addEventListener('click', function() {
     const navMenu = document.querySelector('.navbar ul');
     navMenu.classList.toggle('active');

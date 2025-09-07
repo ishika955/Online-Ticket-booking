@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail - News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --dark-blue: #1a1a2e;
+            --darker-blue: #100f20;
+            --card-bg: #19192c;
+            --border-color: #2e2e42;
+            --purple-light: #6a44ad;
+            --purple-dark: #2e1a3c;
+            --accent-light: #d38dff;
+            --accent-dark: #ff7171;
+            --text-color: #ffffff;
+            --sub-text-color: #a0a0b0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-blue);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--darker-blue);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-icon {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 9999px;
+        }
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #ccc;
+        }
+        .auth-button {
+            
+                        background: linear-gradient(90deg, #d38dff, #ff7171);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .auth-button:hover {
+            transform: scale(1.05);
+            background-color: #2e1a3c; /* --purple-dark */
+        }
+
+        
+        .mobile-menu-button {
+            display: none;
+        }
+
+        /* Responsive Nav */
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 1023px) {
+             .mobile-menu-button {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+             }
+             .mobile-menu-button svg {
+                height: 1.5rem;
+                width: 1.5rem;
+             }
+             .nav-links {
+                 position: absolute;
+                 top: 64px; /* Adjust this to match the header height */
+                 left: 0;
+                 width: 100%;
+                 background-color: var(--darker-blue);
+                 flex-direction: column;
+                 padding: 1rem 0;
+                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                 transform: translateY(-200%);
+             }
+             .nav-links.active {
+                 display: flex;
+                 transform: translateY(0);
+             }
+             .nav-links a {
+                padding: 1rem 1.5rem;
+             }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+            padding: 6rem 1rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: #a0a0b0; /* --sub-text-color */
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .booking-form-card {
+            background-color: #19192c; /* --card-bg */
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            margin: -60px auto 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input, .form-group select {
+            background-color: transparent;
+            border: 1px solid #2e2e42; /* --border-color */
+            color: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input::placeholder {
+            color: #a0a0b0;
+        }
+        
+        .form-group select option {
+            background-color: #19192c;
+            color: #ffffff;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #d38dff; /* --accent-light */
+            box-shadow: 0 0 0 2px rgba(211, 141, 255, 0.2);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .search-button {
+            width: 100%;
+            background-color: #d38dff; /* --accent-light */
+            color: #100f20; /* --darker-blue for contrast */
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #ff7171; /* --accent-dark */
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff; /* --text-color */
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background-color: #19192c; /* --card-bg */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 1.5rem;
+        }
+
+        .featured-content h3 {
+            font-size: 1.5rem;
+            color: #d38dff; /* --accent-light */
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-content p {
+            font-size: 0.95rem;
+            color: #a0a0b0; /* --sub-text-color */
+            margin-bottom: 1rem;
+        }
+
+        .featured-button {
+ 
+            background: linear-gradient(90deg, #d38dff, #ff7171);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .featured-button:hover {
+            background-color: #2e1a3c; /* --purple-dark */
+            color: #d38dff;
+        }
+
+        /* Footer section */
+        .footer {
+            background-color: #19192c; /* --card-bg */
+            color: #fff;
+            text-align: center;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .footer-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: #d38dff; /* --accent-light */
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #d38dff; /* --accent-light */
+            border-radius: 5px;
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 12px;
+            color: #a0a0b0; /* --sub-text-color */
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            text-align: left;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .footer-section ul li a {
+            color: #a0a0b0; /* --sub-text-color */
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section ul li a:hover {
+            color: #d38dff; /* --accent-light */
+            transform: translateX(5px);
+        }
+
+        .footer-section i {
+            margin-right: 10px;
+            color: #d38dff; /* --accent-light */
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #2e2e42; /* --border-color */
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design for footer */
+        @media (max-width: 768px) {
+            .footer-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-section {
+                min-width: 100%;
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-section p, .footer-section ul {
+                text-align: center;
+            }
+
+            .footer-section ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .footer-section ul li a:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+<header class="header">
+        <nav class="container nav-container">
+            <div class="nav-logo">
+                <img src="fas fa-globe-americas" alt="Moonrail Logo" class="nav-logo-icon">
+                <span class="nav-logo-text">MoonRail</span>
+            </div>
+            <div class="nav-links" id="nav-links">
+               <a href="index.html">Home</a>
+                <a href="about us.html">About us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="#">News</a>
+                <a href="offers.html">Offers</a>
+            </div>
+            <a href="login.html" class="auth-button">Log In</a>
+            <a href="logout.html" class="auth-button">Log out</a>
+    
+
+            <button class="mobile-menu-button" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+    <!-- Hero Section and Booking Form -->
+    <div class="hero-section">
+        <h1 class="hero-title">Experience the Beauty of India</h1>
+        <p class="hero-subtitle">Discover ancient wonders, breathtaking landscapes, and vibrant cultures. Your journey of a lifetime begins now.</p>
+    </div>
+
+    <!-- Main Content Section -->
+    <main class="main-content">
+        <section>
+            <h2 class="section-title">Featured Destinations</h2>
+            <div class="featured-grid">
+                <!-- Featured Destination Card 1 -->
+                <div class="featured-card">
+                    <img src="https://th.bing.com/th/id/R.180e3a79a2a106685b6f53366c9efc43?rik=iKdt33VwgK10%2fQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2f2QOpDiC.jpg&ehk=AZAj3MnoimSu%2flTSp1%2bOwRbiP%2f5wg0vebb2oPcTDsGE%3d&risl=&pid=ImgRaw&r=0" alt="Himalayan mountains at night" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Himalayan Treks</h3>
+                        <p>Embark on an epic adventure to the majestic peaks of the Himalayas. Experience breathtaking views and serene landscapes.</p>
+                        <a href="https://trekthehimalayas.com/alltreks" class="featured-button">Explore</a>
+                    </div>
+                </div>
+                <!-- Featured Destination Card 2 -->
+                <div class="featured-card">
+                    <img src="https://media.easemytrip.com/media/Blog/India/637136726518786264/637136726518786264QBU8O9.jpg" alt="Goa beaches at night" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Goan Getaway</h3>
+                        <p>Relax on the sun-kissed beaches of Goa. Enjoy the vibrant nightlife, delicious cuisine, and a laid-back vibe.</p>
+                        <a href="https://madmansjourney.com/travel-blogs/goa-travel-blog/" class="featured-button">Explore</a>
+                    </div>
+                </div>
+                <!-- Featured Destination Card 3 -->
+                <div class="featured-card">
+                    <img src="https://i.pinimg.com/originals/a3/e3/db/a3e3dbfb46f42f73110060ea2a959124.jpg" alt="Palace in Jaipur at night" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Jaipur's Royal Charm</h3>
+                        <p>Explore the Pink City's magnificent forts, palaces, and colorful bazaars. A journey back in time awaits.</p>
+                        <a href="https://blog.untravel.com/jaipur/" class="featured-button">Explore</a>
+                    </div>
+                </div>
+                 <!-- Featured Destination Card 4 -->
+                <div class="featured-card">
+                    <img src="https://i.ytimg.com/vi/7TwwbECGc1s/maxresdefault.jpg" alt="Backwaters of Kerala" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Kerala Backwaters</h3>
+                        <p>Float along the tranquil backwaters of Kerala on a traditional houseboat. A perfect blend of nature and serenity.</p>
+                        <a href="https://www.alongdustyroads.com/posts/kerala-backwaters-guide" class="featured-button">Explore</a>
+                    </div>
+                </div>
+                 <!-- Featured Destination Card 5 -->
+                <div class="featured-card">
+                    <img src="https://images.cnbctv18.com/wp-content/uploads/2023/08/thar-desert-shutterstock-1019x573.jpg" alt="Thar desert sand dunes" class="featured-image">
+                    <div class="featured-content">
+                        <h3>The Thar Desert</h3>
+                        <p>Discover the golden dunes of the Thar Desert on a camel safari. Experience the unique culture and starlit nights.</p>
+                        <a href="https://www.realdesertmansafarijaisalmer.com/blog/major-tourist-attractions-of-the-thar-desert" class="featured-button">Explore</a>
+                    </div>
+                </div>
+                 <!-- Featured Destination Card 6 -->
+                <div class="featured-card">
+                    <img src="https://live.staticflickr.com/65535/49108229337_968e6ce697_b.jpg" alt="Andaman Islands beach" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Andaman Islands</h3>
+                        <p>Unwind on the pristine beaches and explore the vibrant marine life of the Andaman Islands. A tropical paradise awaits.</p>
+                        <a href="https://blog.untravel.com/andaman-islands/" class="featured-button">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+        <footer class="footer">
+        <div class="footer-details">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are a passionate team dedicated to creating beautiful and functional web designs. Our mission is to help your ideas come to life.</p>
+            </div>
+           <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Flight Booking</a></li>
+                    <li><a href="#">Train Booking</a></li>
+                    <li><a href="#">Bus Booking</a></li>
+                    <li><a href="#">Cab Booking</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                <p><i class="fas fa-map-marker-alt"></i>Chitkara University</p>
+                <p><i class="fas fa-phone-alt"></i>+91 8146612331</p>
+                <p><i class="fas fa-envelope"></i> moonrail@gmail.com</p>
+                </ul>
+            </div>
+            
+            
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright ©2025 MoonRail. All rights reserved.</p>
+        </div>
+
+    </footer>
+</body>
+</html>

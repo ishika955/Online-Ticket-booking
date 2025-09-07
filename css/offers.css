@@ -10,24 +10,27 @@ body{
   background-color: #100f20;
   color:#f0f0f0;
   line-height: 1.6;
+  
 }
 .container{
     max-width: 1200px;
     margin:0 auto;
     padding:0 20px;}
 
+  
 #nav-container{
     width: 100%;
     background-color:#19192c;
     box-shadow: 0 2px 15px rgba(0,0,0,0.3);
     position: sticky;
+    top:0;
+    z-index: 1000;
 }
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  margin-left: auto;
+  padding: 15px 30px;
 }
 .nav-logo{
   display: flex;
@@ -38,6 +41,7 @@ body{
   border-radius: 100%;
   font-size: 32px;
   color:#a0a0b0;
+  margin-right: 5px;
 }
 
 /*Navbar links*/
@@ -45,6 +49,8 @@ body{
   list-style: none;
   display: flex;
   gap:25px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .navbar ul li {
   margin:0 35px;
@@ -59,59 +65,29 @@ body{
 .navbar ul li a:hover{
   color: #a0a0b0;
 }
-.navbar ul li a::after {
-     content: "";
-     position: absolute;
-     bottom:0;
-     left:0;
-     width:0;
-     height:2px;
-     background: linear-gradient(90deg, #d38dff,#ff7171);
-     transition: width 0.3s ease;
-}
+
 .navbar ul li a:hover::after{
   width:100%;
 }
 
-/*search icon*/
-.search-icon {
-  cursor: pointer;
-  color: #ffffff;
-  background: none;
+/*login button*/
+.auth-button {
+  background: linear-gradient(90deg, #d38dff, #ff7171);
   border: none;
-  font-size: 20px;
-  margin-left: 18px;
-  transition: color 0.2s ,transform 0.2s;
-  padding: 8px;
-  border-radius: 50px;
-}
-.search-icon:hover {
-  color:   #a0a0b0;
-  background-color: rgba(255,255,255,0.1);
-  transform:scale(1.1);
-}
-/* Menu button */
-.menu-button{
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width:20px;
-  height:15px;
-  background: transparent;
-  border: none;
+  padding: 0.75rem 1.5rem;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 9999px;
   cursor: pointer;
-  padding:0;
-  margin-left: auto;
-}
-.menu-button span{
-  display: block;
-  height:3px;
-  width:100%;
-  background-color:#fff;
-  border-radius:3px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
 }
 
+.auth-button:hover {
+    transform: scale(1.05);
+    background-color: #2e1a3c; 
+}
 /* Travel nav section */
 #nav-bar{
     background: linear-gradient(90deg, #6a44ad,#2e1a3c);
@@ -173,7 +149,7 @@ body{
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-  url("../img/offer-img.avif")no-repeat center/cover;
+  url("../img/offer-img.avif")no-repeat center;
   position: relative;
   color:white;
   max-width: 1200px;
@@ -208,7 +184,6 @@ body{
   font-weight:bold;
   font-size: 1.2rem;
   box-shadow: 0 4px 12px rgba(211,141,255,0.4);
-  animation:pulse 2s infinite;
   }
 
   /* Offer Section */
@@ -447,42 +422,35 @@ body{
   font-size:0.9rem;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-} 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(211, 141, 255, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(211, 141, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(211, 141, 255, 0); }
-}
 /* Responsive Design */
 @media(max-width:1024px){
-  .navbar{
-    padding:15px;
+.navbar{
+    padding:15px 20px;
   }
-  .navbar ul{
-    gap:15px;
+.navbar ul{
+    gap:10px;
   }
-  .offer-header h1{
+.navbar ul li {
+   margin: 0 5px;
+}
+.offer-header h1{
     font-size:1.8rem;
   }
+.auth-buttons {
+   padding: 0.6rem 1.2rem;
+   font-size: 0.9rem;
+}
 
 }
 @media(max-width:768px){
-  .navbar ul{
-    position:fixed;
-    top:70px;
-    left:-100%;
-    flex-direction: column;
-    background-color: #19192c;
+.navbar {
+  flex-direction:column;
+  padding: 15px;
+}
+.navbar ul{
     width:100%;
-    text-align: center;
-    transition: 0.3 ease;
-    box-shadow: 0 10px 27px rgba(0,0,0,0,0.05);
-    padding:20px 0;
-    z-index: 999;
+  margin-bottom: 15px;
+   justify-content: center;;
   }
   .navbar ul.active{
     left:0;
@@ -490,21 +458,7 @@ body{
   .navbar ul li{
     margin: 15px 0;
   }
-  .navbar ul li a::after{
-    display:none;
-  } 
-  .menu-button{
-    display:flex;
-  }
-  .menu-button.active span:nth-child(1){
-    transform: rotate(45deg) translate(5px,5px);
-  }
-  .menu-button.active span:nth-child(2){
-    opacity:0;
-  }
-  .menu-button.active span:nth-child(3){
-    transform: rotate(-45deg) translate(5px,-5px);
-  }
+  
   #nav-bar{
     width:95%;
     padding:10px 5px;

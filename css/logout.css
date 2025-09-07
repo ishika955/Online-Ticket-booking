@@ -65,40 +65,11 @@ body{
 .navbar ul li a:hover{
   color: #a0a0b0;
 }
-.navbar ul li a::after {
-     content: "";
-     position: absolute;
-     bottom:0;
-     left:0;
-     width:0;
-     height:2px;
-     background: linear-gradient(90deg, #d38dff,#ff7171);
-     transition: width 0.3s ease;
-}
+
 .navbar ul li a:hover::after{
   width:100%;
 }
 
-/* Menu button */
-.menu-button{
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width:20px;
-  height:15px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding:0;
-}
-.menu-button span{
-  display: block;
-  height:3px;
-  width:100%;
-  background-color:#fff;
-  border-radius:3px;
-  transition: all 0.3s ease;
-}
 
 /* logout container */
 .logout-box{
@@ -294,26 +265,48 @@ body{
 }
 
 /* responsive design */
+@media screen and (max-width: 900px) {
+.navbar {
+ padding: 15px 20px;
+ flex-wrap: wrap;
+justify-content: center;
+ gap: 12px;
+}
+  
+.navbar ul {
+width: 100%;
+padding-bottom: 8px;
+justify-content: flex-start;
+
+}
+  
+.navbar ul li {
+margin: 0;
+width: 100%;
+border-bottom: 1px solid #2e2e42;
+  }
+  
+
+.navbar ul li a {
+display: block;
+padding: 12px;
+width: 100%;
+}
+}
 @media screen and (max-width:768px){
   .navbar{
     padding:15px 20px; 
   }
-  .navbar ul{
-    position: fixed;
-    top: 70px;
-    left:-100%;
-    width:100%;
-    background: #19192c;
-    flex-direction: column;
-    gap:0;
-    transition: left 0.5s ease;
-    padding-top: 30px;
+  .logout-container{
+    padding:30px 20px;
+    margin: 0 15px;
   }
-  
+  .navbar ul{
+    width:100%;
+   margin-bottom: 15px;
+   justify-content: center;
+  }
 
-.navbar ul.active{
-  left:0;
-}
 .navbar ul li{
   margin:0;
   text-align: center;
@@ -323,21 +316,7 @@ body{
   padding: 20px;
   width:100%;
 }
-.navbar ul li a::after{
-  display: none;
-}
-.menu-button{
-  display: flex;
-}
-.menu-button.active span:nth-child(1){
-  transform: rotate(45deg) translate(5px,5px);
-}
-.menu-button.active span:nth-child(2){
-  opacity:0;
-}
-.menu-button.active span:nth-child(3){
-  transform: rotate(-45deg) translate(5px,-5px);
-}
+
 .logout-container{
   padding:30px 20px;
   margin: 0 15px;
@@ -355,6 +334,13 @@ body{
 }
 
 @media screen and (max-width:480px){
+  .navbar ul{
+    gap: 10px;
+  }
+  .navbar ul li a {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
   .nav-logo{
     font-size: 20px;
   }
