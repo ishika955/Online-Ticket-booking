@@ -47,11 +47,22 @@ padding: 8px 50px;
 }
 
 
-.navbar .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-}
+.nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-icon {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 9999px;
+        }
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
 .navbar ul {
   list-style: none;
   display: flex;
@@ -268,6 +279,8 @@ font-family: Segoe Script;
     padding: 10px 15px;
   }
 }
+
+
 
 .parallax {
   position: relative;

@@ -10,3 +10,10 @@ document.querySelectorAll('.navbar ul li a').forEach(link => {
         document.querySelector('.menu-button').classList.remove('active');
     });
 });
+
+
+
+ 
+
+
+
