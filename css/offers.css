@@ -149,7 +149,7 @@ body{
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-  url("../img/offer-img.avif")no-repeat center;
+  url("../img/offer-img.avif")no-repeat center/cover ;
   position: relative;
   color:white;
   max-width: 1200px;
