@@ -1,38 +1,36 @@
-A responsive frontend-based transport ticket booking platform for buses/trains/flights.
+A responsive frontend-based transport ticket booking platform for buses/trains/flights.  
 Built with HTML, CSS, and JavaScript, it simulates searching, selecting seats, and booking tickets.
 
-✨ Features
+✨ Features  
 
-Landing page with available routes
-Seat selection interface (prototype)
-Booking confirmation page (work in progress)
-Planned: mock payment + backend integration
+Landing page with available routes  
+Seat selection interface (prototype)  
+Booking confirmation page (work in progress)  
+Planned: mock payment + backend integration  
 
-🛠 Tech Stack
+🛠 Tech Stack  
 
-HTML5 – structure
-CSS3 – responsive layout 
-JavaScript – seat booking & form validation
+HTML5 – structure  
+CSS3 – responsive layout  
+JavaScript – seat booking & form validation  
 
-🚀 Getting Started
+🚀 Getting Started  
 
 Clone this repo:
-
 git clone https://github.com/ishika955/Online-Ticket-booking.git
 cd Online-Ticket-booking
+
 Open index.html in your browser
-(or run a local server using VS Code Live Server / python -m http.server)
-
-
+(or run a local server using VS Code Live Server )
 
 📍 Roadmap
- 
- Landing page => Done
- Route selection page => Done
- Seat booking prototype
- Confirmation page
- Payment 
- Backend integration
+
+Landing page => Done
+Route selection page => Done
+Seat booking prototype
+Confirmation page
+Payment
+Backend integration
 
 📬 Contact
 
