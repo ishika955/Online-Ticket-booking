@@ -17,11 +17,10 @@ JavaScript – seat booking & form validation
 🚀 Getting Started  
 
 Clone this repo:
+
+
 git clone https://github.com/ishika955/Online-Ticket-booking.git
 cd Online-Ticket-booking
-
-Open index.html in your browser
-(or run a local server using VS Code Live Server )
 
 📍 Roadmap
 
@@ -35,4 +34,5 @@ Backend integration
 📬 Contact
 
 📧 Email: ishikabedi55@gmail.com
+
 🔗 LinkedIn: ishika-8263b9354
