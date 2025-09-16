@@ -20,19 +20,23 @@ Clone this repo:
 
 
 git clone https://github.com/ishika955/Online-Ticket-booking.git
+
 cd Online-Ticket-booking
 
-📍 Roadmap
+---
 
-Landing page => Done
-Route selection page => Done
-Seat booking prototype
-Confirmation page
-Payment
-Backend integration
+📍 **Roadmap**  
 
-📬 Contact
+Landing page => Done  
+Route selection page => Done  
+Seat booking prototype  
+Confirmation page  
+Payment  
+Backend integration  
 
-📧 Email: ishikabedi55@gmail.com
+---
 
-🔗 LinkedIn: ishika-8263b9354
+📬 **Contact**  
+
+📧 Email: ishikabedi55@gmail.com  
+🔗 LinkedIn: ishika-8263b9354  
