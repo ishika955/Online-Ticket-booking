@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Dark Mode Variables */
             --dark-blue: #1a1a2e;
             --darker-blue: #100f20;
             --card-bg: #19192c;
@@ -19,7 +20,127 @@
             --accent-dark: #ff7171;
             --text-color: #ffffff;
             --sub-text-color: #a0a0b0;
+            --light-mode-bg: #ffffff; /* New variable for light mode main background */
+            --light-mode-text: #1a1a2e; /* New variable for light mode text */
         }
+
+        /* Light Mode Styles */
+        .light-mode {
+            --dark-blue: #f3f4f6; /* Light background */
+            --darker-blue: #ffffff; /* Lighter header/card background */
+            --card-bg: #ffffff; /* Lighter card background */
+            --border-color: #e5e7eb; /* Lighter border */
+            --purple-light: #c5a4f7; /* Lighter purple for hero */
+            --purple-dark: #7b43a3; /* Deeper purple for hero contrast */
+            --accent-light: #7b43a3; /* Accent color in light mode */
+            --accent-dark: #a0a0b0;
+            --text-color: #1f2937; /* Dark text */
+            --sub-text-color: #6b7280; /* Sub-text color */
+        }
+        
+        /* Apply light mode style to specific elements */
+        .light-mode body {
+            background-color: var(--dark-blue);
+            color: var(--text-color);
+        }
+
+        .light-mode .header {
+            background-color: var(--darker-blue);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .light-mode .nav-links a {
+            color: var(--text-color);
+        }
+        
+        .light-mode .nav-links a:hover {
+            color: var(--sub-text-color);
+        }
+        
+        .light-mode .mobile-menu-button svg {
+            color: var(--text-color);
+        }
+        
+        .light-mode .nav-links.active {
+            background-color: var(--darker-blue);
+        }
+
+        .light-mode .hero {
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+            color: #ffffff; /* Keep hero text white/light for contrast */
+        }
+        
+        .light-mode .hero p {
+            color: #e5e7eb;
+        }
+
+        .light-mode .contact-info-section .tag {
+            color: var(--accent-light); /* Use light mode accent color */
+        }
+        
+        .light-mode .contact-info-section h2 {
+            color: var(--text-color);
+        }
+        
+        .light-mode .contact-info-section p {
+            color: var(--sub-text-color);
+        }
+
+        .light-mode .info-icon {
+            background-color: var(--border-color); /* Lighter background for icon */
+        }
+
+        .light-mode .info-icon svg {
+            color: var(--accent-light); /* Lighter accent for icon */
+        }
+        
+        .light-mode .info-text p:first-child {
+            color: var(--text-color);
+        }
+
+        .light-mode .contact-form-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .light-mode .contact-form-card h3 {
+            color: var(--text-color);
+        }
+
+        .light-mode .form-input, .light-mode .form-textarea {
+            background-color: var(--dark-blue); /* Lighter input background */
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .light-mode .footer {
+            background-color: var(--darker-blue);
+            color: var(--text-color);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .light-mode .footer-section h3 {
+            color: var(--accent-light);
+        }
+
+        .light-mode .footer-section h3::after {
+            background-color: var(--accent-light);
+        }
+        
+        .light-mode .footer-section ul li a {
+            color: var(--text-color);
+        }
+
+        .light-mode .footer-section ul li a:hover {
+            color: var(--accent-light);
+        }
+        
+        .light-mode .footer-bottom {
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Rest of the original CSS */
 
         body {
             font-family: 'Inter', sans-serif;
@@ -27,6 +148,7 @@
             color: var(--text-color);
             margin: 0;
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s; /* Added transition for smooth change */
         }
 
         .container {
@@ -86,7 +208,7 @@
             color: #ccc;
         }
         .auth-button {
-                        background: linear-gradient(90deg, #d38dff, #ff7171);
+            background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
             border: none;
             padding: 0.75rem 1.5rem;
             color: #fff;
@@ -98,7 +220,33 @@
 
         .auth-button:hover {
             transform: scale(1.05);
-            background-color: #2e1a3c; /* --purple-dark */
+        }
+        
+        /* Mode Switch Button */
+        .mode-switch-button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            transition: color 0.3s;
+        }
+
+        .mode-switch-button:hover {
+            color: var(--accent-light);
+        }
+
+        .mode-switch-button svg {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+        
+        /* Combined Auth and Switch */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         
@@ -117,12 +265,20 @@
         }
         
         @media (max-width: 1023px) {
+            .nav-actions {
+                display: none; /* Hide buttons on small screens */
+            }
+            .nav-container {
+                justify-content: space-between;
+            }
              .mobile-menu-button {
-                display: block;
+                display: flex; /* Show menu button */
+                align-items: center;
                 background: none;
                 border: none;
                 color: white;
                 cursor: pointer;
+                order: 3; /* Move to the right */
              }
              .mobile-menu-button svg {
                 height: 1.5rem;
@@ -138,21 +294,30 @@
                  padding: 1rem 0;
                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                  transform: translateY(-200%);
+                 transition: transform 0.3s ease-in-out;
+                 z-index: 40;
              }
              .nav-links.active {
                  display: flex;
                  transform: translateY(0);
              }
              .nav-links a {
-                padding: 1rem 1.5rem;
+                 padding: 1rem 1.5rem;
+             }
+             .nav-links .auth-button { /* To make buttons available in the mobile menu */
+                display: block;
+                width: calc(100% - 3rem);
+                margin: 0.5rem 1.5rem;
+                text-align: center;
              }
         }
-
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
             padding: 6rem 1rem;
             text-align: center;
+            transition: background 0.3s;
         }
 
         .hero h1 {
@@ -163,7 +328,7 @@
         @media (min-width: 768px) {
              .hero h1 {
                 font-size: 3rem;
-            }
+             }
         }
 
         .hero p {
@@ -234,12 +399,14 @@
             padding: 0.75rem;
             border-radius: 9999px;
             flex-shrink: 0;
+            transition: background-color 0.3s;
         }
 
         .info-icon svg {
             height: 1.5rem;
             width: 1.5rem;
             color: #A78BFA;
+            transition: color 0.3s;
         }
 
         .info-text p:first-child {
@@ -294,6 +461,7 @@
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .contact-form-card h3 {
@@ -331,6 +499,7 @@
             border-radius: 0.5rem;
             width: 100%;
             box-sizing: border-box;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
         }
         
         .form-textarea {
@@ -338,7 +507,7 @@
         }
 
         .submit-button {
-            background: linear-gradient(90deg, #d38dff, #ff7171);
+            background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
             border: none;
             padding: 0.75rem 1.5rem;
             color: #fff;
@@ -363,15 +532,16 @@
             border: 0;
         }
         
-       
+        
         .footer {
-            background-color: #19192c;
+            background-color: var(--card-bg);
             color: #fff;
             text-align: center;
             padding: 60px 0 20px;
             margin-top: 80px;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
+            transition: background-color 0.3s;
         }
 
         .footer-details {
@@ -396,6 +566,7 @@
             color: #d38dff;
             position: relative;
             padding-bottom: 10px;
+            transition: color 0.3s;
         }
 
         .footer-section h3::after {
@@ -407,6 +578,7 @@
             height: 3px;
             background-color: #d38dff;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
         .footer-section p, .footer-section li {
@@ -482,23 +654,33 @@
         }
     </style>
 </head>
-<body>
-     <header class="header">
+<body id="body">
+    <header class="header">
         <nav class="container nav-container">
             <div class="nav-logo">
                 <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="Moonrail Logo" class="nav-logo-icon">
                 <span class="nav-logo-text">MoonRail</span>
             </div>
+            
             <div class="nav-links" id="nav-links">
-               <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="about us.html">About us</a>
                 <a href="#">Contact Us</a>
                 <a href="news.html">News</a>
                 <a href="offers.html">Offers</a>
+                <a href="login.html" class="auth-button" style="display:none;" id="mobile-login-btn">Log In</a>
+                <a href="logout.html" class="auth-button" style="display:none;" id="mobile-logout-btn">Log out</a>
             </div>
-            <a href="login.html" class="auth-button">Log In</a>
-            <a href="logout.html" class="auth-button">Log out</a>
-    
+
+            <div class="nav-actions">
+                <button class="mode-switch-button" id="mode-switch">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="mode-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                <a href="login.html" class="auth-button">Log In</a>
+                <a href="logout.html" class="auth-button">Log out</a>
+            </div>
 
             <button class="mobile-menu-button" id="mobile-menu-button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -508,7 +690,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>Contact us</h1>
@@ -516,17 +697,14 @@
         </div>
     </section>
 
-    <!-- Main Content Section -->
     <main class="container main-content">
         <div class="content-grid">
-            <!-- Contact Info -->
             <div class="contact-info-section">
                 <span class="tag">GET IN TOUCH</span>
                 <h2>Seamless Communication, Global Impact.</h2>
 
                 <div class="info-item-container">
                     
-                    <!-- Let's Talk -->
                     <div class="info-item">
                         <div class="info-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -539,7 +717,6 @@
                             <p>Phn no.: +91 8146612331</p>
                         </div>
                     </div>
-                    <!-- Email Support -->
                     <div class="info-item">
                         <div class="info-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -557,12 +734,12 @@
                 <div class="social-media-container">
                     <h4>Follow our social media</h4>
                     <div class="social-icons">
-                        <a href="https://www.instagram.com/moon.rail/" class="social-icon">
+                        <a href="https://www.instagram.com/moon.rail/" target="_blank" class="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.013 4.85.074 3.178.156 4.383 1.583 4.545 4.757.065 1.267.078 1.647.078 4.85s-.013 3.584-.074 4.85c-.156 3.178-1.583 4.383-4.757 4.545-1.267.065-1.647.078-4.85.078s-3.584-.013-4.85-.074c-3.178-.156-4.383-1.583-4.545-4.757-.065-1.267-.078-1.647-.078-4.85s.013-3.584.074-4.85c.156-3.178 1.583-4.383 4.757-4.545 1.267-.065 1.647-.078 4.85-.078zm0-2.163c-3.259 0-3.66.014-4.945.076-4.426.216-6.173 2.056-6.39 6.425-.065 1.285-.078 1.69-.078 4.945s.013 3.66.078 4.945c.217 4.369 2.056 6.173 6.425 6.39 1.285.065 1.69.078 4.945.078s3.66-.013 4.945-.078c4.369-.217 6.173-2.056 6.39-6.425.065-1.285.078-1.69.078-4.945s-.013-3.66-.078-4.945c-.217-4.369-2.056-6.173-6.425-6.39-1.285-.065-1.69-.078-4.945-.078zm-1.897 8.356c-.529 0-.96.431-.96.96s.431.96.96.96.96-.431.96-.96-.431-.96-.96-.96zm-2.163.96c0-2.352 1.908-4.26 4.26-4.26s4.26 1.908 4.26 4.26-1.908 4.26-4.26 4.26-4.26-1.908-4.26-4.26zm2.163 2.163c-1.258 0-2.26-1.002-2.26-2.26s1.002-2.26 2.26-2.26 2.26 1.002 2.26 2.26-1.002 2.26-2.26 2.26zm7.252-8.151h-.008c.579 0 1.04-.461 1.04-1.04s-.461-1.04-1.04-1.04c-.579 0-1.04.461-1.04 1.04s.461 1.04 1.04 1.04z" />
                             </svg>
                         </a>
-                        <a href="https://x.com/MoonRail25" class="social-icon">
+                        <a href="https://x.com/MoonRail25" target="_blank" class="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M22.258 4.793c-.859.38-1.785.638-2.766.755.986-.59 1.74-1.523 2.095-2.637-.923.547-1.94 1.025-3.02 1.257-2.736-2.91-7.294-.783-6.195 2.185-3.882.193-7.327-2.083-9.664-5.26-.403.693-.637 1.498-.637 2.373 0 1.636.83 3.084 2.105 3.931-.77-.024-1.49-.235-2.12-.583v.03c0 2.28 1.626 4.187 3.774 4.62-1.78.486-3.665.232-5.18.06.598 1.874 2.32 3.242 4.38 3.28-1.734 1.355-3.92 2.164-6.29 2.164-.407 0-.814-.024-1.215-.072 2.24 1.436 4.898 2.278 7.747 2.278 8.87 0 13.722-7.35 13.722-13.723 0-.21-.005-.42-.014-.627.944-.683 1.76-1.536 2.408-2.51z" />
                             </svg>
@@ -572,7 +749,6 @@
                 </div>
             </div>
 
-            <!-- Contact Form -->
             <div class="contact-form-card">
                 <h3>Send us a message</h3>
                 <p>Please feel free to send us any questions, feedback or suggestions you might have.</p>
@@ -593,13 +769,11 @@
         </div>
     </main>
 
-    <!-- Map Section -->
     <section class="map-section">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.328304187959!2d76.65663027547724!3d30.51645997468957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fef61cf0a5c3f%3A0x8de799c8e9d48f14!2sChitkara%20University!5e0!3m2!1sen!2sin!4v1692890491530!5m2!1sen!2sin" class="map-iframe" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
-    <!-- Footer -->
-   <footer class="footer">
+    <footer class="footer">
         <div class="footer-details">
             <div class="footer-section">
                 <h3>About Us</h3>
@@ -617,28 +791,85 @@
             <div class="footer-section">
                 <h3>Contact Info</h3>
                 <ul>
-                <p><i class="fas fa-map-marker-alt"></i>Chitkara University</p>
-                <p><i class="fas fa-phone-alt"></i>+91 8146612331</p>
-                <p><i class="fas fa-envelope"></i> moonrail@gmail.com</p>
+                <p>Chitkara University</p>
+                <p>+91 8146612331</p>
+                <p>moonrail@gmail.com</p>
                 </ul>
             </div>
             
             
         </div>
-        <div class="footer-copyright">
+        <div class="footer-bottom">
             <p>Copyright ©2025 MoonRail. All rights reserved.</p>
         </div>
     </footer>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const navLinks = document.getElementById('nav-links');
-
-            mobileMenuButton.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        });
-    </script>
+        // --- Mobile Menu Toggle Script ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.getElementById('nav-links');
+        const mobileLoginBtn = document.getElementById('mobile-login-btn');
+        const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+        
+        // Function to toggle mobile menu and its associated buttons visibility
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+            const isActive = navLinks.classList.contains('active');
             
+            // Toggle visibility for auth buttons inside the mobile menu
+            mobileLoginBtn.style.display = isActive ? 'block' : 'none';
+            mobileLogoutBtn.style.display = isActive ? 'block' : 'none';
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+
+        // --- Dark/Light Mode Switch Script ---
+        const body = document.getElementById('body');
+        const modeSwitch = document.getElementById('mode-switch');
+        const modeIcon = document.getElementById('mode-icon');
+        
+        // SVG paths for the icons
+        const sunIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+        const moonIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+
+        // Function to apply the theme
+        function applyTheme(isLight) {
+            if (isLight) {
+                body.classList.add('light-mode');
+                modeIcon.innerHTML = moonIcon; // Show moon icon to suggest switching to dark mode
+            } else {
+                body.classList.remove('light-mode');
+                modeIcon.innerHTML = sunIcon; // Show sun icon to suggest switching to light mode
+            }
+        }
+
+        // 1. Check for saved preference on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            applyTheme(true);
+        } else if (savedTheme === 'dark') {
+            applyTheme(false);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // 2. Fallback to system preference if no preference is saved
+             applyTheme(true);
+        } else {
+             applyTheme(false); // Default to dark mode
+        }
+
+        // 3. Event listener for the button click
+        modeSwitch.addEventListener('click', () => {
+            const isLightMode = body.classList.contains('light-mode');
+            
+            if (isLightMode) {
+                applyTheme(false);
+                localStorage.setItem('theme', 'dark');
+            } else {
+                applyTheme(true);
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+    </script>
 </body>
 </html>
