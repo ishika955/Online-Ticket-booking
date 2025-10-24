@@ -1,3 +1,4 @@
+// -----------------------------------OfferPage------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
     initFiltering();
     initExpiryCheck();
