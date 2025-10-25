@@ -38,5 +38,4 @@ Backend integration
 
 📬 **Contact**  
 
-📧 Email: ishikabedi55@gmail.com  
-🔗 LinkedIn: ishika-8263b9354  
+📧 Email: ishikabedi55@gmail.com; ishikasingla30@gmail.com; muskanmittal249@gmail.com  
