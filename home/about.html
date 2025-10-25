@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail - About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd/rOWp7TDE5bT1u3lU2p331mF236tX4eF66rFh9E7V9T5tB+Lz8FwR5j+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Define Color Variables for Dark and Light Mode */
+        :root {
+            /* Dark Mode Defaults (Based on your latest variables) */
+            --bg-color: #1a1a2e; 
+            --nav-bg: #100f20; 
+            --card-bg: #19192c;
+            --border-color: #2e2e42;
+            --purple-light: #6a44ad;
+            --purple-dark: #2e1a3c;
+            --accent-light: #d38dff; /* Light purple for links/dividers */
+            --accent-dark: #ff7171; /* Orange Red for MoonRail icon/underline */
+            --text-color: #ffffff;
+            --sub-text-color: #a0a0b0;
+            --hero-bg: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+            
+            /* Header Specific from your snippet */
+            --top-bar-bg: #2e1a3c; /* Darker purple for top bar*/
+            --header-nav-bg: #100f20; /* Dark blue/black for main nav*/
+            --link-hover-color: #d38dff;
+            --top-bar-text: #a0a0b0; /* Use sub-text for top bar links */
+            --footer-bg: #100f20;
+        }
+
+        /* Light Mode Variables (Based on your latest variables) */
+        body.light-mode {
+            --bg-color: #f3f4f6; 
+            --nav-bg: #ffffff; 
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --purple-light: #c5a4f7;
+            --purple-dark: #7b43a3; 
+            --accent-light: #7b43a3;
+            --accent-dark: #a0a0b0;
+            --text-color: #1f2937;
+            --sub-text-color: #6b7280;
+            --hero-bg: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+            
+            /* Light Header Specific from your snippet */
+            --top-bar-bg: #7b43a3;
+            --header-nav-bg: #ffffff;
+            --link-hover-color: #a0a0b0;
+            --top-bar-text: #ffffff; 
+            --footer-bg: #f3f4f6;
+        }
+        
+        /* FIX: Ensure light text on purple backgrounds in both modes for contrast */
+        .hero-section h1, .cta-section h2 {
+            color: #ffffff; 
+        }
+        
+        .hero-section p, .cta-section p {
+            color: #f0f0f0; 
+        }
+        /* ================================================================ */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Top Bar Styling --- */
+        .top-bar {
+            background-color: var(--top-bar-bg);
+            color: var(--top-bar-text);
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            /* Update to space-between for 3 columns: Left | Center | Right */
+            justify-content: space-between; 
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .top-left-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            /* Take up minimal space */
+            flex: 0 1 auto; 
+        }
+        
+        body.light-mode .top-left-info span {
+            color: #fff;
+        }
+        
+        /* New Styling for Centered Social Icons */
+        .social-icons-center {
+            display: flex;
+            align-items: center;
+            /* Allow the social icons block to center itself */
+            justify-content: center; 
+            flex: 1 1 auto; 
+        }
+
+        .social-icons-center a {
+            color: var(--top-bar-text);
+            /* Adjust margin for centered look */
+            margin: 0 0.5rem; 
+            transition: color 0.2s;
+        }
+
+        .social-icons-center a:hover {
+            color: var(--accent-light);
+        }
+
+        .top-right-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            /* Take up minimal space */
+            flex: 0 1 auto;
+        }
+        
+        .top-right-info .user-name {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .top-right-info a {
+            color: #ff7171;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .top-right-info a:hover {
+            color: var(--accent-light);
+        }
+        
+        /* Ensure the pipe separator has the correct color */
+        .top-right-info span {
+             color: var(--top-bar-text);
+        }
+        
+        /* The media query in your original code handles hiding the top bar on mobile, 
+           so no major responsive change is needed here, as the top bar will hide. */
+
+        /* --- Header Navigation Styling (Rest of CSS is unchanged) --- */
+        .header {
+            background-color: var(--header-nav-bg); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.2s;
+        }
+        
+        .nav-logo:hover .nav-logo-text {
+             color: var(--accent-dark);
+        }
+        
+        body.light-mode .nav-logo:hover .nav-logo-text {
+             color: var(--accent-light);
+        }
+
+        .nav-logo-icon {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 9999px;
+        }
+
+        .nav-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        /* Desktop Links */
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--link-hover-color);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            /* background-color: var(--accent-dark);
+        } */}
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mode-toggle, .mobile-menu-button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .mode-toggle:hover, .mobile-menu-button:hover {
+            color: var(--accent-light);
+        }
+
+        .mode-toggle svg, .mobile-menu-button svg {
+            height: 1.5rem;
+            width: 1.5rem;
+            vertical-align: middle;
+        }
+
+        /* Responsive Breakpoint */
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: none;
+            }
+            .top-bar-content {
+                justify-content: space-between;
+            }
+            .top-bar {
+                display: block;
+            }
+            /* Styling for the user-name and auth links to align properly */
+            #logged-in-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 1023px) {
+            .top-bar {
+                display: none; /* Hide top bar on smaller screens for simplicity */
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%; 
+                left: 0;
+                width: 100%;
+                background-color: var(--header-nav-bg); 
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform 0.3s ease-in-out;
+                overflow: hidden;
+            }
+            .nav-links.active {
+                display: flex;
+                transform: scaleY(1);
+            }
+            .nav-links a {
+                padding: 0.75rem 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* --- Hero Section (About Us Header) --- */
+        .hero-section {
+            background: var(--hero-bg);
+            padding: 6rem 1rem;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+             .hero-section h1 {
+                 font-size: 3rem;
+             }
+        }
+
+        .hero-section p {
+            font-size: 1.125rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+             .hero-section p {
+                 font-size: 1.25rem;
+             }
+        }
+        
+        /* --- Team Gallery & Main Content --- */
+        .team-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background-color: var(--card-bg); 
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05) translateY(0);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item.center {
+            height: 400px;
+            transform: translateY(-20px);
+            z-index: 10;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .team-member-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            box-sizing: border-box;
+            color: #fff;
+        }
+
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .content-section {
+            display: grid;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        @media (min-width: 1024px) {
+            .content-section {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .section-subtitle {
+            color: var(--sub-text-color);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .section-content {
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .feature-item h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-item p {
+            color: var(--sub-text-color);
+            font-size: 0.875rem;
+        }
+
+        /* --- Call to Action --- */
+        .cta-section {
+            padding: 4rem 1rem;
+            background: var(--hero-bg);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--accent-dark), var(--purple-light)); 
+            border: none;
+            padding: 0.75rem 2rem;
+            color: #f4f3f5;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--footer-bg);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .footer-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-light);
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 12px;
+            opacity: 0.8;
+            text-align: left;
+            color: #fff; 
+        }
+        
+        body.light-mode .footer-section p, 
+        body.light-mode .footer-section li {
+            color: var(--sub-text-color); 
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        body.light-mode .footer-section ul li a {
+            color: var(--sub-text-color);
+        }
+
+
+        .footer-section ul li a:hover {
+            color: var(--accent-light);
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        body.light-mode .footer-bottom {
+             color: var(--text-color);
+        }
+
+        /* Responsive Design for footer */
+        @media (max-width: 768px) {
+            .footer-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-section {
+                min-width: 100%;
+                text-align: center;
+            }
+
+            .footer-section p, .footer-section ul {
+                text-align: center;
+            }
+
+            .footer-section ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-left-info">
+                <span>+91 - 8146612331</span>
+            </div>
+            
+            <div class="social-icons-center">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            
+            <div class="top-right-info">
+                <div id="logged-in-info" style="display: none;">
+                    <span class="user-name" id="user-display-name"></span>
+                    <a href="login.html">Login</a>
+                    <span>|</span>
+                    <a href="logout.html">Logout</a>
+                </div>
+                
+                <div id="logged-out-info">
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <header class="header">
+        <nav class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="https://placehold.co/32x32/ff7171/ffffff?text=M" alt="Moonrail Logo" class="nav-logo-icon">
+                <span class="nav-logo-text">MoonRail</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#about-us" class="active">About us</a>
+                <a href="offers.html">Offers</a>
+                <a href="news.html">News</a>
+                <a href="contacts.html">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <button class="mode-toggle" id="mode-toggle" aria-label="Toggle light and dark mode">
+                    <svg id="mode-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Toggle navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>Our Journey, Your Adventure</h1>
+            <p>At Moonrail, we believe every journey should be as unique as the traveler. We're dedicated to making global travel seamless, accessible, and unforgettable.</p>
+        </div>
+    </section>
+
+    <section class="team-gallery">
+        <div class="gallery-item">
+            <img src="C:\Users\ishik\Online-Ticket-booking\img\WhatsApp Image 2025-09-08 at 18.31.40_65c99909.jpg" alt="Ishika Singla">
+            <div class="team-member-name">Ishika Singla</div>
+        </div>
+        <div class="gallery-item">
+            <img src="C:\Users\ishik\Online-Ticket-booking\img\WhatsApp Image 2025-09-08 at 18.37.08_238cdcc6.jpg" alt="Ishika">
+            <div class="team-member-name">Ishika</div>
+        </div>
+        <div class="gallery-item">
+            <img src="C:\Users\ishik\Online-Ticket-booking\img\WhatsApp Image 2025-09-08 at 18.44.04_45fe42c0.jpg" alt="Muskan">
+            <div class="team-member-name">Muskan</div>
+        </div>
+        <div class="gallery-item">
+            <img src="C:\Users\ishik\Online-Ticket-booking\img\Screenshot 2025-09-08 190025.png" alt="Tanishka">
+            <div class="team-member-name">Tanishka</div>
+        </div>
+    </section>
+
+    <main class="container main-content">
+        <div class="content-section">
+            <div class="section-content">
+                <h2 class="section-title">Who we are</h2>
+                <p class="section-subtitle">A team of passionate explorers dedicated to your travel success.</p>
+                <p style="color: var(--sub-text-color);">Founded in 2025, We’re a group of enthusiastic CSE students who love building creative and innovative solutions. Travel can often feel complicated, so we set out to make it simple, stress-free, and enjoyable for everyone. Guided by trust and a “customer-first” approach, we design tools that put your needs at the center. Our vision is to shape the future of travel with technology that not only solves problems but also adds ease and excitement to every journey.</p>
+            </div>
+            <div class="section-content">
+                <h2 class="section-title">Our mission</h2>
+                <p class="section-subtitle">To be the most trusted platform for booking travel, worldwide.</p>
+                <p style="color: var(--sub-text-color);">Our commitment extends beyond providing great deals. We strive to offer a transparent and intuitive booking experience, backed by 24/7 customer support. Your adventure is our priority, and we're with you every step of the way, from the first click to your final destination.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-content">
+                <h2 class="section-title">The moonrail difference</h2>
+                <p class="section-subtitle">Everything you need to book smarter and travel easier.</p>
+                <p style="color: var(--sub-text-color);">We've built our platform from the ground up to provide a seamless booking experience. From real-time price tracking to personalized recommendations, our features are designed to get you where you need to go without the hassle.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>Real-time Tracking</h4>
+                    <p>Track flights and prices in real time to ensure you get the best deal available.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>24/7 Support</h4>
+                    <p>Our dedicated support team is available around the clock to assist with any questions or issues.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Personalized Booking</h4>
+                    <p>Get recommendations tailored to your travel history and preferences.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Secure Payments</h4>
+                    <p>Your financial information is always protected with our advanced encryption.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to start your adventure?</h2>
+            <p>From flights to unforgettable experiences, we've got you covered. Book your next journey with us today.</p>
+            <a href="#" class="cta-button">BOOK NOW</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-details">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are a passionate team dedicated to creating beautiful and functional web designs. Our mission is to help your ideas come to life.</p>
+            </div>
+           <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Flight Booking</a></li>
+                    <li><a href="#">Train Booking</a></li>
+                    <li><a href="#">Bus Booking</a></li>
+                    <li><a href="#">Cab Booking</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                <p>Chitkara University</p>
+                <p>+91 8146612331</p>
+                <p> moonrail@gmail.com</p>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright ©2025 MoonRail. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const body = document.getElementById('body');
+        const modeToggle = document.getElementById('mode-toggle');
+        const modeIcon = document.getElementById('mode-icon');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.getElementById('nav-links');
+        
+        // Auth Elements
+        const loggedInInfo = document.getElementById('logged-in-info');
+        const loggedOutInfo = document.getElementById('logged-out-info');
+        const userDisplayName = document.getElementById('user-display-name');
+
+        // --- AUTH LOGIC START (CORRECTED) ---
+        // Placeholder for real authentication check
+        const isLoggedIn = false; // Changed to 'isLoggedIn' for clearer logic.                 // Set to 'true' to show Name, 'false' to show only Login
+        const userName = "Ishika"; // User's name
+
+        function updateAuthDisplay() {
+            if (isLoggedIn) {
+                userDisplayName.textContent = userName;
+                loggedInInfo.style.display = 'flex';
+                loggedOutInfo.style.display = 'none';
+            } else {
+                // When logged out
+                loggedInInfo.style.display = 'none';
+                loggedOutInfo.style.display = 'block';
+            }
+        }
+        // --- AUTH LOGIC END ---
+
+        // Function to set the theme (initial load and toggle)
+        function setTheme(isLight) {
+            if (isLight) {
+                body.classList.add('light-mode');
+                modeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />`;
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                modeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />`;
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 1. Initial Load: Set theme and authentication status
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+        
+        updateAuthDisplay(); // Call the new function on load
+
+        // 2. Event Listener for Mode Toggle
+        modeToggle.addEventListener('click', () => {
+            const isLightMode = body.classList.contains('light-mode');
+            setTheme(!isLightMode);
+        });
+
+        // 3. Event Listener for Mobile Menu Toggle
+        mobileMenuButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const menuIcon = mobileMenuButton.querySelector('svg');
+            if (navLinks.classList.contains('active')) {
+                menuIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`;
+            } else {
+                menuIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+            }
+        });
+        
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    navLinks.classList.remove('active');
+                    mobileMenuButton.querySelector('svg').innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
