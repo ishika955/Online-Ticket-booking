@@ -77,14 +77,15 @@
 <body>
   <div class="auth-card">
     <h2>Sign Up</h2>
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <input type="password" placeholder="Confirm Password" required>
-      <button type="submit"><a href="index.html">Sign Up</a></button>
+    <form  onsubmit="return signUp(event)">
+      <input type="text"  id="username" placeholder="Full Name" required>
+      <input type="email" id="email"  placeholder="Email" required>
+      <input type="password" id="password"  placeholder="Password" required>
+      <input type="password"  id="confirm-password"  placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
     </form>
     <p class="auth-link">Already have an account? <a href="login.html">Login</a></p>
   </div>
+<script src="../js/auth.js"></script>
 </body>
 </html>

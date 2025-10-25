@@ -214,19 +214,7 @@ body {
     100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
-.points-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.4rem;
-}
 
-.points-count {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #ffd700;
-    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-}
 
 .collect-btn {
     background: rgba(255,255,255,0.2);
@@ -369,99 +357,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* Improved Points Calculator */
-.points-calculator {
-    background: linear-gradient(90deg, #ff7b00, #e233c4);
-    padding: 30px;
-    border-radius: 20px;
-    margin: 30px auto;
-    max-width: 500px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(255, 123, 0, 0.3);
-    color: white;
-    position: relative;
-    overflow: hidden;
-}
-
-.points-calculator::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #ffd700, #ffed4e);
-}
-
-.points-calculator h4 {
-    margin-bottom: 20px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: white;
-}
-
-.calculator-inputs {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.calculator-inputs input {
-    padding: 12px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 25px;
-    outline: none;
-    min-width: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.calculator-inputs input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.calculator-inputs input:focus {
-    border-color: #ffd700;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-}
-
-#calculate-points {
-    background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.5);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-#calculate-points:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
-}
-
-#calculate-points:active {
-    transform: translateY(0);
-}
-
-#points-result {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #ffd700;
-    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-    min-height: 24px;
-}
 
 .notification {
     position: fixed;
@@ -1082,18 +977,7 @@ body {
     .offers-grid {
         grid-template-columns: 1fr;
     }
-    
-    .points-display {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px 30px;
-    }
-    
-    .points-info {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-    }
+
     
     .wishlist-buttons {
         flex-direction: column;
@@ -1128,23 +1012,14 @@ body {
     .offers-hero-text h2 {
         font-size: 1.2rem;
     }
-    
-    .points-display {
-        font-size: 1rem;
-        padding: 15px 25px;
-    }
+   
     
     .offer-meta {
         flex-direction: column;
         gap: 15px;
         align-items: flex-start;
     }
-    
-    .points-calculator {
-        padding: 20px;
-        margin: 20px 15px;
-    }
-    
+   
     .calculator-inputs input {
         min-width: 200px;
     }

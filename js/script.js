@@ -1,12 +1,12 @@
+// -----------------------------------OfferPage------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
     initFiltering();
     initExpiryCheck();
     initCountdownTimers();
     initWishlist();
     initShareButtons();
-    initPointsCalculator();
-    initCoinCollection();
     initSorting();
+    initScrollAnimations();
 });
 
 function initFiltering() {
@@ -81,10 +81,9 @@ function initCountdownTimers() {
     const offerCards = document.querySelectorAll('.offer-card');
     const rewardCards = document.querySelectorAll('.reward-card');
     
+    //update offer car
     function updateCountdowns() {
         const now = new Date();
-        
-        // Update offer cards
         offerCards.forEach(card => {
             const expiryDate = new Date(card.getAttribute('data-expiry'));
             const timeDiff = expiryDate - now;
@@ -137,11 +136,12 @@ function initCountdownTimers() {
         });
     }
     
+    //every min update
     updateCountdowns();
-    setInterval(updateCountdowns, 60000); // Update every minute
+    setInterval(updateCountdowns, 60000);
 }
 
-// Wishlist functionality
+// Wishlist
 function initWishlist() {
     let wishlistCount = 0;
     const wishlistButtons = document.querySelectorAll('.wishlist-btn');
@@ -162,7 +162,7 @@ function initWishlist() {
         }
     });
     
-    // Wishlist buttons
+    // Wishlist button
     wishlistButtons.forEach(button => {
         button.addEventListener('click', function() {
             const action = this.getAttribute('data-action');
@@ -177,7 +177,6 @@ function initWishlist() {
                         icon.innerHTML = '<i class="fas fa-heart"></i>';
                         wishlistCount++;
                         wishlistItems.push(offerId);
-                        createCoinAnimation(icon, 3);
                     }
                 });
               
@@ -225,8 +224,6 @@ function initWishlist() {
                 this.classList.add('active');
                 this.innerHTML = '<i class="fas fa-heart"></i>';
                 wishlistCount++;
-                createCoinAnimation(this, 3);
-                
                 currentWishlist.push(offerId);
                 showNotification('Added to wishlist! ❤️');
             }
@@ -257,10 +254,9 @@ function initShareButtons() {
                 }).then(() => {
                     showNotification('Offer shared successfully! 📤');
                 }).catch(() => {
-             
+                    // User cancelled share, do nothing
                 });
             } else {
-                
                 navigator.clipboard.writeText(`${shareText} ${window.location.href}`).then(() => {
                     showNotification('Offer link copied to clipboard! 📋');
                 }).catch(() => {
@@ -274,131 +270,6 @@ function initShareButtons() {
             }, 150);
         });
     });
-}
-
-function initPointsCalculator() {
-    const calculateButton = document.getElementById('calculate-points');
-    const bookingAmountInput = document.getElementById('booking-amount');
-    const pointsResult = document.getElementById('points-result');
-    
-    calculateButton.addEventListener('click', function() {
-        const amount = parseFloat(bookingAmountInput.value);
-        
-        if (isNaN(amount) || amount <= 0) {
-            pointsResult.textContent = 'Please enter a valid amount';
-            pointsResult.style.color = '#ff6b6b';
-            return;
-        }
-        
-        const points = Math.floor(amount / 100) * 10;
-        pointsResult.textContent = `You'll earn ${points.toLocaleString()} points! 🎯`;
-        pointsResult.style.color = '#ffd700';
-        
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 150);
-    });
-    
-    bookingAmountInput.addEventListener('focus', function() {
-        this.style.transform = 'scale(1.02)';
-        this.style.borderColor = '#ffd700';
-    });
-    
-    bookingAmountInput.addEventListener('blur', function() {
-        this.style.transform = 'scale(1)';
-        const amount = parseFloat(this.value);
-        if (isNaN(amount) || amount <= 0) {
-            this.style.borderColor = '#ff6b6b';
-        } else {
-            this.style.borderColor = '#28a745';
-        }
-    });
-    
-    bookingAmountInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            calculateButton.click();
-        }
-    });
-}
-function initCoinCollection() {
-    const collectButton = document.getElementById('collect-points');
-    const pointsCountElement = document.getElementById('points-count');
-    let points = 2779;
-    
-    const savedPoints = localStorage.getItem('moonrailPoints');
-    if (savedPoints) {
-        points = parseInt(savedPoints);
-        pointsCountElement.textContent = points.toLocaleString();
-    }
-    
-    collectButton.addEventListener('click', function() {
-        const newPoints = Math.floor(Math.random() * 41) + 10;
-        points += newPoints;
-        pointsCountElement.textContent = points.toLocaleString();
-        
-        localStorage.setItem('moonrailPoints', points.toString());
-        
-        createCoinAnimation(this, 12, newPoints);
-        
-        showNotification(`+${newPoints} points collected! 🎉`);
-        
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 150);
-        this.disabled = true;
-        this.innerHTML = '<i class="fas fa-clock"></i> Come back later';
-        this.style.background = '#ccc';
-        this.style.color = '#666';
-        
-        setTimeout(() => {
-            this.disabled = false;
-            this.innerHTML = '<i class="fas fa-gift"></i> Collect Points';
-            this.style.background = '';
-            this.style.color = '';
-        }, 30000);
-    });
-}
-
-function createCoinAnimation(element, coinCount = 5, points = 0) {
-    const coinContainer = document.getElementById('coin-container');
-    const rect = element.getBoundingClientRect();
-    
-    for (let i = 0; i < coinCount; i++) {
-        const coin = document.createElement('div');
-        coin.className = 'coin';
-        
- 
-        if (points > 0) {
-            coin.textContent = `+${Math.floor(points/coinCount)}`;
-            coin.style.background = 'linear-gradient(45deg, #ffd700, #ffed4e)';
-        } else {
-            const emojis = ['❤️'];
-            coin.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            coin.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
-        }
-        const startX = rect.left + (Math.random() * rect.width);
-        const startY = rect.top + (Math.random() * rect.height);
-        
-        coin.style.left = startX + 'px';
-        coin.style.top = startY + 'px';
-      
-        const duration = 1.2 + Math.random() * 0.8;
-        const delay = Math.random() * 0.5;
-        const rotation = Math.random() * 720 + 360; 
-        
-        coin.style.animation = `coinFly ${duration}s ease-in ${delay}s forwards`;
-        coin.style.setProperty('--rotation', `${rotation}deg`);
-        
-        coinContainer.appendChild(coin);
-        
-        setTimeout(() => {
-            if (coin.parentNode) {
-                coin.remove();
-            }
-        }, (duration + delay) * 1000);
-    }
 }
 
 function showNotification(message, type = 'success') {
@@ -423,12 +294,12 @@ function showNotification(message, type = 'success') {
         }, 300);
     }, 3000);
 }
+
 function initSorting() {
     const sortSelect = document.getElementById('sort-select');
     
     sortSelect.addEventListener('change', function() {
         sortOffers(this.value);
-  
         this.style.transform = 'scale(0.98)';
         setTimeout(() => {
             this.style.transform = 'scale(1)';
@@ -483,25 +354,6 @@ function parsePrice(priceString) {
     return parseInt(priceString.replace(/[^\d]/g, '')) || 0;
 }
 
-const coinAnimationStyle = document.createElement('style');
-coinAnimationStyle.textContent = `
-    @keyframes coinFly {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100vh) rotate(var(--rotation, 360deg));
-            opacity: 0;
-        }
-    }
-    
-    .notification {
-        transition: all 0.3s ease;
-    }
-`;
-document.head.appendChild(coinAnimationStyle);
-
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -525,22 +377,6 @@ function initScrollAnimations() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', initScrollAnimations);
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        const modal = document.getElementById('booking-modal');
-        if (modal.style.display === 'flex') {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    if (e.key === 'Enter' && document.activeElement.id === 'booking-amount') {
-        document.getElementById('calculate-points').click();
-    }
-});
-
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js').then(function(registration) {
@@ -552,11 +388,6 @@ if ('serviceWorker' in navigator) {
 }
 
 window.MoonRail = {
-    collectPoints: function() { document.getElementById('collect-points').click(); },
-    calculatePoints: function(amount) {
-        document.getElementById('booking-amount').value = amount;
-        document.getElementById('calculate-points').click();
-    },
     sortOffers: sortOffers,
     showNotification: showNotification
 };
