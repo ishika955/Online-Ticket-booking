@@ -168,7 +168,7 @@
                 <span class="nav-logo-text">MoonRail</span>
             </div>
     <ul>
-      <li><a href="#">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="about us.html">About Us</a></li>
       <li><a href="offers.html">Offers</a></li>
       <li><a href="news.html">News</a></li>
@@ -189,7 +189,7 @@
             
             
             <div class="flex justify-around p-3 bg-gray-100 rounded-t-2xl">
-                <button data-tab="flights" class="tab-button active flex items-center space-x-2 transition duration-150">
+                <!-- <button data-tab="flights" class="tab-button active flex items-center space-x-2 transition duration-150">
                     <i class="fas fa-plane"></i> <span class="hidden sm:inline">Flights</span>
                 </button>
                 <button data-tab="buses" class="tab-button flex items-center space-x-2 transition duration-150">
@@ -200,25 +200,25 @@
                 </button>
                 <button data-tab="cab" class="tab-button flex items-center space-x-2 transition duration-150">
                     <i class="fas fa-taxi"></i> <span class="hidden sm:inline">Cab</span>
-                </button>
+                </button> -->
+
+                <br><p style="color:#000;  font-size: 30px; font-weight: bold;">Please  Enter  Your Details </p><br>
             </div>
 
             
             <div class="gradient-bar rounded-b-2xl p-4 shadow-inner flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 items-center">
-                
-                
-                <input id="input-origin" type="text" placeholder="Origin (e.g. Rajpura)" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" value="Rajpura">
+    <input id="input-origin" type="text" placeholder="Origin " class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500">
 
-                <input id="input-destination" type="text" placeholder="Destination (e.g. Ludhiana)" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" value="Ludhiana">
+    <input id="input-destination" type="text" placeholder="Destination" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500">
 
-                <input id="input-date" type="date" value="2025-11-10" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500">
+    <input id="input-date" type="date" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500">
 
-                <input id="input-guests" type="number" min="1" placeholder="Guests" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" value="1">
-                
-                <button id="search-button" class="w-full md:w-auto px-6 py-3 text-white font-bold bg-gray-900 hover:bg-black rounded-xl shadow-lg transition duration-200 transform hover:scale-[1.02]">
-                    <i class="fas fa-search mr-2"></i> Search
-                </button>
-            </div>
+    <input id="input-guests" type="number" min="1" placeholder="Guests" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500">
+    
+    <button id="search-button" class="w-full md:w-auto px-6 py-3 text-white font-bold bg-gray-900 hover:bg-black rounded-xl shadow-lg transition duration-200 transform hover:scale-[1.02]">
+        <i class="fas fa-search mr-2"></i> Search
+    </button>
+</div>
         </div>
     </div>
     
@@ -520,19 +520,30 @@
                 `;
             }
 
-            if (type === 'flights') {
-                icon = '<i class="fas fa-plane text-blue-500"></i>';
-                detailFields = (item) => `
-                    <div class="flex justify-between w-full md:w-3/4">
-                        <p class="font-bold text-lg">${item.departure}</p>
-                        <div class="text-sm text-gray-500 text-center">
-                            <i class="fas fa-clock text-xs"></i> ${item.duration}
-                            <p>${item.stops}</p>
-                        </div>
-                        <p class="text-gray-600">${item.name}</p> 
-                    </div>
-                `;
-            } else if (type === 'buses') {
+       
+
+            else if (type === 'flights') {
+    icon = '<i class="fas fa-plane text-blue-500"></i>';
+    detailFields = (item) => `
+        <div class="flex justify-between w-full md:w-3/4">
+            
+            <div class="flex flex-col items-start space-y-1">
+                <p class="font-bold text-xl text-gray-900">${item.departure}</p> <p class="text-xs text-gray-500">${ORIGIN}</p>
+            </div>
+
+            <div class="text-sm text-gray-500 text-center flex flex-col items-center">
+                <i class="fas fa-clock text-xs"></i> ${item.duration}
+                <p class="text-xs text-indigo-500">${item.stops}</p>
+            </div>
+            
+            <div class="flex flex-col items-end space-y-1">
+                <p class="font-semibold text-lg text-gray-700">${item.name}</p>
+                <p class="text-xs text-gray-500">${DESTINATION}</p>
+            </div> 
+        </div>
+    `;
+}
+            else if (type === 'buses') {
                 icon = '<i class="fas fa-bus text-green-500"></i>';
                 detailFields = (item) => `
                     <p class="font-bold text-lg">${item.name}</p>
@@ -678,37 +689,39 @@
             const details = JSON.parse(detailsString);
             const formattedPrice = parseFloat(price).toFixed(2);
             
-            const formHtml = `
-                <div class="bg-white p-4 space-y-4">
-                    <div class="p-4 bg-purple-100 rounded-lg border-l-4 border-purple-500">
-                        <h3 class="text-xl font-semibold text-purple-800">${details.service.toUpperCase()} Booking</h3>
-                        <p class="text-gray-700 mt-1">${details.description}</p>
-                        
-                        <p class="text-3xl font-bold text-purple-900 mt-2">Total: ${CURRENCY_SYMBOL}${formattedPrice}</p>
-                    </div>
+            // Replace the formHtml content in openBookingForm with this corrected version:
 
-                    <h4 class="font-semibold text-gray-700 border-b pb-2">Passenger Details</h4>
-                    
-                    <input id="passenger-name" type="text" placeholder="Full Name (as per ID)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500" required>
-                    
-                    <input id="passenger-email" type="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500" required>
+const formHtml = `
+    <div class="bg-white p-4 space-y-4">
+        <div class="p-4 bg-purple-100 rounded-lg border-l-4 border-purple-500">
+            <h3 class="text-xl font-semibold text-purple-800">${details.service.toUpperCase()} Booking</h3>
+            <p class="text-gray-700 mt-1">${details.description}</p>
+            
+            <p class="text-3xl font-bold text-purple-900 mt-2">Total: ${CURRENCY_SYMBOL}${formattedPrice}</p>
+        </div>
 
-                    <input id="passenger-phone" type="tel" placeholder="Phone Number (10 digits)" maxlength="10" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500" required>
+        <h4 class="font-semibold text-gray-700 border-b pb-2">Passenger Details</h4>
+        
+        <input id="passenger-name" type="text" placeholder="Full Name (as per ID)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900" required>
+        
+        <input id="passenger-email" type="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900" required>
 
-                    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
-                        <option value="">Select Seat/Preference</option>
-                        <option value="window">Window Seat</option>
-                        <option value="aisle">Aisle Seat</option>
-                        <option value="front">Front Preference</option>
-                    </select>
+        <input id="passenger-phone" type="tel" placeholder="Phone Number (10 digits)" maxlength="10" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900" required>
 
-                    <button id="pay-now-button" type="button" class="w-full mt-6 py-3 text-white font-bold text-lg bg-green-600 hover:bg-green-700 rounded-lg shadow-xl transition duration-200">
-                        Pay Now (${CURRENCY_SYMBOL}${formattedPrice})
-                    </button>
-                    
-                    <p id="payment-message" class="text-center text-sm text-gray-500 mt-3 hidden">Processing payment...</p>
-                </div>
-            `;
+        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900">
+            <option value="">Select Seat/Preference</option>
+            <option value="window">Window Seat</option>
+            <option value="aisle">Aisle Seat</option>
+            <option value="front">Front Preference</option>
+        </select>
+
+        <button id="pay-now-button" type="button" class="w-full mt-6 py-3 text-white font-bold text-lg bg-green-600 hover:bg-green-700 rounded-lg shadow-xl transition duration-200">
+            Pay Now (${CURRENCY_SYMBOL}${formattedPrice})
+        </button>
+        
+        <p id="payment-message" class="text-center text-sm text-gray-500 mt-3 hidden">Processing payment...</p>
+    </div>
+`;
 
             document.getElementById('booking-form-content').innerHTML = formHtml;
             
@@ -794,23 +807,19 @@
             }
         });
 
-        // Initialize default search results on page load
-        document.addEventListener('DOMContentLoaded', () => {
-             // Attach listener to main tab buttons on the hero section
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                    e.currentTarget.classList.add('active');
-                });
-            });
-            
-             // Set default date for input
-            const dateInput = document.getElementById('input-date');
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            dateInput.value = tomorrow.toISOString().split('T')[0];
-        });
         
+// Initialize default search results on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Attach listener to main tab buttons on the hero section
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+        });
+    });
+    
+    // The date input will now remain blank until the user clicks it.
+});
     </script>
 
     <footer>
