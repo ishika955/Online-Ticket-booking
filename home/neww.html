@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail - News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base Dark Theme Variables (Default) */
+        :root {
+            --header-top-bg: #2e1a3c; 
+            --header-main-bg: #100f20; 
+            --body-bg: #1a1a2e;
+            --card-bg: #19192c;
+            --hero-bg-start: #6a44ad;
+            --hero-bg-end: #2e1a3c;
+            --text-color: #ffffff;
+            --sub-text-color: #a0a0b0;
+            --link-hover: #ccc;
+            --accent-light: #d38dff;
+            --accent-dark: #ff7171;
+            --border-color: #2e2e42;
+            --star-color: gold; 
+        }
+
+        /* Light Theme Variables */
+        html[data-theme='light'] {
+            --header-top-bg: #7b43a3; /* SLIGHTLY DARKER PURPLE */
+            --header-main-bg: #ffffff; 
+            --body-bg: #f5f5f5; 
+            --card-bg: #ffffff; 
+            --hero-bg-start: #c39ee3; 
+            --hero-bg-end: #8b5ad1; 
+            --text-color: #343a40; 
+            --sub-text-color: #6c757d; 
+            --link-hover: #6f42c1; 
+            --accent-light: #8e62e0; 
+            --accent-dark: #cc5555; 
+            --border-color: #e9ecef; 
+            --star-color: gold; 
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        /* Top Header Bar */
+        .header-top {
+            background-color: var(--header-top-bg);
+            color: var(--sub-text-color);
+            font-size: 0.875rem;
+        }
+        
+        html[data-theme='light'] .header-top {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* Keeping text dark for contrast */
+            color: var(--text-color); 
+        }
+        html[data-theme='light'] .header-top-center a, 
+        html[data-theme='light'] .header-top-right a {
+             /* Keeping link dark for contrast */
+             color: var(--text-color); 
+        }
+        html[data-theme='light'] .header-top-left .fas {
+             /* Keeping icon dark for contrast */
+             color: var(--text-color); 
+        }
+
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+        
+        .header-top-left {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Centered Social Icons */
+        .header-top-center {
+            display: flex;
+            gap: 1rem;
+            flex-grow: 1; 
+            justify-content: center; 
+        }
+
+        .header-top-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-top-center a, .header-top-right a {
+             color: var(--sub-text-color);
+             transition: color 0.2s ease-in-out;
+             text-decoration: none;
+        }
+        
+        .header-top-center a:hover, 
+        .header-top-right a:hover {
+            color: var(--accent-light);
+        }
+        html[data-theme='light'] .header-top-center a:hover, 
+        html[data-theme='light'] .header-top-right a:hover {
+            color: var(--accent-light); 
+        }
+
+        /* Main Header */
+        .header-main {
+            background-color: var(--header-main-bg);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: background-color 0.3s;
+        }
+        
+        html[data-theme='light'] .header-main {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-icon {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 9999px;
+            background-color: rgb(240, 98, 100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+            color: white;
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        /* Main Navigation Links (Desktop) */
+        .nav-links-desktop {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links-desktop a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .nav-links-desktop a:hover {
+            color: var(--accent-light);
+        }
+        
+        /* Utility Group */
+        .utility-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle, .search-button-header, .mobile-menu-button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: color 0.2s, background-color 0.2s;
+        }
+
+        .theme-toggle:hover, .search-button-header:hover, .mobile-menu-button:hover {
+            color: var(--accent-light);
+        }
+
+        .theme-toggle svg, .search-button-header svg, .mobile-menu-button svg {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+        
+        /* Theme Icon Display Logic - REVERSED FOR BETTER UX */
+        #theme-toggle .fas {
+            display: none;
+            font-size: 1rem; 
+        }
+
+        /* In Dark Mode (Current State), show the SUN icon (the thing you can click to go to light mode) */
+        html[data-theme='dark'] #theme-toggle .fa-sun {
+            display: inline-block !important; 
+        }
+
+        /* In Light Mode (Current State), show the MOON icon (the thing you can click to go to dark mode) */
+        html[data-theme='light'] #theme-toggle .fa-moon {
+            display: inline-block !important; 
+        }
+
+
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: block; 
+        }
+        
+        #mobile-nav-links {
+            position: absolute;
+            top: 100%; 
+            left: 0;
+            width: 100%;
+            background-color: var(--header-main-bg);
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-200%);
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+            display: none; 
+        }
+
+        #mobile-nav-links.open {
+            display: flex;
+            transform: translateY(0);
+        }
+
+        #mobile-nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+        
+        #mobile-nav-links a:hover {
+            background-color: var(--card-bg);
+        }
+        
+        /* Responsive Nav */
+        @media (max-width: 768px) {
+            .header-top-content {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .header-top-left, .header-top-center, .header-top-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .header-top-center {
+                padding: 0.5rem 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links-desktop {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--hero-bg-start), var(--hero-bg-end));
+            padding: 6rem 1rem;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        html[data-theme='light'] .hero-title,
+        html[data-theme='light'] .hero-subtitle {
+            color: #ffffff; /* White text for hero section in light mode */
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--sub-text-color);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            transition: color 0.3s;
+        }
+
+        /* Other Sections (Featured, Footer) */
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 1.5rem;
+        }
+
+        .featured-content h3 {
+            font-size: 1.5rem;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-content p {
+            font-size: 0.95rem;
+            color: var(--sub-text-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Testimonials/Reviews */
+        .review-section {
+            padding: 1rem 0 1.5rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+        
+        .review-section h4 {
+            font-size: 1.25rem;
+            color: var(--accent-light);
+            margin-bottom: 0.75rem;
+        }
+        
+        .review-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding-right: 10px; 
+        }
+        
+        .review-item {
+            border-bottom: 1px dashed var(--border-color);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-item .rating {
+            color: var(--star-color);
+            margin-right: 0.5rem;
+        }
+        
+        .review-item .reviewer {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-left: 0.5rem;
+        }
+
+        /* Review Form */
+        .review-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .review-form input[type="text"], .review-form textarea, .review-form select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .review-form input:focus, .review-form textarea:focus, .review-form select:focus {
+             border-color: var(--accent-light);
+        }
+        
+        .review-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .rating-input {
+            margin-bottom: 1rem;
+        }
+        
+        .rating-input label {
+            margin-right: 1rem;
+        }
+        
+        .rating-input input {
+            display: none;
+        }
+        
+        .rating-input label i {
+            color: var(--sub-text-color);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .rating-input input:checked ~ label i,
+        .rating-input label i:hover {
+            color: var(--star-color);
+        }
+        
+        .featured-button, .auth-button, .submit-review-button {
+            background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
+            border: none;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, opacity 0.3s;
+            width: auto;
+        }
+
+        .featured-button:hover, .auth-button:hover, .submit-review-button:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        
+        /* Footer Specific Styles */
+        .footer {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .footer-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 30px;
+            text-align: left;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-light);
+            border-radius: 5px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            color: var(--sub-text-color);
+            margin-bottom: 12px;
+            opacity: 0.8; 
+            transition: color 0.3s, opacity 0.3s;
+            text-align: left; 
+        }
+        
+        /* Use a custom style for the list in Contact Info for spacing */
+        .footer-section.contact-info-list li {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .footer-section i {
+            margin-right: 10px;
+            color: var(--accent-light); 
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-light);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+             .footer-details {
+                flex-direction: column;
+                align-items: center;
+             }
+
+             .footer-section {
+                min-width: 100%;
+                text-align: center;
+             }
+
+             .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+             }
+
+             .footer-section p, .footer-section ul {
+                text-align: center;
+             }
+             /* Center list items in contact on mobile */
+             .footer-section.contact-info-list li {
+                justify-content: center;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="container header-top-content">
+                <div class="header-top-left">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+91 - 8146612331</span>
+                </div>
+                <div class="header-top-center">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="header-top-right">
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="header-main">
+            <div class="container nav-container">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">M</div>
+                    <span class="nav-logo-text">MoonRail</span>
+                </div>
+                
+                <div class="nav-links-desktop">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="offers.html">Offers</a>
+                    <a href="#">News</a>
+                    <a href="contacts.html">Contact</a>
+                </div>
+
+                <div class="utility-group">
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-sun"></i> 
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <button class="search-button-header">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <button class="mobile-menu-button" id="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="mobile-nav-links">
+             <a href="index.html">Home</a>
+             <a href="about.html">About Us</a>
+             <a href="offers.html">Offers</a>
+             <a href="#">News</a>
+             <a href="contacts.html">Contact</a>
+             <a href="login.html">Login</a>
+             <a href="logout.html">Log out</a>
+        </div>
+    </header>
+    
+    <div class="hero-section">
+        <h1 class="hero-title">Experience the Beauty of India</h1>
+        <p class="hero-subtitle">Discover ancient wonders, breathtaking landscapes, and vibrant cultures. Your journey of a lifetime begins now.</p>
+    </div>
+    
+    <main class="main-content">
+        <section>
+            <h2 class="section-title">Featured Destinations & Reviews</h2>
+            
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <img src="https://th.bing.com/th/id/R.180e3a79a2a106685b6f53366c9efc43?rik=iKdt33VwgK10%2fQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2f2QOpDiC.jpg&ehk=AZAj3MnoimSu%2flTSp1%2bOwRbiP%2f5wg0vebb2oPcTDsGE%3d&risl=&pid=ImgRaw&r=0" alt="Himalayan mountains at night" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Himalayan Treks</h3>
+                        <p>Embark on an epic adventure to the majestic peaks of the Himalayas. Experience breathtaking views and serene landscapes.</p>
+                        <a href="https://trekthehimalayas.com/alltreks" class="featured-button">Explore</a>
+                        
+                        <div class="review-section" data-destination="Himalayan Treks">
+                            <h4>Traveler Reviews</h4>
+                            <div class="review-list">
+                                <div class="review-item"><span class="rating">★★★★★</span> Amazing views! The best trekking experience. <span class="reviewer">- Anjali S.</span></div>
+                                <div class="review-item"><span class="rating">★★★★☆</span> Challenging but rewarding. Highly recommend MoonRail's planning. <span class="reviewer">- Rohan V.</span></div>
+                            </div>
+                            <form class="review-form">
+                                <h4>Share Your Experience</h4>
+                                <label for="review_himalayan">Your Review:</label>
+                                <textarea id="review_himalayan" placeholder="Write your feedback..." required></textarea>
+                                <div class="rating-input">
+                                    <label>Rating:</label>
+                                    <input type="radio" id="star5_h" name="rating_h" value="5" required><label for="star5_h"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4_h" name="rating_h" value="4"><label for="star4_h"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3_h" name="rating_h" value="3"><label for="star3_h"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2_h" name="rating_h" value="2"><label for="star2_h"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1_h" name="rating_h" value="1"><label for="star1_h"><i class="fas fa-star"></i></label>
+                                </div>
+                                <button type="submit" class="submit-review-button">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <img src="https://media.easemytrip.com/media/Blog/India/637136726518786264/637136726518786264QBU8O9.jpg" alt="Goa beaches at night" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Goan Getaway</h3>
+                        <p>Relax on the sun-kissed beaches of Goa. Enjoy the vibrant nightlife, delicious cuisine, and a laid-back vibe.</p>
+                        <a href="https://madmansjourney.com/travel-blogs/goa-travel-blog/" class="featured-button">Explore</a>
+                        
+                        <div class="review-section" data-destination="Goan Getaway">
+                            <h4>Traveler Reviews</h4>
+                            <div class="review-list">
+                                <div class="review-item"><span class="rating">★★★★☆</span> Beaches were lovely, great food! <span class="reviewer">- Tina K.</span></div>
+                                <div class="review-item"><span class="rating">★★★★★</span> Perfect relaxing vacation. Everything went smoothly. <span class="reviewer">- Alex B.</span></div>
+                            </div>
+                            <form class="review-form">
+                                <h4>Share Your Experience</h4>
+                                <label for="review_goa">Your Review:</label>
+                                <textarea id="review_goa" placeholder="Write your feedback..." required></textarea>
+                                <div class="rating-input">
+                                    <label>Rating:</label>
+                                    <input type="radio" id="star5_g" name="rating_g" value="5" required><label for="star5_g"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4_g" name="rating_g" value="4"><label for="star4_g"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3_g" name="rating_g" value="3"><label for="star3_g"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2_g" name="rating_g" value="2"><label for="star2_g"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1_g" name="rating_g" value="1"><label for="star1_g"><i class="fas fa-star"></i></label>
+                                </div>
+                                <button type="submit" class="submit-review-button">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <img src="https://i.pinimg.com/originals/a3/e3/db/a3e3dbfb46f42f73110060ea2a959124.jpg" alt="Palace in Jaipur at night" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Jaipur's Royal Charm</h3>
+                        <p>Explore the Pink City's magnificent forts, palaces, and colorful bazaars. A journey back in time awaits.</p>
+                        <a href="https://blog.untravel.com/jaipur/" class="featured-button">Explore</a>
+                        
+                        <div class="review-section" data-destination="Jaipur's Royal Charm">
+                            <h4>Traveler Reviews</h4>
+                            <div class="review-list">
+                                <div class="review-item"><span class="rating">★★★★★</span> Felt like royalty! Incredible history. <span class="reviewer">- Priya M.</span></div>
+                                <div class="review-item"><span class="rating">★★★★☆</span> Excellent guide and itinerary. Jaipur is a must-see. <span class="reviewer">- David W.</span></div>
+                            </div>
+                            <form class="review-form">
+                                <h4>Share Your Experience</h4>
+                                <label for="review_jaipur">Your Review:</label>
+                                <textarea id="review_jaipur" placeholder="Write your feedback..." required></textarea>
+                                <div class="rating-input">
+                                    <label>Rating:</label>
+                                    <input type="radio" id="star5_j" name="rating_j" value="5" required><label for="star5_j"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4_j" name="rating_j" value="4"><label for="star4_j"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3_j" name="rating_j" value="3"><label for="star3_j"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2_j" name="rating_j" value="2"><label for="star2_j"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1_j" name="rating_j" value="1"><label for="star1_j"><i class="fas fa-star"></i></label>
+                                </div>
+                                <button type="submit" class="submit-review-button">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <img src="https://i.ytimg.com/vi/7TwwbECGc1s/maxresdefault.jpg" alt="Backwaters of Kerala" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Kerala Backwaters</h3>
+                        <p>Float along the tranquil backwaters of Kerala on a traditional houseboat. A perfect blend of nature and serenity.</p>
+                        <a href="https://www.alongdustyroads.com/posts/kerala-backwaters-guide" class="featured-button">Explore</a>
+                         <div class="review-section" data-destination="Kerala Backwaters">
+                            <h4>Traveler Reviews</h4>
+                            <div class="review-list">
+                                <div class="review-item"><span class="rating">★★★★★</span> Truly a 'God's own country' experience! Serene and beautiful. <span class="reviewer">- Sarah L.</span></div>
+                            </div>
+                            <form class="review-form">
+                                <h4>Share Your Experience</h4>
+                                <label for="review_kerala">Your Review:</label>
+                                <textarea id="review_kerala" placeholder="Write your feedback..." required></textarea>
+                                <div class="rating-input">
+                                    <label>Rating:</label>
+                                    <input type="radio" id="star5_k" name="rating_k" value="5" required><label for="star5_k"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4_k" name="rating_k" value="4"><label for="star4_k"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3_k" name="rating_k" value="3"><label for="star3_k"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2_k" name="rating_k" value="2"><label for="star2_k"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1_k" name="rating_k" value="1"><label for="star1_k"><i class="fas fa-star"></i></label>
+                                </div>
+                                <button type="submit" class="submit-review-button">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <img src="https://images.cnbctv18.com/wp-content/uploads/2023/08/thar-desert-shutterstock-1019x573.jpg" alt="Thar desert sand dunes" class="featured-image">
+                    <div class="featured-content">
+                        <h3>The Thar Desert</h3>
+                        <p>Discover the golden dunes of the Thar Desert on a camel safari. Experience the unique culture and starlit nights.</p>
+                        <a href="https://www.realdesertmansafarijaisalmer.com/blog/major-tourist-attractions-of-the-thar-desert" class="featured-button">Explore</a>
+                        <div class="review-section" data-destination="Thar Desert">
+                            <h4>Traveler Reviews</h4>
+                            <div class="review-list">
+                                <div class="review-item"><span class="rating">★★★★☆</span> Camel ride was fun! The starry night sky was unforgettable. <span class="reviewer">- Yash R.</span></div>
+                            </div>
+                            <form class="review-form">
+                                <h4>Share Your Experience</h4>
+                                <label for="review_thar">Your Review:</label>
+                                <textarea id="review_thar" placeholder="Write your feedback..." required></textarea>
+                                <div class="rating-input">
+                                    <label>Rating:</label>
+                                    <input type="radio" id="star5_t" name="rating_t" value="5" required><label for="star5_t"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4_t" name="rating_t" value="4"><label for="star4_t"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3_t" name="rating_t" value="3"><label for="star3_t"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2_t" name="rating_t" value="2"><label for="star2_t"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1_t" name="rating_t" value="1"><label for="star1_t"><i class="fas fa-star"></i></label>
+                                </div>
+                                <button type="submit" class="submit-review-button">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <img src="https://live.staticflickr.com/65535/49108229337_968e6ce697_b.jpg" alt="Andaman Islands beach" class="featured-image">
+                    <div class="featured-content">
+                        <h3>Andaman Islands</h3>
+                        <p>Unwind on the pristine beaches and explore the vibrant marine life of the Andaman Islands. A tropical paradise awaits.</p>
+                        <a href="https://blog.untravel.com/andaman-islands/" class="featured-button">Explore</a>
+                        <div class="review-section" data-destination="Andaman Islands">
+                            <h4>Traveler Reviews</h4>
+                            <div class="review-list">
+                                <div class="review-item"><span class="rating">★★★★★</span> Best snorkeling of my life! The water is crystal clear. <span class="reviewer">- Neha Z.</span></div>
+                            </div>
+                            <form class="review-form">
+                                <h4>Share Your Experience</h4>
+                                <label for="review_andaman">Your Review:</label>
+                                <textarea id="review_andaman" placeholder="Write your feedback..." required></textarea>
+                                <div class="rating-input">
+                                    <label>Rating:</label>
+                                    <input type="radio" id="star5_a" name="rating_a" value="5" required><label for="star5_a"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4_a" name="rating_a" value="4"><label for="star4_a"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3_a" name="rating_a" value="3"><label for="star3_a"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2_a" name="rating_a" value="2"><label for="star2_a"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1_a" name="rating_a" value="1"><label for="star1_a"><i class="fas fa-star"></i></label>
+                                </div>
+                                <button type="submit" class="submit-review-button">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-details">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are a passionate team dedicated to creating beautiful and functional web designs. Our mission is to help your ideas come to life.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Flight Booking</a></li>
+                    <li><a href="#">Train Booking</a></li>
+                    <li><a href="#">Bus Booking</a></li>
+                    <li><a href="#">Cab Booking</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-info-list">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i>Chitkara University</li>
+                    <li><i class="fas fa-phone-alt"></i>+91 8146612331</li>
+                    <li><i class="fas fa-envelope"></i>moonrail@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright ©2025 MoonRail. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement; 
+
+        function updateThemeIconsAndHtml(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+        }
+        
+        // Initialize theme from local storage or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        updateThemeIconsAndHtml(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            updateThemeIconsAndHtml(newTheme);
+        });
+
+
+        // --- Hamburger Menu Logic ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNavLinks.classList.toggle('open');
+        });
+        
+        const mobileLinks = mobileNavLinks.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNavLinks.classList.remove('open');
+            });
+        });
+
+        // --- Review Form Submission Logic (Placeholder) ---
+        document.querySelectorAll('.review-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const destination = this.closest('.review-section').getAttribute('data-destination');
+                const reviewText = this.querySelector('textarea').value;
+                const ratingRadio = this.querySelector('input[type="radio"]:checked');
+                const ratingValue = ratingRadio ? ratingRadio.value : '5'; 
+
+                const newReview = document.createElement('div');
+                newReview.classList.add('review-item');
+                
+                const starRating = '★'.repeat(parseInt(ratingValue)) + '☆'.repeat(5 - parseInt(ratingValue));
+
+                newReview.innerHTML = `<span class="rating">${starRating}</span> ${reviewText.substring(0, 50)}... <span class="reviewer">- New Traveler</span>`;
+                
+                const reviewList = this.closest('.review-section').querySelector('.review-list');
+                reviewList.prepend(newReview);
+                reviewList.scrollTop = 0; 
+
+                this.reset();
+                alert(`Thank you for your review on ${destination}! (Rating: ${ratingValue}/5)`);
+            });
+        });
+
+        // Add visual star rating feedback
+        document.querySelectorAll('.rating-input input').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const name = this.name;
+                
+                // Reset all stars for this group
+                document.querySelectorAll(`.rating-input input[name="${name}"] + label i`).forEach(star => {
+                    star.style.color = 'var(--sub-text-color)';
+                });
+                
+                // Highlight selected and previous stars
+                let current = this;
+                while (current) {
+                    current.nextElementSibling.querySelector('i').style.color = 'var(--star-color)';
+                    current = current.previousElementSibling.previousElementSibling;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
