@@ -6,6 +6,24 @@
   <title></title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Custom styles for the tabs */
+        .tab-button.active {
+            border-bottom: 2px solid white;
+            color: white;
+            font-weight: 600;
+        }
+        /* Custom focus ring color */
+        .focus-ring-purple {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5); /* purple-500 with opacity */
+        }
+        </style>
+ 
 </head>
 <body>
 
@@ -21,7 +39,7 @@
     </div>
     <div class="auth-links">
 
-      <!-- <a href="login.html">Login</a> | <a href="logout.html">Logout</a> -->
+      <a href="login.html">Login</a> | <a href="logout.html">Logout</a>
     </div>
   </div>
 
@@ -38,7 +56,7 @@
       <li><a href="news.html">News</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <i class="fas fa-search search-icon"></i>
+    <i class></i>
   </nav>
 
   <!-- Hero Section -->
@@ -52,40 +70,51 @@
         </div>
       </div>
     </header>
-<<<<<<< HEAD
-  <!-- </div> -->
-<!-- </div> -->
-  <!-- Search Section -->
-   <!-- <div class="search-wrapper"> -->
-
-=======
- 
->>>>>>> 6a07c909255d90797b79f63726fcb817637e1199
 <div class="search-container" >
   <!-- Booking Tabs -->
 <div class="booking-tabs">
-    <a href="#hotels" class="tab"><i class="fa fa-hotel"></i> Hotels</a>
-    <a href="#flights" class="tab"><i class="fa fa-plane"></i> Flights</a>
-    <a href="#buses" class="tab"><i class="fa fa-bus"></i> Buses</a>
-    <a href="#trains" class="tab"><i class="fa fa-train"></i> Trains</a>
-    <a href="#cab" class="tab"><i class="fa fa-car"></i> Cab</a>
-    <a href="#trips" class="tab"><i class="fa fa-umbrella-beach"></i> Trips</a>
+  <p style="color:#000; ">Please Enter Your Details</p>
 </div>
   </div>
    </div>
   </div>
   <!-- Search Form -->
   <div class="searchbox">
-    <form>      
-      <input type="text" placeholder="Enter Location ">
-      <input type="date" placeholder="dd-mm-yyyy">
-      <input type="date" placeholder="dd-mm-yyyy">
-      <input type="number" placeholder="Guests">
-      <button type="submit" class="search-btn">Search...</button>
+    <form id="search-form" action="booking.html"> <input type="text" placeholder="Enter Location from " required>
+        <input type="text" placeholder="Enter Location to " required> 
+        <input type="date" placeholder="dd-mm-yyyy" required>
+        <input type="number" placeholder="Guests" required>
+        
+        <button type="submit" class="search-btn" id="search-button">
+            <span class="spinner"></span>
+            <span class="button-text">Finding Journeys...</span>
+        </button>
     </form>
-  </div>
-
-
+    <script>
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        // Prevent the default form submission immediately
+        event.preventDefault(); 
+        
+        const form = this;
+        const button = document.getElementById('search-button');
+        
+        // Add the 'loading' class to show the spinner and hide the text
+        button.classList.add('loading');
+        
+        // Calculate the URL with the entered data
+        const actionUrl = form.getAttribute('action');
+        const formData = new FormData(form);
+        const searchParams = new URLSearchParams(formData);
+        const finalUrl = actionUrl + '?' + searchParams.toString();
+        
+        // Wait for 2.5 seconds (you can change this delay)
+        setTimeout(function() {
+            // After the delay, manually navigate to the booking page
+            window.location.href = finalUrl;
+        }, 2500); // 2500 milliseconds = 2.5 seconds
+    });
+</script>
+</div>
 
   <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
@@ -93,12 +122,12 @@
 <section class="parallax" style="background-color: #ffffff;">
   <div class="parallax-content" >
     <h2>Turning Destinations Into Experiences</h2><br><br>
-    <p>From hidden gems to iconic wonders, we craft journeys filled with memories you’ll cherish forever.</p>
+    <p>From hidden gems to iconic wonders, we craft journeys filled with memories you'll cherish forever.</p>
     <p>Your adventure begins the moment you choose us.</p><br><br>
     
     <div class="travel-cards">
   <div class="card">
-    <div class="date">Sep 25th - Oct 01st</div>
+    <div class="date">Nov 15th - Nov  20st</div>
     <h3>Mauritius</h3>
     <p>From ₹58,000 </p>
     <a href="login.html" class="btn">SEE MORE</a>
@@ -140,9 +169,9 @@
   </div>
 
   <!-- package 2 -->
-  <div class="package-card card2">
+  <div class="package-card card2"  >
     <h2>BEST PACKAGES</h2>
-    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><br><br>
+    <div </div>class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><br><br>
     <img src="../img/bali.jpg" alt="Bali" height="300px" width="600px">
     <p class="lead">Bali Getaway — Exotic temples, lush rice terraces, and world-class spas.</p>
     <div class="card-cta"><a href="login.html" class="btn book-now">BOOK NOW</a></div>
@@ -193,6 +222,83 @@
     <!-- <h2>The Best Rooms Offers with Rooms </h2> -->
      <br><br>
     <div class="fourcards-container">
+
+
+
+<!-- Manali -->
+<div class="fourcard">
+  <div class="fourcard-image-wrapper">
+    <img src="../img/manali.jpg" alt="Manali">
+    <div class="fourcard-title-badge">MANALI</div>
+  </div>
+  <div class="fourcard-content">
+    <div class="fourcard-price">₹6,000 <span style="font-size:14px;color:#555;">per night</span></div>
+    <div class="fourcard-rating">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+    </div>
+    <div class="fourcard-description">
+      A paradise for nature lovers! Snowy mountains, river adventures, and cozy stays in Manali await you.
+    </div>
+    <div class="fourcard-icons">
+      <i class="fas fa-snowflake"></i> <i class="fas fa-route"></i>
+      <i class="fas fa-bicycle"></i> <i class="fas fa-mountain"></i>
+    </div>
+ <button class="read-more" data-destination="manali">Read More</button>
+  </div>
+</div>
+
+
+<!-- Agra -->
+<div class="fourcard">
+  <div class="fourcard-image-wrapper">
+    <img src="../img/agra.jpg" alt="Agra">
+    <div class="fourcard-title-badge">AGRA</div>
+  </div>
+  <div class="fourcard-content">
+    <div class="fourcard-price">₹4,800 <span style="font-size:14px;color:#555;">per night</span></div>
+    <div class="fourcard-rating">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+    </div>
+    <div class="fourcard-description">
+      Discover the iconic Taj Mahal and Mughal heritage in the historic city of Agra.
+    </div>
+    <div class="fourcard-icons">
+      <i class="fas fa-landmark"></i> <i class="fas fa-route"></i>
+      <i class="fas fa-utensils"></i> <i class="fas fa-camera"></i>
+    </div>
+      <button class="read-more" data-destination="agra">Read More</button>
+  </div>
+</div>
+
+<!-- Lakshadweep -->
+<div class="fourcard">
+  <div class="fourcard-image-wrapper">
+    <img src="../img/lakshdweep.jpg" alt="Lakshadweep">
+    <div class="fourcard-title-badge">LAKSHADWEEP</div>
+  </div>
+  <div class="fourcard-content">
+    <div class="fourcard-price">₹7,500 <span style="font-size:14px;color:#555;">per night</span></div>
+    <div class="fourcard-rating">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      <i class="far fa-star"></i>
+    </div>
+    <div class="fourcard-description">
+      Crystal-clear waters, coral reefs, and serene beaches make Lakshadweep a tropical paradise.
+    </div>
+    <div class="fourcard-icons">
+      <i class="fas fa-ship"></i> <i class="fas fa-water"></i>
+      <i class="fas fa-swimmer"></i> <i class="fas fa-umbrella-beach"></i>
+    </div>
+  <button class="read-more" data-destination="lakshadweep">Read More</button>
+  </div>
+</div>
+
+
   <!-- Card 1 -->
   <div class="fourcard">
   <div class="fourcard-image-wrapper">
@@ -246,29 +352,7 @@
   </div>
 </div>
 
-<!-- Manali -->
-<div class="fourcard">
-  <div class="fourcard-image-wrapper">
-    <img src="../img/manali.jpg" alt="Manali">
-    <div class="fourcard-title-badge">MANALI</div>
-  </div>
-  <div class="fourcard-content">
-    <div class="fourcard-price">₹6,000 <span style="font-size:14px;color:#555;">per night</span></div>
-    <div class="fourcard-rating">
-      <i class="fas fa-star"></i><i class="fas fa-star"></i>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i>
-      <i class="far fa-star"></i>
-    </div>
-    <div class="fourcard-description">
-      A paradise for nature lovers! Snowy mountains, river adventures, and cozy stays in Manali await you.
-    </div>
-    <div class="fourcard-icons">
-      <i class="fas fa-snowflake"></i> <i class="fas fa-route"></i>
-      <i class="fas fa-bicycle"></i> <i class="fas fa-mountain"></i>
-    </div>
-    <a href="login.html" class="read-more">READ MORE</a>
-  </div>
-</div>
+
 
 <!-- Haridwar -->
 <div class="fourcard">
@@ -294,29 +378,7 @@
   </div>
 </div>
 
-<!-- Agra -->
-<div class="fourcard">
-  <div class="fourcard-image-wrapper">
-    <img src="../img/agra.jpg" alt="Agra">
-    <div class="fourcard-title-badge">AGRA</div>
-  </div>
-  <div class="fourcard-content">
-    <div class="fourcard-price">₹4,800 <span style="font-size:14px;color:#555;">per night</span></div>
-    <div class="fourcard-rating">
-      <i class="fas fa-star"></i><i class="fas fa-star"></i>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i>
-      <i class="far fa-star"></i>
-    </div>
-    <div class="fourcard-description">
-      Discover the iconic Taj Mahal and Mughal heritage in the historic city of Agra.
-    </div>
-    <div class="fourcard-icons">
-      <i class="fas fa-landmark"></i> <i class="fas fa-route"></i>
-      <i class="fas fa-utensils"></i> <i class="fas fa-camera"></i>
-    </div>
-    <a href="login.html" class="read-more">READ MORE</a>
-  </div>
-</div>
+
 
 <!-- Jaipur -->
 <div class="fourcard">
@@ -342,29 +404,7 @@
   </div>
 </div>
 
-<!-- Lakshadweep -->
-<div class="fourcard">
-  <div class="fourcard-image-wrapper">
-    <img src="../img/lakshdweep.jpg" alt="Lakshadweep">
-    <div class="fourcard-title-badge">LAKSHADWEEP</div>
-  </div>
-  <div class="fourcard-content">
-    <div class="fourcard-price">₹7,500 <span style="font-size:14px;color:#555;">per night</span></div>
-    <div class="fourcard-rating">
-      <i class="fas fa-star"></i><i class="fas fa-star"></i>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i>
-      <i class="far fa-star"></i>
-    </div>
-    <div class="fourcard-description">
-      Crystal-clear waters, coral reefs, and serene beaches make Lakshadweep a tropical paradise.
-    </div>
-    <div class="fourcard-icons">
-      <i class="fas fa-ship"></i> <i class="fas fa-water"></i>
-      <i class="fas fa-swimmer"></i> <i class="fas fa-umbrella-beach"></i>
-    </div>
-  <a href="login.html" class="read-more">READ MORE</a>
-  </div>
-</div>
+
 
 <!-- Shimla -->
 <div class="fourcard">
@@ -389,12 +429,70 @@
 <a href="login.html" class="read-more">READ MORE</a>
   </div>
 </div>
+<div id="destinationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  const data = {
+    manali: `
+      <h2>Manali</h2>
+      <img src="../img/manali.jpg" style="width:100%;border-radius:10px;margin-bottom:15px;">
+      <p>Manali, nestled in the Himalayas, is a paradise for nature lovers. Enjoy snow-capped peaks, adventure sports, and cozy cottages.</p>
+      <ul>
+        <li><strong>Best Time:</strong> October – February</li>
+        <li><strong>Famous For:</strong> Snowfall, Solang Valley, Rohtang Pass</li>
+        <li><strong>Activities:</strong> Skiing, Trekking, River Rafting</li>
+      </ul>
+    `,
+    lakshadweep: `
+      <h2>Lakshadweep</h2>
+      <img src="../img/lakshdweep.jpg" style="width:100%;border-radius:10px;margin-bottom:15px;">
+      <p>Experience the untouched beauty of India's tropical islands. Perfect for water sports, relaxation, and coral exploration.</p>
+      <ul>
+        <li><strong>Best Time:</strong> November – May</li>
+        <li><strong>Famous For:</strong> Coral Reefs, Scuba Diving, Clear Blue Water</li>
+        <li><strong>Activities:</strong> Kayaking, Snorkeling, Beach Walks</li>
+      </ul>
+    `,
+    agra: `
+      <h2>Agra</h2>
+      <img src="../img/agra.jpg" style="width:100%;border-radius:10px;margin-bottom:15px;">
+      <p>Home to the Taj Mahal — one of the Seven Wonders of the World — Agra is a city rich in Mughal history and architecture.</p>
+      <ul>
+        <li><strong>Best Time:</strong> October – March</li>
+        <li><strong>Famous For:</strong> Taj Mahal, Agra Fort, Fatehpur Sikri</li>
+        <li><strong>Activities:</strong> Heritage Walks, Shopping, Local Cuisine</li>
+      </ul>
+    `
+  };
+
+  const modal = document.getElementById("destinationModal");
+  const modalBody = document.getElementById("modal-body");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll('.read-more').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dest = btn.getAttribute('data-destination');
+      modalBody.innerHTML = data[dest];
+      modal.style.display = 'flex';
+    });
+  });
+
+  closeBtn.onclick = () => modal.style.display = 'none';
+  window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
+</script>
 
   
 
 
 </div>
   </div>
+
+
 </section>
 
 
@@ -418,16 +516,87 @@
       <!-- Right Side (Form) -->
       <div class="contact-right">
         <h2 style="text-align: center;">GET IN TOUCH</h2>
-        <form>
+       <form id="contact-form">
           <div class="form-row">
-            <input type="text" placeholder="Name" required />
-            <input type="email" placeholder="E-mail" required />
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
           </div>
-          <input type="text" placeholder="Subject" required />
-          <textarea placeholder="Message" required></textarea>
+           <input type="text" name="title" placeholder="Subject" required>
+           <textarea name="message" placeholder="Your Message" required></textarea>
           <button type="submit">SEND MESSAGE ...</button>
         </form>
       </div>
+
+      <div class="popup" id="successPopup">
+    <div class="popup-content">
+      <p>Your response is sent!</p>
+      <button id="closePopup">OK</button>
+    </div>
+  </div>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <script>
+    (function(){
+      emailjs.init("9OUznPEKzdAmAGhO9"); // ✅ Your Public Key
+    })();
+
+    const form = document.getElementById('contact-form');
+    const popup = document.getElementById('successPopup');
+    const closePopup = document.getElementById('closePopup');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      clearErrors();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const subject = form.title.value.trim();
+      const message = form.message.value.trim();
+
+      let isValid = true;
+
+      if (!name) { showError(form.name, "Name is required."); isValid = false; }
+      if (!subject) { showError(form.title, "Subject is required."); isValid = false; }
+      if (!message) { showError(form.message, "Message is required."); isValid = false; }
+      if (!validateEmail(email)) { showError(form.email, "Invalid email."); isValid = false; }
+
+      if (!isValid) return;
+
+      // ✅ Send Email through EmailJS
+      emailjs.sendForm('service_shnaj1l', 'template_bx1wc3a', this)
+      .then(() => {
+        showPopup();
+        form.reset();
+      })
+      .catch((error) => {
+        alert('❌ Failed to send message: ' + JSON.stringify(error));
+      });
+    });
+
+    function validateEmail(email) {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return pattern.test(email);
+    }
+
+    function showError(input, message) {
+      const error = document.createElement('div');
+      error.className = 'error-message';
+      error.textContent = message;
+      input.insertAdjacentElement('afterend', error);
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.error-message').forEach(el => el.remove());
+    }
+
+    function showPopup() {
+      popup.style.display = 'flex';
+      closePopup.addEventListener('click', () => popup.style.display = 'none');
+      setTimeout(() => popup.style.display = 'none', 3000);
+    }
+  </script>
+
 
     </section>
   </div>
