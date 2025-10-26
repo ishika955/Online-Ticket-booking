@@ -132,6 +132,48 @@ font-family: Segoe Script;
   opacity: 0.8;
 }
 
+#hero-section {
+            background-image: url('https://placehold.co/1920x400/1e293b/ffffff?text=Travel+Background');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            position: relative;
+        }
+        .gradient-bar {
+            background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            position: relative;
+            z-index: 10;
+        }
+        .tab-button.active {
+            color: var(--primary-purple);
+            border-bottom: 3px solid var(--primary-purple);
+        }
+        .modal-bg {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        /* Custom scrollbar for better look */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #d1d5db; /* Light gray */
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af; /* Darker gray */
+        }
+        /* Ensure the modal content is above the backdrop but below the payment popup */
+        #booking-modal .modal-content-container {
+            position: relative;
+            z-index: 70; /* Above the results modal (z-50) */
+        }
+        /* Ensure the close button is visible above all */
+        #booking-modal .modal-close-btn {
+            z-index: 100;
+        }
+
 .booking-container {
   max-width: 90%;
   margin: 0 auto;
@@ -149,6 +191,9 @@ font-family: Segoe Script;
   background: #fff;
   padding: 15px;
   gap: 15px;
+  font-size: 30px;
+  font-family: 'Segoe Script', cursive;
+   font-weight: bold;
 }
 
 .booking-tabs .tab {
@@ -163,7 +208,6 @@ font-family: Segoe Script;
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.3s;
-  /* flex: 1 1 100px; tabs shrink and wrap nicely */
   text-align: center;
 }
 
@@ -257,6 +301,39 @@ font-family: Segoe Script;
 .content{
   font-size: 1.5em;
   height: 35px;
+}
+
+.search-btn {
+    /* Ensure button text and spinner can be positioned */
+    position: relative;
+    overflow: hidden; 
+    /* Set a minimum width to prevent collapse when text is hidden */
+    min-width: 200px; 
+}
+
+.spinner {
+    display: none; /* Hidden by default */
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3; /* Light grey border */
+    border-top: 3px solid #ff7a57; /* MoonRail accent color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Start the animation */
+    margin: 0 auto;
+}
+
+/* State when the button is clicked/loading */
+.search-btn.loading .button-text {
+    visibility: hidden; /* Hide the text */
+}
+
+.search-btn.loading .spinner {
+    display: inline-block; /* Show the spinner */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* ✅ Responsive tweaks */
@@ -524,53 +601,64 @@ background-color: orange;
 
 /* Responsive Design */
 /* Best Packages - corrected */
+
 .best-packages {
-  --card-max: 960px;                       /* max width for the white card */
+  --card-max: 960px; /* max width for the white card */
   position: relative;
   height: var(--parallax-h, 55vh);
   display: flex;
-  align-items: center;                     /* vertical center */
-  justify-content: center;                 /* horizontal center */
+  align-items: center; /* vertical center */
+  justify-content: center; /* horizontal center */
   padding: 18px;
   overflow: hidden;
   background-position: center;
-  background-size: cover;                  /* cover makes full purple fill */
+  background-size: cover; /* cover makes full purple fill */
   background-repeat: no-repeat;
-  background-attachment: scroll;           /* safer cross-browser; change to fixed if desired */
+  background-attachment: scroll;
 }
 
 /* lighter overlay so background color shows clearly */
 .best-packages .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20,8,50,0.28), rgba(10,8,40,0.28)); /* subtle tint */
+  background: linear-gradient(180deg, rgba(20, 8, 50, 0.28), rgba(10, 8, 40, 0.28)); /* subtle tint */
   z-index: 1;
 }
 
 /* ensure content above bg */
-.best-packages > * { position: relative; z-index: 2; }
+.best-packages > * {
+  position: relative;
+  z-index: 2;
+}
 
 /* center white card and constrain width */
 .package-card {
-  width: min(86%, var(--card-max));        /* narrower card */
+  width: min(86%, var(--card-max));
   max-width: var(--card-max);
   background: #ffffff;
-  padding: 44px 48px;
+  /* 🚩 MODIFIED: Reduced vertical padding for shorter card height */
+  padding: 12px 48px !important; 
   border-radius: 8px;
-  box-shadow: 0 22px 48px rgba(10,20,40,0.10);
+  box-shadow: 0 22px 48px rgba(10, 20, 40, 0.1);
   text-align: center;
   color: #111;
   margin: 0 auto;
-  height: 600px;
+  /* 🚩 MODIFIED: Reduced min-height to allow cards to shrink further */
+  min-height: 320px !important; 
+  
+  /* Flexbox rules for internal content centering and layout */
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: space-between; 
 }
 
 /* reduce line length and keep readable */
-.package-card .lead{
+.package-card .lead {
   color: #6b7280;
   font-size: 1.02rem;
   line-height: 1.8;
-  margin: 20px auto 26px;
-  max-width: 780px;                        /* limit paragraph width */
+  margin: 10px auto 12px; /* 'auto' for horizontal centering */
+  max-width: 780px;
 }
 
 /* CTA button slightly larger but centered */
@@ -583,63 +671,89 @@ background-color: orange;
   font-weight: 700;
   letter-spacing: .6px;
   cursor: pointer;
-  box-shadow: 0 10px 32px rgba(164,99,255,0.14);
+  box-shadow: 0 10px 32px rgba(164, 99, 255, 0.14);
+  /* Pushes the button to the bottom of the flex container */
+  margin-top: auto; 
 }
 
 /* arrows repositioned slightly inside edges */
-.arrow.left { left: 18px; }
-.arrow.right { right: 18px; }
+.arrow.left {
+  left: 18px;
+}
+.arrow.right {
+  right: 18px;
+}
 
 /* responsive adjustments */
-@media (max-width: 900px){
-  .best-packages { height: auto; padding: 40px 12px; background-attachment: scroll; }
-  .package-card { padding: 28px 18px; width: 94%; max-width: 720px; }
-  .package-card .lead { max-width: 100%; font-size: .98rem; }
-  .arrow.left, .arrow.right { display: none; } /* hide arrows on small screens */
+@media (max-width: 900px) {
+  .best-packages {
+    height: auto;
+    padding: 40px 12px;
+    background-attachment: scroll;
+  }
+  .package-card {
+    padding: 28px 18px;
+    width: 94%;
+    max-width: 720px;
+  }
+  .package-card .lead {
+    max-width: 100%;
+    font-size: .98rem;
+  }
+  .arrow.left,
+  .arrow.right {
+    display: none;
+  } /* hide arrows on small screens */
 }
 
 /* larger arrows (replace your old .arrow rules) */
-.arrow{
+.arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 64px;                 /* larger width */
-  height: 64px;                /* larger height */
-  border-radius: 12px;         /* softer corners */
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
-  border: 3px solid rgba(255,255,255,0.95);
-  background: rgba(255,255,255,0.06);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
   z-index: 3;
   cursor: pointer;
   transition: transform .15s ease, background .12s ease, box-shadow .12s ease;
-  box-shadow: 0 8px 24px rgba(10,10,20,0.12);
+  box-shadow: 0 8px 24px rgba(10, 10, 20, 0.12);
 }
 
 /* move arrows a bit inward from the edges */
-.arrow.left { left: 36px; }
-.arrow.right { right: 36px; }
+.arrow.left {
+  left: 36px;
+}
+.arrow.right {
+  right: 36px;
+}
 
 /* icon size inside arrow */
-.arrow span { 
-  font-size: 28px; 
+.arrow span {
+  font-size: 28px;
   line-height: 1;
   font-weight: 700;
 }
 
 /* hover / active feedback */
-.arrow:hover { 
+.arrow:hover {
   transform: translateY(-50%) scale(1.06);
-  background: rgba(255,255,255,0.12);
-  box-shadow: 0 16px 40px rgba(10,10,20,0.16);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(10, 10, 20, 0.16);
 }
 
 /* optional: larger press effect */
-.arrow:active { transform: translateY(-50%) scale(0.98); }
+.arrow:active {
+  transform: translateY(-50%) scale(0.98);
+}
 
 /* Responsive: keep arrows smaller or hide on narrow screens */
-@media (max-width: 900px){
+@media (max-width: 900px) {
   .arrow {
     width: 48px;
     height: 48px;
@@ -648,32 +762,61 @@ background-color: orange;
     right: 12px;
     border-width: 2px;
   }
-  .arrow span { font-size: 20px; }
-  /* if you prefer to hide instead, uncomment next line */
-  /* .arrow { display: none; } */
+  .arrow span {
+    font-size: 20px;
+  }
 }
+
 /* hide radios */
-.best-packages input { display: none; }
+.best-packages input {
+  display: none;
+}
 
 /* hide all cards */
-.package-card { display: none; }
+.package-card {
+  display: none;
+}
 
+/* 🚩 MODIFIED: Use 'display: flex;' to show the card and apply layout rules */
 /* show card if its radio is checked */
-#pkg1:checked ~ .card1 { display: block; }
-#pkg2:checked ~ .card2 { display: block; }
-#pkg3:checked ~ .card3 { display: block; }
+#pkg1:checked ~ .card1,
+#pkg2:checked ~ .card2,
+#pkg3:checked ~ .card3 {
+  /* Forces the card to be visible */
+  display: flex !important;
+  
+  /* Forces the height reduction */
+  padding: 12px 48px !important;
+  min-height: 320px !important;
+  
+  /* Forces the layout to be column-based */
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
 
 /* hide all arrows by default */
-.arrow { display: none; }
+.arrow {
+  display: none;
+}
 
 /* arrows for pkg1 */
-#pkg1:checked ~ .first { display: grid; }
+#pkg1:checked ~ .first {
+  display: grid;
+}
 
 /* arrows for pkg2 */
-#pkg2:checked ~ .second { display: grid; }
+#pkg2:checked ~ .second {
+  display: grid;
+}
 
 /* arrows for pkg3 */
-#pkg3:checked ~ .third { display: grid; }
+#pkg3:checked ~ .third {
+  display: grid;
+}
+
+
+
 
 .fourcards-container {
     display: grid;
@@ -803,6 +946,70 @@ background-color: orange;
   }
 }
 
+.read-more {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  .read-more:hover {
+    background: #e68900;
+  }
+
+  /* ===== Modal Styles ===== */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center; align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: white;
+    width: 80%;
+    max-width: 700px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    animation: zoomIn 0.3s ease;
+    position: relative;
+  }
+
+  @keyframes zoomIn {
+    from {transform: scale(0.9); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+  }
+
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    color: #555;
+    cursor: pointer;
+  }
+
+  .modal-content h2 {
+    color: #ff9800;
+    margin-top: 0;
+  }
+
+  .modal-content p, .modal-content ul {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .modal-content ul {
+    padding-left: 20px;
+  }
+
 
 .parallax4 {
   min-height: 80vh;       /* make section taller */
@@ -812,11 +1019,6 @@ background-color: orange;
   background-color: rgb(237, 237, 237);
 }
 
-/* .contact-section {
-  width: 100%;               span full width so centering works 
-  display: flex;
-  justify-content: flex-end; push form right 
-}*/
 .contact-section {
   display: flex;
   justify-content: space-between;
@@ -895,8 +1097,58 @@ height: 700px;
   font-weight: bold;
   border-radius: 50px;
   cursor: pointer;
-  /* align-items: center;
-  justify-content: center; */
+
   display: block;
   margin: 20px auto 0 auto; 
 }
+
+
+.error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        flex-direction: column;
+      }
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .popup-content button {
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
