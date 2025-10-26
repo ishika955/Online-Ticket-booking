@@ -20,240 +20,220 @@
             --accent-dark: #ff7171;
             --text-color: #ffffff;
             --sub-text-color: #a0a0b0;
-            --light-mode-bg: #ffffff; /* New variable for light mode main background */
-            --light-mode-text: #1a1a2e; /* New variable for light mode text */
+            
+            /* Header Specific */
+            --top-bar-bg: #2e1a3c;
+            --header-nav-bg: #100f20;
+            --link-hover-color: #d38dff;
         }
 
         /* Light Mode Styles */
         .light-mode {
-            --dark-blue: #f3f4f6; /* Light background */
-            --darker-blue: #ffffff; /* Lighter header/card background */
-            --card-bg: #ffffff; /* Lighter card background */
-            --border-color: #e5e7eb; /* Lighter border */
-            --purple-light: #c5a4f7; /* Lighter purple for hero */
-            --purple-dark: #7b43a3; /* Deeper purple for hero contrast */
-            --accent-light: #7b43a3; /* Accent color in light mode */
+            --dark-blue: #f3f4f6;
+            --darker-blue: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --purple-light: #c5a4f7;
+            --purple-dark: #7b43a3; /* Strong purple for accents */
+            --accent-light: #7b43a3;
             --accent-dark: #a0a0b0;
-            --text-color: #1f2937; /* Dark text */
-            --sub-text-color: #6b7280; /* Sub-text color */
-        }
-        
-        /* Apply light mode style to specific elements */
-        .light-mode body {
-            background-color: var(--dark-blue);
-            color: var(--text-color);
-        }
-
-        .light-mode .header {
-            background-color: var(--darker-blue);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .light-mode .nav-links a {
-            color: var(--text-color);
-        }
-        
-        .light-mode .nav-links a:hover {
-            color: var(--sub-text-color);
-        }
-        
-        .light-mode .mobile-menu-button svg {
-            color: var(--text-color);
-        }
-        
-        .light-mode .nav-links.active {
-            background-color: var(--darker-blue);
+            --text-color: #1f2937;
+            --sub-text-color: #6b7280;
+            
+            /* Light Header Specific */
+            --top-bar-bg: #7b43a3;
+            --header-nav-bg: #ffffff;
+            --link-hover-color: #a0a0b0;
         }
 
-        .light-mode .hero {
-            background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
-            color: #ffffff; /* Keep hero text white/light for contrast */
-        }
-        
-        .light-mode .hero p {
-            color: #e5e7eb;
-        }
-
-        .light-mode .contact-info-section .tag {
-            color: var(--accent-light); /* Use light mode accent color */
-        }
-        
-        .light-mode .contact-info-section h2 {
-            color: var(--text-color);
-        }
-        
-        .light-mode .contact-info-section p {
-            color: var(--sub-text-color);
-        }
-
-        .light-mode .info-icon {
-            background-color: var(--border-color); /* Lighter background for icon */
-        }
-
-        .light-mode .info-icon svg {
-            color: var(--accent-light); /* Lighter accent for icon */
-        }
-        
-        .light-mode .info-text p:first-child {
-            color: var(--text-color);
-        }
-
-        .light-mode .contact-form-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-        }
-        
-        .light-mode .contact-form-card h3 {
-            color: var(--text-color);
-        }
-
-        .light-mode .form-input, .light-mode .form-textarea {
-            background-color: var(--dark-blue); /* Lighter input background */
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-        }
-        
-        .light-mode .footer {
-            background-color: var(--darker-blue);
-            color: var(--text-color);
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .light-mode .footer-section h3 {
-            color: var(--accent-light);
-        }
-
-        .light-mode .footer-section h3::after {
-            background-color: var(--accent-light);
-        }
-        
-        .light-mode .footer-section ul li a {
-            color: var(--text-color);
-        }
-
-        .light-mode .footer-section ul li a:hover {
-            color: var(--accent-light);
-        }
-        
-        .light-mode .footer-bottom {
-            border-top: 1px solid var(--border-color);
-        }
-        
-        /* Rest of the original CSS */
-
+        /* Base Styles */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--dark-blue);
             color: var(--text-color);
             margin: 0;
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s; /* Added transition for smooth change */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Light Mode General Application */
+        .light-mode body {
+            background-color: var(--dark-blue);
+            color: var(--text-color);
+        }
+        .light-mode .hero {
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+            color: #ffffff;
+        }
+        .light-mode .hero p {
+            color: #e5e7eb;
+        }
+        .light-mode .contact-form-card, .light-mode .footer, .light-mode .info-icon {
+             transition: background-color 0.3s;
         }
 
+        /* Container & Grid remains the same */
         .container {
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
             padding: 0 1rem;
         }
+        
+        /* --- NEW TOP BAR STYLES --- */
+        .top-bar {
+            background-color: var(--top-bar-bg);
+            color: var(--text-color);
+            font-size: 0.875rem;
+            padding: 0.5rem 0;
+        }
+        .top-bar-content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top-bar-left {
+            display: flex;
+            justify-content: flex-start;
+        }
+        .top-bar-social-centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        .top-bar-social-centered a {
+            color: var(--text-color);
+            transition: color 0.2s;
+        }
+        .top-bar-social-centered a:hover {
+            color: var(--link-hover-color);
+        }
+        .top-bar-social-centered svg {
+            width: 1rem;
+            height: 1rem;
+            vertical-align: middle;
+        }
+        .top-bar-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .top-bar-right a {
+            color: #ff7171;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .top-bar-right a:hover {
+            color: var(--accent-light);
+        }
+        .user-name {
+            font-weight: 600;
+        }
+        
+        /* Light Mode Auth/Social Colors */
+        .light-mode .top-bar-social-centered a {
+             color: #e5e7eb;
+        }
+        .light-mode .top-bar-right a {
+             color: #a0a0b0; 
+        }
+        .light-mode .top-bar-right a:hover {
+             color: #ff7171;
+        }
+        /* --- END TOP BAR STYLES --- */
 
         /* Header */
         .header {
-            background-color: var(--darker-blue);
+            background-color: var(--header-nav-bg);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 50;
         }
-
+        .light-mode .header {
+            background-color: var(--header-nav-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        /* ... (rest of header styles remain the same) ... */
         .nav-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 1rem 0;
         }
-
         .nav-logo {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
         .nav-logo-icon {
             height: 2rem;
             width: 2rem;
             border-radius: 9999px;
         }
-
         .nav-logo-text {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
-
         .nav-links {
             display: none;
             gap: 2rem;
             transition: transform 0.3s ease-in-out;
+            padding: 0;
         }
-
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.2s ease-in-out;
             padding: 0.5rem 0;
+            display: block;
         }
-
         .nav-links a:hover {
-            color: #ccc;
+            color: var(--link-hover-color);
         }
-        .auth-button {
-            background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
+        .nav-actions-right {
+             display: flex;
+             align-items: center;
+             gap: 1rem;
+        }
+        .search-icon-button {
+            background: none;
             border: none;
-            padding: 0.75rem 1.5rem;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 9999px;
+            color: var(--text-color);
             cursor: pointer;
-            transition: transform 0.3s ease-in-out;
+            padding: 0.5rem;
+            transition: color 0.2s;
         }
-
-        .auth-button:hover {
-            transform: scale(1.05);
+        .search-icon-button:hover {
+            color: var(--link-hover-color);
         }
-        
-        /* Mode Switch Button */
+        .search-icon-button svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
         .mode-switch-button {
             background: none;
             border: none;
             color: var(--text-color);
             cursor: pointer;
             padding: 0.5rem;
-            margin-right: 1rem;
             transition: color 0.3s;
         }
-
         .mode-switch-button:hover {
-            color: var(--accent-light);
+            color: var(--link-hover-color);
         }
-
         .mode-switch-button svg {
-            height: 1.5rem;
-            width: 1.5rem;
+            height: 1.25rem;
+            width: 1.25rem;
         }
-        
-        /* Combined Auth and Switch */
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        
         .mobile-menu-button {
             display: none;
         }
-
         /* Responsive Nav */
         @media (min-width: 1024px) {
             .nav-links {
@@ -263,22 +243,21 @@
                 display: none;
             }
         }
-        
         @media (max-width: 1023px) {
-            .nav-actions {
-                display: none; /* Hide buttons on small screens */
+            .top-bar-content {
+                display: none; 
             }
             .nav-container {
                 justify-content: space-between;
+                padding: 0.75rem 1rem;
             }
              .mobile-menu-button {
-                display: flex; /* Show menu button */
+                display: flex;
                 align-items: center;
                 background: none;
                 border: none;
                 color: white;
                 cursor: pointer;
-                order: 3; /* Move to the right */
              }
              .mobile-menu-button svg {
                 height: 1.5rem;
@@ -286,10 +265,10 @@
              }
              .nav-links {
                  position: absolute;
-                 top: 64px; /* Adjust this to match the header height */
+                 top: 60px;
                  left: 0;
                  width: 100%;
-                 background-color: var(--darker-blue);
+                 background-color: var(--header-nav-bg);
                  flex-direction: column;
                  padding: 1rem 0;
                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -302,14 +281,29 @@
                  transform: translateY(0);
              }
              .nav-links a {
-                 padding: 1rem 1.5rem;
+                 padding: 0.75rem 1.5rem;
              }
-             .nav-links .auth-button { /* To make buttons available in the mobile menu */
-                display: block;
-                width: calc(100% - 3rem);
-                margin: 0.5rem 1.5rem;
-                text-align: center;
+             .nav-actions-right {
+                 display: flex;
+                 gap: 0.5rem;
              }
+             .nav-links .mode-switch-button, .nav-links .search-icon-button {
+                 display: none;
+             }
+        }
+        
+        /* Light Mode Specific Adjustments */
+        .light-mode .header {
+            background-color: var(--header-nav-bg);
+        }
+        .light-mode .nav-logo-text, .light-mode .nav-links a {
+             color: var(--text-color);
+        }
+        .light-mode .mobile-menu-button, .light-mode .mode-switch-button, .light-mode .search-icon-button {
+             color: var(--text-color);
+        }
+        .light-mode .nav-links.active {
+             background-color: var(--header-nav-bg);
         }
         
         /* Hero Section */
@@ -327,7 +321,7 @@
         }
         @media (min-width: 768px) {
              .hero h1 {
-                font-size: 3rem;
+                 font-size: 3rem;
              }
         }
 
@@ -502,6 +496,13 @@
             transition: background-color 0.3s, border-color 0.3s, color 0.3s;
         }
         
+        /* Light mode form input styles */
+        .light-mode .form-input, .light-mode .form-textarea {
+            background-color: var(--darker-blue); /* White */
+            border-color: var(--border-color); /* Lighter grey border */
+            color: var(--text-color); /* Dark text */
+        }
+        
         .form-textarea {
             min-height: 10rem;
         }
@@ -533,6 +534,7 @@
         }
         
         
+        /* Footer - Default Dark Mode */
         .footer {
             background-color: var(--card-bg);
             color: #fff;
@@ -563,7 +565,7 @@
         .footer-section h3 {
             margin-bottom: 20px;
             font-size: 1.4rem;
-            color: #d38dff;
+            color: #d38dff; /* Dark Mode Accent */
             position: relative;
             padding-bottom: 10px;
             transition: color 0.3s;
@@ -576,7 +578,7 @@
             bottom: 0;
             width: 50px;
             height: 3px;
-            background-color: #d38dff;
+            background-color: #d38dff; /* Dark Mode Accent */
             border-radius: 5px;
             transition: background-color 0.3s;
         }
@@ -595,20 +597,20 @@
         }
 
         .footer-section ul li a {
-            color: #fff;
+            color: #fff; /* Dark Mode Text */
             text-decoration: none;
             transition: color 0.3s ease, transform 0.3s ease;
             display: inline-block;
         }
 
         .footer-section ul li a:hover {
-            color: #d38dff;
+            color: #d38dff; /* Dark Mode Accent Hover */
             transform: translateX(5px);
         }
 
         .footer-section i {
             margin-right: 10px;
-            color: #d38dff;
+            color: #d38dff; /* Dark Mode Accent */
             width: 20px;
             text-align: center;
         }
@@ -621,6 +623,42 @@
             opacity: 0.7;
             font-size: 0.9rem;
         }
+        
+        /* --- Light Mode Footer Fix --- */
+        .light-mode .footer {
+            background-color: var(--card-bg); /* #ffffff */
+            color: var(--text-color); /* #1f2937 */
+        }
+
+        .light-mode .footer-section p, 
+        .light-mode .footer-section li,
+        .light-mode .footer-bottom {
+            color: var(--sub-text-color); /* #6b7280 */
+            opacity: 1; /* Ensure full opacity in light mode */
+        }
+
+        .light-mode .footer-section h3,
+        .light-mode .footer-section i {
+            color: var(--purple-dark); /* #7b43a3 */
+        }
+
+        .light-mode .footer-section h3::after {
+            background-color: var(--purple-dark);
+        }
+
+        .light-mode .footer-section ul li a {
+            color: var(--sub-text-color);
+        }
+
+        .light-mode .footer-section ul li a:hover {
+            color: var(--accent-light); /* #7b43a3 */
+        }
+        
+        .light-mode .footer-bottom {
+             border-top: 1px solid var(--border-color); /* Lighter border for light mode */
+        }
+        /* --- End Light Mode Footer Fix --- */
+
 
         /* Responsive Design for footer */
         @media (max-width: 768px) {
@@ -655,38 +693,57 @@
     </style>
 </head>
 <body id="body">
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>+91 - 8146612331</span>
+            </div>
+            
+            <div class="top-bar-social-centered">
+                <a href="https://x.com/MoonRail25" target="_blank" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22.258 4.793c-.859.38-1.785.638-2.766.755.986-.59 1.74-1.523 2.095-2.637-.923.547-1.94 1.025-3.02 1.257-2.736-2.91-7.294-.783-6.195 2.185-3.882.193-7.327-2.083-9.664-5.26-.403.693-.637 1.498-.637 2.373 0 1.636.83 3.084 2.105 3.931-.77-.024-1.49-.235-2.12-.583v.03c0 2.28 1.626 4.187 3.774 4.62-1.78.486-3.665.232-5.18.06.598 1.874 2.32 3.242 4.38 3.28-1.734 1.355-3.92 2.164-6.29 2.164-.407 0-.814-.024-1.215-.072 2.24 1.436 4.898 2.278 7.747 2.278 8.87 0 13.722-7.35 13.722-13.723 0-.21-.005-.42-.014-.627.944-.683 1.76-1.536 2.408-2.51z" /></svg>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 5.174 3.774 9.497 8.706 10.37V14.07h-2.54v-2.132h2.54v-1.638c0-2.518 1.536-3.896 3.784-3.896 1.08 0 2.004.192 2.274.277v2.54h-1.503c-1.19 0-1.42 1.208-1.42 1.488v1.77h2.812l-.462 2.132h-2.35V22.37C18.226 21.497 22 17.174 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/moon.rail/" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.013 4.85.074 3.178.156 4.383 1.583 4.545 4.757.065 1.267.078 1.647.078 4.85s-.013 3.584-.074 4.85c-.156 3.178-1.583 4.383-4.757 4.545-1.267.065-1.647.078-4.85.078s-3.584-.013-4.85-.074c-3.178-.156-4.383-1.583-4.545-4.757-.065-1.267-.078-1.647-.078-4.85s.013-3.584.074-4.85c.156-3.178 1.583-4.383 4.757-4.545 1.267-.065 1.647-.078 4.85-.078zm0-2.163c-3.259 0-3.66.014-4.945.076-4.426.216-6.173 2.056-6.39 6.425-.065 1.285-.078 1.69-.078 4.945s.013 3.66.078 4.945c.217 4.369 2.056 6.173 6.425 6.39 1.285.065 1.69.078 4.945.078s3.66-.013 4.945-.078c4.369-.217 6.173-2.056 6.39-6.425.065-1.285.078-1.69.078-4.945s-.013-3.66-.078-4.945c-.217-4.369-2.056-6.173-6.425-6.39-1.285-.065-1.69-.078-4.945-.078zm-1.897 8.356c-.529 0-.96.431-.96.96s.431.96.96.96.96-.431.96-.96-.431-.96-.96-.96zm-2.163.96c0-2.352 1.908-4.26 4.26-4.26s4.26 1.908 4.26 4.26-1.908 4.26-4.26 4.26-4.26-1.908-4.26-4.26zm2.163 2.163c-1.258 0-2.26-1.002-2.26-2.26s1.002-2.26 2.26-2.26 2.26 1.002 2.26 2.26-1.002 2.26-2.26 2.26zm7.252-8.151h-.008c.579 0 1.04-.461 1.04-1.04s-.461-1.04-1.04-1.04c-.579 0-1.04.461-1.04 1.04s.461 1.04 1.04 1.04z" /></svg>
+                </a>
+            </div>
+            
+            <div class="top-bar-right" id="top-bar-auth">
+            </div>
+        </div>
+    </div>
     <header class="header">
         <nav class="container nav-container">
             <div class="nav-logo">
-                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="Moonrail Logo" class="nav-logo-icon">
+                <img src="https://placehold.co/32x32/ff7171/ffffff?text=M" alt="Moonrail Logo" class="nav-logo-icon">
                 <span class="nav-logo-text">MoonRail</span>
             </div>
             
             <div class="nav-links" id="nav-links">
                 <a href="index.html">Home</a>
-                <a href="about us.html">About us</a>
-                <a href="#">Contact Us</a>
-                <a href="news.html">News</a>
+                <a href="about.html">About Us</a>
                 <a href="offers.html">Offers</a>
-                <a href="login.html" class="auth-button" style="display:none;" id="mobile-login-btn">Log In</a>
-                <a href="logout.html" class="auth-button" style="display:none;" id="mobile-logout-btn">Log out</a>
+                <a href="news.html">News</a>
+                <a href="#">Contact</a>
             </div>
 
-            <div class="nav-actions">
+            <div class="nav-actions-right">
                 <button class="mode-switch-button" id="mode-switch">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="mode-icon">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
+                
+                
+                <button class="mobile-menu-button" id="mobile-menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
                 </button>
-                <a href="login.html" class="auth-button">Log In</a>
-                <a href="logout.html" class="auth-button">Log out</a>
             </div>
 
-            <button class="mobile-menu-button" id="mobile-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
         </nav>
     </header>
 
@@ -808,17 +865,9 @@
         // --- Mobile Menu Toggle Script ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const navLinks = document.getElementById('nav-links');
-        const mobileLoginBtn = document.getElementById('mobile-login-btn');
-        const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
         
-        // Function to toggle mobile menu and its associated buttons visibility
         function toggleMobileMenu() {
             navLinks.classList.toggle('active');
-            const isActive = navLinks.classList.contains('active');
-            
-            // Toggle visibility for auth buttons inside the mobile menu
-            mobileLoginBtn.style.display = isActive ? 'block' : 'none';
-            mobileLogoutBtn.style.display = isActive ? 'block' : 'none';
         }
 
         mobileMenuButton.addEventListener('click', toggleMobileMenu);
@@ -829,47 +878,55 @@
         const modeSwitch = document.getElementById('mode-switch');
         const modeIcon = document.getElementById('mode-icon');
         
-        // SVG paths for the icons
-        const sunIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
-        const moonIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
-
-        // Function to apply the theme
-        function applyTheme(isLight) {
+        // Function to set the mode
+        function setMode(isLight) {
             if (isLight) {
                 body.classList.add('light-mode');
-                modeIcon.innerHTML = moonIcon; // Show moon icon to suggest switching to dark mode
+                // Change icon to Moon (Dark mode icon)
+                modeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
             } else {
                 body.classList.remove('light-mode');
-                modeIcon.innerHTML = sunIcon; // Show sun icon to suggest switching to light mode
+                // Change icon to Sun (Light mode icon)
+                modeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
             }
         }
+        
+        // Initial check for preference (optional, but good practice)
+        // For simplicity, we'll start in dark mode (no .light-mode class initially)
 
-        // 1. Check for saved preference on load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            applyTheme(true);
-        } else if (savedTheme === 'dark') {
-            applyTheme(false);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-            // 2. Fallback to system preference if no preference is saved
-             applyTheme(true);
-        } else {
-             applyTheme(false); // Default to dark mode
-        }
-
-        // 3. Event listener for the button click
+        // Toggle function
         modeSwitch.addEventListener('click', () => {
             const isLightMode = body.classList.contains('light-mode');
-            
-            if (isLightMode) {
-                applyTheme(false);
-                localStorage.setItem('theme', 'dark');
-            } else {
-                applyTheme(true);
-                localStorage.setItem('theme', 'light');
-            }
+            setMode(!isLightMode);
         });
+
+        // Set initial state to dark mode if no preference stored
+        setMode(false); 
+          const topBarAuth = document.getElementById('top-bar-auth');
         
+        // --- SIMULATE AUTH STATE ---
+        // Change this variable to true/false to test the two different states
+        const isnotLoggedIn = true; 
+        const userName = "Ishika"; // Replace with actual user name
+        // ---------------------------
+        
+        let authHTML = '';
+        
+        if (isnotLoggedIn) {
+              authHTML = `
+                <a href="login.html">Login</a>
+            `;
+            
+        } else {
+            // State: Logged Out
+            authHTML = `
+                <span class="user-name">${userName}</span>
+                <a href="logout.html">Logout</a>
+            `;
+          
+        }
+        
+        topBarAuth.innerHTML = authHTML;
     </script>
 </body>
 </html>
