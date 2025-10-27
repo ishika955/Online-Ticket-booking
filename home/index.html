@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
     <style>
         /* Custom styles for the tabs */
         .tab-button.active {
@@ -22,6 +24,20 @@
             outline-offset: 2px;
             box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5); /* purple-500 with opacity */
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex-grow: 1;
+            background-color: #f3f4f6;
+            padding: 4rem 0;
+            text-align: center;
+        }
         </style>
  
 </head>
@@ -30,7 +46,7 @@
   <!-- Top Bar -->
   <div class="contain">
   <div class="top-bar">
-    <span>+91 - 8685986823</span>
+    <span><i class="fas fa-phone mr-1"></i>+91 - 8685986823</span>
     <div class="social-icons">
       <i class="fab fa-facebook"></i>
       <a href="https://x.com/MoonRail25"><i class="fab fa-twitter"></i></a>
@@ -56,7 +72,9 @@
       <li><a href="neww.html">News</a></li>
       <li><a href="contacts.html">Contact</a></li>
     </ul>
-    <i class></i>
+    <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                <i class="fas fa-user-circle mr-1"></i> My Account
+            </button>
   </nav>
 
   <!-- Hero Section -->
@@ -80,16 +98,22 @@
   </div>
   <!-- Search Form -->
   <div class="searchbox" style="color:#000; ">
-    <form id="search-form" action="booking.html"> <input type="text" placeholder="Enter Location from " required>
-        <input type="text" placeholder="Enter Location to " required> 
-        <input type="date" placeholder="dd-mm-yyyy" required>
-        <input type="number" placeholder="Guests" required>
-        
-        <button type="submit" class="search-btn" id="search-button">
-            <span class="spinner"></span>
-            <span class="button-text">Finding Journeys...</span>
-        </button>
-    </form>
+    <form id="search-form" class="gradient-bar rounded-b-2xl p-4 shadow-inner flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 items-center">
+                
+                <input id="input-origin" type="text" placeholder="Enter Location from" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required>
+                
+                <input id="input-destination" type="text" placeholder="Enter Location to" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required> 
+                
+                <input id="input-date" type="date" placeholder="dd-mm-yyyy" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required>
+                
+                <input id="input-guests" type="number" min="1" placeholder="Guests" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required>
+                
+                <button id="search-button" type="submit" class="w-full md:w-auto px-6 py-3 text-white font-bold bg-gray-900 hover:bg-black rounded-xl shadow-lg transition duration-200 transform hover:scale-[1.02] flex items-center justify-center">
+                    <span class="spinner"></span>
+                    <i class="fas fa-search mr-2 button-icon"></i> 
+                    <span class="button-text">Finding Journeys...</span>
+                </button>
+            </form>
     <script>
     document.getElementById('search-form').addEventListener('submit', function(event) {
         // Prevent the default form submission immediately
@@ -113,14 +137,89 @@
             window.location.href = finalUrl;
         }, 2500); // 2500 milliseconds = 2.5 seconds
     });
+    // ==========================================================
+//                 JAVASCRIPT FOR index.html (Search Page)
+// ==========================================================
+
+const searchForm = document.getElementById('search-form');
+const searchButton = document.getElementById('search-button');
+
+function showAlert(title, message) {
+    // Simple alert mechanism for validation errors on the search page.
+    alert(`${title}: ${message}`);
+}
+
+searchButton.addEventListener('click', function(e) {
+    e.preventDefault(); // Stop the form from submitting normally
+
+    // 1. Get Input Values by their unique IDs
+    const originInput = document.getElementById('input-origin');
+    const destinationInput = document.getElementById('input-destination');
+    const dateInput = document.getElementById('input-date');
+    const guestsInput = document.getElementById('input-guests');
+
+    const origin = originInput.value.trim();
+    const destination = destinationInput.value.trim();
+    const date = dateInput.value;
+    const guests = guestsInput.value;
+
+    // 2. Validation
+    if (!origin || !destination || !date || !guests) {
+        showAlert("Validation Error", "Please fill in all search details (Origin, Destination, Date, Guests).");
+        return;
+    }
+    
+    // Validate number of guests
+    const numGuests = parseInt(guests);
+    if (numGuests <= 0 || isNaN(numGuests)) {
+        showAlert("Validation Error", "The number of guests must be a valid number greater than 0.");
+        return;
+    }
+
+    // 3. Add Loading State to Button
+    const buttonIcon = document.querySelector('#search-button .button-icon');
+    const buttonText = document.querySelector('#search-button .button-text');
+    const spinner = document.querySelector('#search-button .spinner');
+    
+    // Switch to loading text and show spinner
+    if (buttonIcon) buttonIcon.style.display = 'none';
+    if (buttonText) buttonText.textContent = 'Searching...';
+    if (spinner) spinner.style.display = 'inline-block';
+    searchButton.disabled = true;
+
+    // 4. Prepare URL Parameters
+    const params = new URLSearchParams({
+        origin: origin,
+        destination: destination,
+        date: date,
+        guests: guests
+    }).toString();
+
+    // 5. Redirect after a slight delay
+    setTimeout(() => {
+        // 🚨 TARGET CHANGE HERE 🚨
+        // Redirect to booking.html, passing the search query in the URL
+        window.location.href = `booking.html?${params}`; 
+    }, 500); // 500ms delay to show the loading state
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Set today's date as the minimum selectable date for the calendar
+    const dateInput = document.getElementById('input-date');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+});
 </script>
 </div>
 
   <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
   <!-- Parallax Section 1 -->
-<section class="parallax" style="background-color: #ffffff;">
-  <div class="parallax-content" >
+<section class="parallax" style="background-color: #ffffff; ">
+  <div class="parallax-content" id ="1">
     <h2>Turning Destinations Into Experiences</h2><br><br>
     <p>From hidden gems to iconic wonders, we craft journeys filled with memories you'll cherish forever.</p>
     <p>Your adventure begins the moment you choose us.</p><br><br>
@@ -130,19 +229,19 @@
     <div class="date">Nov 15th - Nov  20st</div>
     <h3>Mauritius</h3>
     <p>From ₹58,000 </p>
-    <a href="login.html" class="btn">SEE MORE</a>
+    <a href="mauritius.html" class="btn">SEE MORE</a>
   </div>
   <div class="card">
     <div class="date">Oct 25th - Nov 01st</div>
     <h3>Greece</h3>
     <p>From ₹70,000 </p>
-     <a href="login.html" class="btn">SEE MORE</a>
+     <a href="greece.html" class="btn">SEE MORE</a>
   </div>
   <div class="card">
     <div class="date">Nov25th - Dec 01st</div>
     <h3 >Scotland</h3>
     <p>From ₹80,000 </p>
-    <a href="login.html" class="btn">SEE MORE</a>
+    <a href="scotland.html" class="btn">SEE MORE</a>
   </div>
 </div>
 <br><br><br><br><br>
@@ -151,7 +250,7 @@
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Parallax Section 2 -->
-<section class="parallax best-packages" style="--parallax-h:80vh; background-image: url('../img/parallax3.jpg');">
+<section class="parallax best-packages" style="--parallax-h:80vh; background-image: url('../img/parallax3.jpg');" id ="2">
   <div class="overlay"></div>
 
   <!-- hidden radios to control state -->
@@ -165,7 +264,7 @@
     <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><br><br>
     <img src="../img/lakshdweep.jpg" alt="Lakshdweep" height="300px" width="600px">
     <p class="lead">Lakshdweep Deluxe — Crystal-clear waters, luxury villas, and unforgettable sunsets.</p>
-    <div class="card-cta"><a href="login.html" class="btn book-now">BOOK NOW</a></div>
+    <div class="card-cta"><a href="lakshdweep.html" class="btn book-now">BOOK NOW</a></div>
   </div>
 
   <!-- package 2 -->
@@ -174,7 +273,7 @@
     <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><br><br>
     <img src="../img/bali.jpg" alt="Bali" height="300px" width="600px">
     <p class="lead">Bali Getaway — Exotic temples, lush rice terraces, and world-class spas.</p>
-    <div class="card-cta"><a href="login.html" class="btn book-now">BOOK NOW</a></div>
+    <div class="card-cta"><a href="bali.html" class="btn book-now">BOOK NOW</a></div>
 
   </div>
 
@@ -184,7 +283,7 @@
     <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><br><br>
     <img src="../img/switzerland.jpg" alt="Switzerland" height="300px" width="600px">
     <p class="lead">Switzerland Adventure — Snowy Alps, scenic trains, and cozy chalets.</p>
-        <div class="card-cta"><a href="login.html" class="btn book-now">BOOK NOW</a></div>
+        <div class="card-cta"><a href="switz.html" class="btn book-now">BOOK NOW</a></div>
 
   </div>
 
@@ -609,44 +708,57 @@
 
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-<footer>
-  <br><br><br>
-    <div class="footer-details">
-        <div class="footer-section">
-            <h3>About MoonRail</h3>
-            <p>MoonRail is your trusted partner for seamless travel bookings. We offer a wide range of services including flights, trains, buses, cabs, and hotels to make your journey comfortable and convenient.</p>
-             <div class="social-icons">
-      
-      <i class="fab fa-facebook"></i>
-      <i class="fab fa-twitter"></i>
-      
-      <i class="fab fa-instagram"></i>
-      <i class="fab fa-linkedin"></i>
-    </div>
-        </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Offers</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Contact Us</h3>
-            <p><i class="fas fa-envelope"></i>support@moonrail.com</p>
-            <p><i class="fas fa-phone"></i> Phone: +91-8685986823</p>
-            <p><i class="fas fa-map-marker-alt"></i>Chitkara University, Rajpura,Punjab, India</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        &copy; 2024 MoonRail. All rights reserved.</div>
+ <footer class="bg-gray-800 text-white pt-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8">
+                
+                <div class="footer-section space-y-4">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">About MoonRail</h3>
+                    <p class="text-gray-400 text-sm">MoonRail is your trusted partner for seamless travel bookings. We offer a wide range of services including flights, trains, buses, cabs, and hotels to make your journey comfortable and convenient.</p>
+                    <div class="social-icons flex space-x-4 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-facebook-f" aria-label="Facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-twitter" aria-label="Twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-linkedin-in" aria-label="LinkedIn"></i></a>
+                    </div>
+                </div>
 
-            
-</footer>
+                <div class="footer-section">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition duration-150">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">Offers</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">News</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">Contact</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer-section space-y-2">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Contact Us</h3>
+                    <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i>support@moonrail.com</p>
+                    <p class="text-gray-400"><i class="fas fa-phone mr-2"></i> Phone: +91-8685986823</p>
+                    <p class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i>Chitkara University, Rajpura, Punjab, India</p>
+                </div>
+                
+                <div class="footer-section space-y-4">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Trust & Security</h3>
+                    <p class="text-gray-400 text-sm">Your payments are protected by industry-leading security standards. Book with confidence!</p>
+                    <div class="flex flex-wrap space-x-3 text-2xl text-green-500">
+                        <i class="fas fa-lock" title="SSL Secured"></i>
+                        <i class="fas fa-shield-alt" title="Payment Protection"></i>
+                        <i class="fab fa-cc-visa text-blue-500" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard text-red-500" title="Mastercard"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="footer-bottom bg-gray-900 py-4 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2024 MoonRail. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+        </div>
+    </footer>
 </body>
  <script src="../js/auth.js"></script>
 </html>

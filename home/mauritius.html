@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail: Mauritius Turquoise Dream Package</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .cta-gradient {
+            background-image: linear-gradient(to right, #f97316, #8b5cf6); /* Orange to Purple */
+            transition: all 0.3s ease;
+        }
+        .cta-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8b5cf6; /* Purple line */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            height: 16px;
+            width: 16px;
+            background-color: #f97316; /* Orange dot */
+            border-radius: 50%;
+            z-index: 10;
+        }
+        /* Updated background image URL for a cleaner look */
+        #hero-section { 
+            background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&h=800&q=80'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+    </style>
+</head>
+<body>
+
+ <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo and Brand Name -->
+        <div class="flex items-center space-x-3">
+            <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="MoonRail Logo" class="h-8 w-8 rounded-full bg-white p-1">
+            <span class="text-2xl font-bold text-white">MoonRail</span>
+        </div>
+        
+        <a href="index.html#1" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold text-sm">
+            <i class="fas fa-arrow-left mr-1"></i> Back to Packages
+        </a>
+    </div>
+</header>
+
+    <!-- 1. HERO SECTION: High-Impact Destination Feature --><section id="hero-section" class="h-[60vh] md:h-[80vh] flex items-center justify-center">
+        <div class="text-center bg-black bg-opacity-50 p-10 rounded-xl max-w-4xl mx-auto backdrop-blur-sm">
+            <p class="text-xl font-semibold text-purple-400 mb-2">NOV 15TH - NOV 20ST | 6 DAYS / 5 NIGHTS</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-tight leading-tight">
+                Mauritius: The <span class="text-orange-400">Turquoise</span> Dream
+            </h1>
+            <p class="text-xl mt-4 max-w-2xl mx-auto text-gray-200">
+                An all-inclusive luxury escape to the paradise of Mauritius, featuring 5-star resorts, private beach access, and exotic adventures.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. KEY HIGHLIGHTS: Value Proposition --><section class="py-16">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">Package Includes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-plane-departure text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Return Flights</p>
+                    <p class="text-sm text-gray-400">Ex-Delhi/Mumbai</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-hotel text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">5-Star Stay</p>
+                    <p class="text-sm text-gray-400">Beachfront Resort</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-utensils text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Gourmet Meals</p>
+                    <p class="text-sm text-gray-400">Breakfast & Dinner</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-car-side text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Transfers</p>
+                    <p class="text-sm text-gray-400">Airport & Sightseeing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ITINERARY TIMELINE --><section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Your 6-Day Itinerary</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-6 sm:pl-10">
+
+                    <!-- Day 1 --><div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 1: Arrival & Grand Bay Leisure</h3>
+                        <p class="text-gray-400 mt-2">Arrive at Sir Seewoosagur Ramgoolam International Airport (SSR). Enjoy a private transfer to your 5-star resort near Grand Bay. Check-in and spend the evening relaxing by the ocean or exploring the resort's amenities.</p>
+                    </div>
+                    <!-- Day 2 --><div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 2: North Island Tour & Pamplemousses</h3>
+                        <p class="text-gray-400 mt-2">Full-day tour of North Island, including the famous Pamplemousses Botanical Garden and the vibrant Port Louis waterfront. Enjoy shopping and a local lunch.</p>
+                    </div>
+                    <!-- Day 3 --><div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 3: Optional Catamaran to Île aux Cerfs</h3>
+                        <p class="text-gray-400 mt-2">Choose an optional Catamaran cruise to the spectacular Île aux Cerfs, renowned for its white-sand beaches and turquoise lagoons. Enjoy water sports or simply sunbathe in paradise.</p>
+                    </div>
+                    <!-- Day 4 --><div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 4: South Island Wonders & Seven Coloured Earth</h3>
+                        <p class="text-400 mt-2">Explore the South with visits to the volcanic crater of Trou aux Cerfs, the sacred Ganga Talao (Grand Bassin), and the geological marvel of the Seven Coloured Earths at Chamarel.</p>
+                    </div>
+                    <!-- Day 5 --><div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 5: Deep Sea Relaxation / Free Day</h3>
+                        <p class="text-gray-400 mt-2">A day reserved for personal leisure. Indulge in a spa session, try deep-sea fishing, or simply enjoy the resort's private beach before a farewell dinner.</p>
+                    </div>
+                    <!-- Day 6 (No bottom padding/line) --><div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 6: Departure</h3>
+                        <p class="text-gray-400 mt-2">Enjoy a final breakfast before your private transfer returns you to the airport for your onward journey, filled with unforgettable memories.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BOOKING AND CTA SECTION --><section class="py-20 bg-gray-900 border-t border-gray-700">
+        <div class="container mx-auto px-6 lg:px-12 text-center">
+            <h2 class="text-4xl font-extrabold mb-4 text-white">Ready for Your Island Escape?</h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                Limited seats available for the Nov 15th batch. Secure your all-inclusive package now and let us handle the details.
+            </p>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl inline-block">
+                <p class="text-3xl font-bold text-white mb-4">Starting Price: <span class="text-orange-400">₹58,000</span></p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="cta-gradient text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg">
+                        <i class="fas fa-hand-point-right mr-2"></i> BOOK THIS PACKAGE
+                    </a>
+                    <a href="#" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-full font-bold text-xl shadow-lg transition duration-200">
+                        <i class="fas fa-phone-alt mr-2"></i> CALL US
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder --><footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 MoonRail. All rights reserved. | Professional Travel Curators.</p>
+        </div>
+    </footer>
+</body>
+</html>
