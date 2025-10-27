@@ -92,26 +92,21 @@
     </form>
     <script>
     document.getElementById('search-form').addEventListener('submit', function(event) {
-        // Prevent the default form submission immediately
         event.preventDefault(); 
         
         const form = this;
         const button = document.getElementById('search-button');
         
-        // Add the 'loading' class to show the spinner and hide the text
         button.classList.add('loading');
         
-        // Calculate the URL with the entered data
         const actionUrl = form.getAttribute('action');
         const formData = new FormData(form);
         const searchParams = new URLSearchParams(formData);
         const finalUrl = actionUrl + '?' + searchParams.toString();
         
-        // Wait for 2.5 seconds (you can change this delay)
         setTimeout(function() {
-            // After the delay, manually navigate to the booking page
             window.location.href = finalUrl;
-        }, 2500); // 2500 milliseconds = 2.5 seconds
+        }, 2500); 
     });
 </script>
 </div>
@@ -538,7 +533,7 @@
 
   <script>
     (function(){
-      emailjs.init("9OUznPEKzdAmAGhO9"); // ✅ Your Public Key
+      emailjs.init("9OUznPEKzdAmAGhO9"); 
     })();
 
     const form = document.getElementById('contact-form');
@@ -563,7 +558,6 @@
 
       if (!isValid) return;
 
-      // ✅ Send Email through EmailJS
       emailjs.sendForm('service_shnaj1l', 'template_bx1wc3a', this)
       .then(() => {
         showPopup();
