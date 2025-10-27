@@ -838,23 +838,26 @@
                 </div>
             </div>
 
-            <div class="contact-form-card">
-                <h3>Send us a message</h3>
-                <p>Please feel free to send us any questions, feedback or suggestions you might have.</p>
-                <form>
-                    <div class="form-row">
-                        <input type="text" placeholder="Name" class="form-input">
-                        <input type="text" placeholder="Company" class="form-input">
-                    </div>
-                    <div class="form-row">
-                        <input type="text" placeholder="Phone" class="form-input">
-                        <input type="email" placeholder="Email" class="form-input">
-                    </div>
-                    <input type="text" placeholder="Subject" class="form-input">
-                    <textarea placeholder="Message" rows="6" class="form-textarea"></textarea>
-                    <button type="submit" class="submit-button">SEND MESSAGE</button>
-                </form>
-            </div>
+    <div class="contact-form-card">
+    <h3>Send us a message</h3>
+    <p>Please feel free to send us any questions, feedback or suggestions you might have.</p>
+    
+    <form id="contact-form">
+        <div class="form-row">
+            <input type="text" placeholder="Name" name="user_name" class="form-input" required>
+            <input type="text" placeholder="Company" name="company" class="form-input">
+        </div>
+        <div class="form-row">
+            <input type="tel" placeholder="Phone" name="phone" class="form-input">
+            <input type="email" placeholder="Email" name="user_email" class="form-input" required>
+        </div>
+        <input type="text" placeholder="Subject" name="subject" class="form-input">
+        
+        <textarea placeholder="Message" rows="6" name="message" class="form-textarea" required></textarea>
+        
+        <button type="submit" class="submit-button">SEND MESSAGE</button>
+    </form>
+</div>
         </div>
     </main>
 
@@ -1044,6 +1047,54 @@ else{
     localStorage.removeItem("loggedInUser");
     window.location.reload();
   }
-    </script>
+  </script>
+
+<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+
+<script>
+    // 🔑 IMPORTANT: Replace these three variables with your actual Email.js credentials!
+    const SERVICE_ID = 'service_zhdttm4';    
+    const TEMPLATE_ID = 'template_m1tnndj';  
+    const USER_ID = '1vMrIwYf73HFinYvX';          // Your Public Key
+
+    // Initialize Email.js
+    (function() {
+        emailjs.init(USER_ID);
+    })();
+
+    // Handle form submission
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form refresh
+
+        const form = this;
+        const submitButton = form.querySelector('.submit-button');
+        
+        // Show loading state
+        submitButton.textContent = 'SENDING...';
+        submitButton.disabled = true;
+
+        // Send the email
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form)
+            .then(function() {
+                // Success
+                alert('Message sent successfully!');
+                form.reset(); // Clear the form
+                
+                // Reset button
+                submitButton.textContent = 'SEND MESSAGE';
+                submitButton.disabled = false;
+            }, function(error) {
+                // Error
+                console.error('Email failed to send:', error);
+                alert('Error sending message. Please try again.');
+                
+                // Reset button
+                submitButton.textContent = 'SEND MESSAGE';
+                submitButton.disabled = false;
+            });
+    });
+</script>
+
+
 </body>
 </html>
