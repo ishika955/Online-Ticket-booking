@@ -121,18 +121,34 @@
             align-items: center;
             gap: 0.5rem;
         }
+        .auth-status-container {
+            display: flex; 
+            align-items: center;
+            gap: 0.5rem;
+        }
         .top-bar-right a {
             /* color: #ff7171; */
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s;
+            line-height: 1.5;
         }
         .top-bar-right a:hover {
             color: var(--accent-light);
         }
         .user-name {
             font-weight: 600;
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+        .logout-link {
+            color: var(--accent-dark) !important; /* Red/Pink for contrast */
+            font-weight: 600;
+            padding: 0 0.25rem;
+        }
+        .logout-link:hover {
+            color: #fff !important; 
         }
         
         /* Light Mode Auth/Social Colors */
@@ -141,6 +157,12 @@
         }
         .light-mode .top-bar-right a {
              color: #a0a0b0; 
+        }
+        html[data-theme='light'] .top-bar-right .user-name {
+            color: var(--text-color); /* Keep username dark */
+        }
+        html[data-theme='light'] .top-bar-right .logout-link {
+            color: var(--accent-dark) !important;
         }
         .light-mode .top-bar-right a:hover {
              color: #ff7171;
@@ -712,8 +734,12 @@
                 </a>
             </div>
             
-            <div class="top-bar-right" id="top-bar-auth">
-            </div>
+            <!-- <div class="top-bar-right" id="top-bar-auth">
+            </div> -->
+            <div class="auth-links">
+
+      <a href="login.html">Login</a> | <a href="logout.html">Logout</a>
+    </div>
         </div>
     </div>
     <header class="header">
@@ -907,27 +933,112 @@
         
         // --- SIMULATE AUTH STATE ---
         // Change this variable to true/false to test the two different states
-        const isnotLoggedIn = true; 
-        const userName = "Ishika"; // Replace with actual user name
+        // const isnotLoggedIn = true; 
+        // const userName = "Ishika"; // Replace with actual user name
         // ---------------------------
         
-        let authHTML = '';
+        // let authHTML = '';
         
-        if (isnotLoggedIn) {
-              authHTML = `
-                <a href="login.html">Login</a>
-            `;
+        // if (isnotLoggedIn) {
+        //       authHTML = `
+        //         <a href="login.html">Login</a>
+        //     `;
             
-        } else {
+        // } else {
             // State: Logged Out
-            authHTML = `
-                <span class="user-name">${userName}</span>
-                <a href="logout.html">Logout</a>
-            `;
+        //     authHTML = `
+        //         <span class="user-name">${userName}</span>
+        //         <a href="logout.html">Logout</a>
+        //     `;
           
-        }
+        // }
         
-        topBarAuth.innerHTML = authHTML;
+        // topBarAuth.innerHTML = authHTML;
+        // ---------------------Signup----------------------------------------------------------------------------------------------
+function signUp(event){
+    event.preventDefault();
+    const username=document.getElementById("username").value.trim();
+    const Email=document.getElementById("email").value.trim();
+    const email=Email.toLowerCase();
+    const password=document.getElementById("password").value.trim();
+    const confirmPassword=document.getElementById("confirm-password").value.trim();
+    if(!username || !password || !email){
+        alert("Oops! Please fill all the fields!");
+        return false;
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailPattern.test(email)){
+        alert("Please enter valid email address.");
+        return false;
+    }
+    if(password!==confirmPassword){
+        alert("Passwords do not match! Please re-enter");
+        return false;
+    }
+    const users=JSON.parse(localStorage.getItem("users"))||[];
+    const userExist= users.some((user)=> user.email===email);
+
+    if(userExist){
+        alert("Email already Exists.Please login!");
+        return false;
+    }
+    users.push({username,email,password});
+    localStorage.setItem("users",JSON.stringify(users));
+    alert("Signup successful!");
+    window.location.href= "login.html";
+}
+
+// ---------------------------------------Login----------------------------------------------------------------------------------
+function login(event){
+event.preventDefault();
+const Email=document.getElementById("email").value.trim();
+const email=Email.toLowerCase();
+const password=document.getElementById("password").value.trim();
+
+if(!email || !password)
+    {
+        alert("Please fill in all the fields!");
+        return;
+    }
+
+const users=JSON.parse(localStorage.getItem("users"))||[];
+const user=users.find((u)=>u.email===email);
+if (!user) {
+        alert("User not found! Please sign up.");
+        return;
+}
+if (user.password!==password) {
+        alert("Incorrect password! Try again.");
+        return;
+}
+localStorage.setItem("loggedInUser",JSON.stringify(user));
+window.location.href="index.html";
+}
+
+// ---------------------------------------Profile after user gets logged in-----------------------------------------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+const authLinksDiv = document.querySelector(".auth-links");
+ if (!authLinksDiv) return; 
+const loggedInUser=JSON.parse(localStorage.getItem("loggedInUser"));
+if(authLinksDiv){
+if(loggedInUser){
+    authLinksDiv.innerHTML=`    <div class="profile-container" style="display:flex; align-items:center; gap:10px;">
+        <span style="color:#fff;">${loggedInUser.username}</span>
+        <button onclick="logout()" style="background:none; color:#ff7171; border:none; cursor:pointer;">Logout</button>
+      </div>`;
+}
+else{
+    authLinksDiv.innerHTML=`<a href="login.html">Login</a>`;
+}
+
+}
+})
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.reload();
+  }
     </script>
 </body>
 </html>
