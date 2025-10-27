@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail: Scotland Highland Majesty Package</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .cta-gradient {
+            background-image: linear-gradient(to right, #f97316, #8b5cf6); /* Orange to Purple */
+            transition: all 0.3s ease;
+        }
+        .cta-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8b5cf6; /* Purple line */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            height: 16px;
+            width: 16px;
+            background-color: #f97316; /* Orange dot */
+            border-radius: 50%;
+            z-index: 10;
+        }
+        /* Updated background image URL for a dramatic Scottish Highlands view */
+        #hero-section { 
+            background-image: url('../img/scotland.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER: Contains Logo and Back Button -->
+    <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo and Brand Name -->
+            <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="MoonRail Logo" class="h-8 w-8 rounded-full bg-white p-1">
+                <span class="text-2xl font-bold text-white">MoonRail</span>
+            </div>
+            
+            <!-- Back Button with correct index.html#1 link -->
+            <a href="index.html#1" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold text-sm">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Packages
+            </a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION: High-Impact Destination Feature -->
+    <section id="hero-section" class="h-[60vh] md:h-[80vh] flex items-center justify-center">
+        <div class="text-center bg-black bg-opacity-50 p-10 rounded-xl max-w-4xl mx-auto backdrop-blur-sm">
+            <p class="text-xl font-semibold text-purple-400 mb-2">NOV 29TH - DEC 05TH | 7 DAYS / 6 NIGHTS</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-tight leading-tight">
+                Scotland: The <span class="text-orange-400">Highland</span> Majesty
+            </h1>
+            <p class="text-xl mt-4 max-w-2xl mx-auto text-gray-200">
+                Explore the history of Edinburgh, the dramatic landscapes of the Highlands, and the mystery of Loch Ness on this enchanting 7-day journey.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. KEY HIGHLIGHTS: Value Proposition -->
+    <section class="py-16">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">Package Includes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-plane-departure text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Return Flights</p>
+                    <p class="text-sm text-gray-400">Ex-Delhi/Mumbai</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-castle text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Multi-City Stay</p>
+                    <p class="text-sm text-gray-400">Edinburgh, Fort William, Isle of Skye</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-utensils text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Daily Meals</p>
+                    <p class="text-sm text-gray-400">Full Scottish Breakfast</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-train text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Scenic Journeys</p>
+                    <p class="text-sm text-gray-400">Highland Drives & Train Route</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ITINERARY TIMELINE -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Your 7-Day Highland Journey</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-6 sm:pl-10">
+
+                    <!-- Day 1 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 1: Arrival in Edinburgh & Royal Mile</h3>
+                        <p class="text-gray-400 mt-2">Arrive at Edinburgh Airport (EDI). Private transfer to your hotel. Spend the afternoon exploring the historic Royal Mile, the heart of the Old Town.</p>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 2: Edinburgh Castle & Old Town Lore</h3>
+                        <p class="text-gray-400 mt-2">Visit the magnificent **Edinburgh Castle** and take a guided tour of the Old Town. Optional evening: a spooky subterranean ghost tour.</p>
+                    </div>
+                    <!-- Day 3 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 3: Journey to the Highlands (Fort William)</h3>
+                        <p class="text-gray-400 mt-2">Scenic morning transfer through breathtaking landscapes to Fort William. Stop to view the famous **Glenfinnan Viaduct** along the way.</p>
+                    </div>
+                    <!-- Day 4 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 4: Loch Ness & Monster Hunt</h3>
+                        <p class="text-gray-400 mt-2">Full-day exploration of the Great Glen. Cruise on **Loch Ness** and visit the ruins of **Urquhart Castle** in search of the legendary Nessie.</p>
+                    </div>
+                    <!-- Day 5 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 5: The Road to the Isle of Skye</h3>
+                        <p class="text-gray-400 mt-2">Travel north, crossing the iconic Skye Bridge onto the **Isle of Skye**. Check into your hotel in **Portree** and explore the colourful harbor.</p>
+                    </div>
+                    <!-- Day 6 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 6: Skye Majesty & Return South</h3>
+                        <p class="text-gray-400 mt-2">Visit the dramatic **Old Man of Storr** and the cascading waterfall at **Kilt Rock**. Afternoon: Begin the scenic drive south towards Edinburgh.</p>
+                    </div>
+                    <!-- Day 7 (No bottom padding/line) -->
+                    <div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 7: Departure</h3>
+                        <p class="text-gray-400 mt-2">Enjoy a final full Scottish breakfast before your private transfer takes you to Edinburgh International Airport (EDI) for your international departure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BOOKING AND CTA SECTION -->
+    <section class="py-20 bg-gray-900 border-t border-gray-700">
+        <div class="container mx-auto px-6 lg:px-12 text-center">
+            <h2 class="text-4xl font-extrabold mb-4 text-white">Secure Your Highland Adventure</h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                Spaces for the November/December tour are limited. Book your Highland Majesty journey now and experience the historic wonders of Scotland.
+            </p>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl inline-block">
+                <!-- Price updated for Scotland -->
+                <p class="text-3xl font-bold text-white mb-4">Starting Price: <span class="text-orange-400">₹80,000</span></p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="cta-gradient text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg">
+                        <i class="fas fa-hand-point-right mr-2"></i> BOOK THIS PACKAGE
+                    </a>
+                    <a href="#" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-full font-bold text-xl shadow-lg transition duration-200">
+                        <i class="fas fa-phone-alt mr-2"></i> CALL US
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 MoonRail. All rights reserved. | Professional Travel Curators.</p>
+        </div>
+    </footer>
+</body>
+</html>
