@@ -702,11 +702,11 @@
                                 <textarea id="review_himalayan" placeholder="Write your feedback..." required></textarea>
                                <div class="rating-input">
                                     <label>Rating:</label>
-                                    <input type="radio" id="star5_j" name="rating_j" value="5" required><label for="star5_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Poor</span></label>
-                                    <input type="radio" id="star4_j" name="rating_j" value="4"><label for="star4_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Average</span></label>
+                                    <input type="radio" id="star1_j" name="rating_j" value="1" required><label for="star5_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Poor</span></label>
+                                    <input type="radio" id="star2_j" name="rating_j" value="2"><label for="star4_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Average</span></label>
                                     <input type="radio" id="star3_j" name="rating_j" value="3"><label for="star3_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Good</span></label>
-                                    <input type="radio" id="star2_j" name="rating_j" value="2"><label for="star2_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Can't wait to go back!</span></label>
-                                    <input type="radio" id="star1_j" name="rating_j" value="1"><label for="star1_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Still in the dreamland!</span></label>
+                                    <input type="radio" id="star4_j" name="rating_j" value="4"><label for="star2_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Can't wait to go back!</span></label>
+                                    <input type="radio" id="star5_j" name="rating_j" value="5"><label for="star1_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Still in the dreamland!</span></label>
                                 </div>
                                 <button type="submit" class="submit-review-button">Submit Review</button>
                             </form>
@@ -731,13 +731,13 @@
                                 <h4>Share Your Experience</h4>
                                 <label for="review_goa">Your Review:</label>
                                 <textarea id="review_goa" placeholder="Write your feedback..." required></textarea>
-                                 <div class="rating-input">
+                                <div class="rating-input" data-destination="{{destination}}">
                                     <label>Rating:</label>
-                                    <input type="radio" id="star5_j" name="rating_j" value="5" required><label for="star5_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Poor</span></label>
-                                    <input type="radio" id="star4_j" name="rating_j" value="4"><label for="star4_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Average</span></label>
-                                    <input type="radio" id="star3_j" name="rating_j" value="3"><label for="star3_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Good</span></label>
-                                    <input type="radio" id="star2_j" name="rating_j" value="2"><label for="star2_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Can't wait to go back!</span></label>
-                                    <input type="radio" id="star1_j" name="rating_j" value="1"><label for="star1_j"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Still in the dreamland!</span></label>
+                                    <input type="radio" id="star5_{{destination}}" name="rating_{{destination}}" value="5" required><label for="star5_{{destination}}"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Poor</span></label>
+                                    <input type="radio" id="star4_{{destination}}" name="rating_{{destination}}" value="4"><label for="star4_{{destination}}"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Average</span></label>
+                                    <input type="radio" id="star3_{{destination}}" name="rating_{{destination}}" value="3"><label for="star3_{{destination}}"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Good</span></label>
+                                    <input type="radio" id="star2_{{destination}}" name="rating_{{destination}}" value="2"><label for="star2_{{destination}}"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Can't wait to go back!</span></label>
+                                    <input type="radio" id="star1_{{destination}}" name="rating_{{destination}}" value="1"><label for="star1_{{destination}}"><i class="fas fa-star"></i><span style="font-family: 'Inter', sans-serif; font-size: 0.8rem; margin-left: 4px;">Still in the dreamland!</span></label>
                                 </div>
                                 <button type="submit" class="submit-review-button">Submit Review</button>
                             </form>
@@ -1042,21 +1042,29 @@ else{
             });
         });
 
+        // Initialize rating inputs with unique IDs
+        document.querySelectorAll('.review-section').forEach(section => {
+            const destination = section.getAttribute('data-destination').replace(/\s+/g, '');
+            const ratingInput = section.querySelector('.rating-input');
+            const template = ratingInput.outerHTML;
+            ratingInput.outerHTML = template.replace(/{{destination}}/g, destination);
+        });
+
         // Add visual star rating feedback
         document.querySelectorAll('.rating-input input').forEach(radio => {
             radio.addEventListener('change', function() {
-                const name = this.name;
+                const ratingInput = this.closest('.rating-input');
+                const stars = ratingInput.querySelectorAll('label i');
+                const value = parseInt(this.value);
                 
-                // Reset all stars for this group
-                document.querySelectorAll(`.rating-input input[name="${name}"] + label i`).forEach(star => {
+                // Reset all stars
+                stars.forEach(star => {
                     star.style.color = 'var(--sub-text-color)';
                 });
                 
-                // Highlight selected and previous stars
-                let current = this;
-                while (current) {
-                    current.nextElementSibling.querySelector('i').style.color = 'var(--star-color)';
-                    current = current.previousElementSibling.previousElementSibling;
+                // Highlight selected stars
+                for(let i = 0; i < value; i++) {
+                    stars[i].style.color = 'var(--star-color)';
                 }
             });
         });
