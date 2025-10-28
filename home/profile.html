@@ -4,238 +4,360 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MoonRail | User Profile</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-    :root {
-        --dark-blue: #1a1a2f;
-        --darker-blue: #100f20;
-        --card-bg: #19192c;
-        --border-color: #2e2e42;
-        --purple-light: #6a44ad;
-        --purple-dark: #2e1a3c;
-        --accent-light: #d38dff;
-        --accent-dark: #ff7171;
-        --text-color: #ffffff;
-        --sub-text-color: #a0a0b0;
-    }
+:root {
+    --dark-blue: #1a1a2f;
+    --darker-blue: #100f20;
+    --card-bg: #19192c;
+    --border-color: #2e2e42;
+    --purple-light: #6a44ad;
+    --purple-dark: #2e1a3c;
+    --accent-light: #d38dff;
+    --accent-dark: #ff7171;
+    --text-color: #ffffff;
+    --sub-text-color: #a0a0b0;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-    }
+/* ===== Top Bar ===== */
+.top-bar {
+    background: var(--purple-dark);
+    color: var(--text-color);
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
 
-    body {
-        background-color: var(--darker-blue);
-        color: var(--text-color);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    /* Navbar */
-    .header {
-        background-color: var(--dark-blue);
-        border-bottom: 1px solid var(--border-color);
-    }
+.social-icons-center a {
+    color: var(--accent-light);
+    margin: 0 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
 
-    .nav-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 2rem;
-    }
+.social-icons-center a:hover {
+    color: var(--accent-dark);
+}
 
-    .nav-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-    }
+.top-right-info a {
+    color: var(--accent-light);
+    text-decoration: none;
+    margin-left: 8px;
+}
 
-    .nav-logo-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-    }
+.top-right-info a:hover {
+    color: var(--accent-dark);
+}
 
-    .nav-logo-text {
-        font-weight: 700;
-        font-size: 1.2rem;
-        color: var(--accent-light);
-    }
+.user-name {
+    color: var(--accent-light);
+    font-weight: 600;
+    cursor: pointer;
+}
 
-    /* Profile header section */
-    .profile-hero {
-        background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
-        text-align: center;
-        padding: 4rem 1rem;
-    }
+/* ===== Header ===== */
+header {
+    background: var(--darker-blue);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
 
-    .profile-hero h1 {
-        font-size: 2.2rem;
-        font-weight: 700;
-    }
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    .profile-hero p {
-        color: var(--sub-text-color);
-        font-size: 1rem;
-        margin-top: 0.5rem;
-    }
+.nav-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
 
-    /* Profile content */
-    .profile-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: -60px;
-        padding: 2rem 1rem;
-    }
+.nav-logo-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent-light);
+}
 
-    .profile-card {
-        background-color: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 2rem;
-        width: 90%;
-        max-width: 700px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    }
+/* ===== Hero Section ===== */
+.hero {
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+    text-align: center;
+    padding: 4rem 1rem;
+}
 
-    .profile-header {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
 
-    .profile-avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: 2px solid var(--accent-light);
-        object-fit: cover;
-    }
+.hero p {
+    color: var(--sub-text-color);
+}
 
-    .profile-name {
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
+/* ===== Profile Section ===== */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 1rem;
+}
 
-    .profile-id {
-        color: var(--sub-text-color);
-        font-size: 0.9rem;
-    }
+.profile-card {
+    background: var(--card-bg);
+    width: 400px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
 
-    /* Info grid */
-    .info-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
+.profile-card img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-light);
+    margin-bottom: 10px;
+}
 
-    .info-item {
-        background-color: #141425;
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
-        padding: 1rem;
-    }
+h2 {
+    margin: 0;
+    cursor: pointer;
+    color: var(--accent-light);
+    transition: 0.3s;
+}
 
-    .info-item label {
-        color: var(--sub-text-color);
-        font-size: 0.85rem;
-    }
+h2:hover {
+    color: var(--accent-dark);
+}
 
-    .info-item p {
-        font-size: 1rem;
-        margin-top: 0.3rem;
-    }
+#user-details {
+    display: none;
+    text-align: left;
+    margin-top: 20px;
+    background: #211f3b;
+    border-radius: 12px;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+}
 
-    /* Edit button */
-    .edit-btn {
-        margin-top: 2rem;
-        display: inline-block;
-        background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
-        border: none;
-        border-radius: 8px;
-        color: var(--text-color);
-        padding: 0.8rem 1.8rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-    .edit-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(255, 113, 113, 0.3);
-    }
+.detail-line {
+    margin: 10px 0;
+    font-size: 0.95rem;
+    color: var(--sub-text-color);
+}
 
-    footer {
-        text-align: center;
-        color: var(--sub-text-color);
-        padding: 1rem;
-        border-top: 1px solid var(--border-color);
-        margin-top: auto;
-    }
+.highlight {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+.edit-btn {
+    background: var(--accent-light);
+    border: none;
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.edit-btn:hover {
+    background: var(--accent-dark);
+}
+
+/* ===== Footer ===== */
+.footer {
+    background: var(--darker-blue);
+    color: var(--sub-text-color);
+    padding: 40px 20px;
+    text-align: left;
+}
+
+.footer-details {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section h3 {
+    color: var(--accent-light);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: var(--sub-text-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-light);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
 </style>
 </head>
+
 <body>
-    <header class="header">
-        <nav class="container nav-container">
-            <div class="nav-logo">
-                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="Moonrail Logo" class="nav-logo-icon">
-                <span class="nav-logo-text">MoonRail</span>
-            </div>
-        </nav>
-    </header>
-
-    <section class="profile-hero">
-        <h1>Your Profile</h1>
-        <p>Manage your personal information and booking details.</p>
-    </section>
-
-    <section class="profile-container">
-        <div class="profile-card">
-            <div class="profile-header">
-                <img src="https://placehold.co/100x100/6a44ad/ffffff?text=U" alt="User Avatar" class="profile-avatar">
-                <div>
-                    <div class="profile-name">Taniksha Galhotra</div>
-                    <div class="profile-id">User ID: MR10258</div>
-                </div>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-item">
-                    <label>Email</label>
-                    <p>taniksha@example.com</p>
-                </div>
-                <div class="info-item">
-                    <label>Phone Number</label>
-                    <p>+91 9876543210</p>
-                </div>
-                <div class="info-item">
-                    <label>Address</label>
-                    <p>Jaipur, Rajasthan, India</p>
-                </div>
-                <div class="info-item">
-                    <label>Preferred Train Class</label>
-                    <p>AC 2-Tier</p>
-                </div>
-                <div class="info-item">
-                    <label>Member Since</label>
-                    <p>March 2024</p>
-                </div>
-                <div class="info-item">
-                    <label>Upcoming Trips</label>
-                    <p>2 Scheduled</p>
-                </div>
-            </div>
-
-            <button class="edit-btn">Edit Profile</button>
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+    <div class="top-bar-content">
+        <div class="top-left-info">
+            <span>+91 - 8146612331</span>
         </div>
-    </section>
 
-    <footer>
-        © 2025 MoonRail. All Rights Reserved.
-    </footer>
+        <div class="social-icons-center">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <div class="top-right-info">
+            <div id="logged-in-info" style="display: none;">
+                <span class="user-name" id="user-display-name"></span>
+                <span>|</span>
+                <a href="logout.html">Logout</a>
+            </div>
+            <div id="logged-out-info">
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="nav-logo">
+        <img src="https://placehold.co/40x40/ffffff/000000?text=M" alt="MoonRail Logo">
+        <span class="nav-logo-text">MoonRail</span>
+    </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <h1>Welcome to MoonRail</h1>
+    <p>Manage your journeys, bookings, and profile with ease.</p>
+</section>
+
+<!-- ===== PROFILE CARD ===== -->
+<main class="profile-container">
+    <div class="profile-card">
+        <img src="https://placehold.co/120x120/6a44ad/ffffff?text=U" alt="User">
+        <h2 id="username" onclick="showDetails()">Click to View Profile</h2>
+        <p style="color: var(--sub-text-color);">Your MoonRail travel account</p>
+
+        <div id="user-details"></div>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-details">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We are a passionate team dedicated to creating seamless ticket booking experiences. MoonRail simplifies your travel — anywhere, anytime.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Services</h3>
+            <ul>
+                <li><a href="#">Flight Booking</a></li>
+                <li><a href="#">Train Booking</a></li>
+                <li><a href="#">Bus Booking</a></li>
+                <li><a href="#">Cab Booking</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Info</h3>
+            <p>Chitkara University</p>
+            <p>+91 8146612331</p>
+            <p>moonrail@gmail.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright ©2025 MoonRail. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+const sampleUser = {
+    name: "User123",
+    email: "user123@moonrail.com",
+    phone: "+91 9876501234",
+    gender: "Not specified",
+    dob: "01 Jan 2000",
+    address: "India",
+    bookedTickets: 4,
+    nextJourney: "Mumbai → Delhi | 05 Nov 2025"
+};
+
+let loggedIn = true; // simulate login state
+let isVisible = false;
+
+window.onload = function() {
+    if (loggedIn) {
+        document.getElementById("logged-in-info").style.display = "block";
+        document.getElementById("logged-out-info").style.display = "none";
+        document.getElementById("user-display-name").innerText = sampleUser.name;
+    }
+};
+
+function showDetails() {
+    const detailsDiv = document.getElementById("user-details");
+    if (!isVisible) {
+        detailsDiv.innerHTML = `
+            <div class="detail-line"><span class="highlight">Full Name:</span> ${sampleUser.name}</div>
+            <div class="detail-line"><span class="highlight">Email:</span> ${sampleUser.email}</div>
+            <div class="detail-line"><span class="highlight">Phone:</span> ${sampleUser.phone}</div>
+            <div class="detail-line"><span class="highlight">Gender:</span> ${sampleUser.gender}</div>
+            <div class="detail-line"><span class="highlight">Date of Birth:</span> ${sampleUser.dob}</div>
+            <div class="detail-line"><span class="highlight">Address:</span> ${sampleUser.address}</div>
+            <div class="detail-line"><span class="highlight">Tickets Booked:</span> ${sampleUser.bookedTickets}</div>
+            <div class="detail-line"><span class="highlight">Next Journey:</span> ${sampleUser.nextJourney}</div>
+            <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+        `;
+        detailsDiv.style.display = "block";
+        isVisible = true;
+    } else {
+        detailsDiv.style.display = "none";
+        isVisible = false;
+    }
+}
+
+function editProfile() {
+    alert("Redirecting to Edit Profile Page...");
+    // window.location.href = "edit-profile.html";
+}
+</script>
 </body>
 </html>

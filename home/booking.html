@@ -9,25 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* 1. LAYOUT STYLES for the Content View */
-        
-        /* Ensure the body takes up the full viewport */
+    
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* Set the main content area to take all available space between fixed header and footer */
-        #main-content-wrapper {
-            flex-grow: 1; /* Allows this section to fill the remaining vertical space */
-            padding-top: 7rem; /* Space below the fixed header (adjust as needed) */
-            padding-bottom: 2rem; /* Space above the footer */
+            #main-content-wrapper {
+            flex-grow: 1;
+            padding-top: 7rem; 
+            padding-bottom: 2rem; 
         }
         
-        /* 2. Remove all Modal Overlay styles - they are no longer needed for the results */
-        
-        /* Result Tab Styling (Keeping previous functionality) */
+       
         .result-tab-button {
             border-bottom-style: solid;
             border-bottom-color: transparent;
@@ -35,7 +30,6 @@
             transition: border-bottom-width 0.2s;
         }
         
-        /* 3. The booking and alert modals will still need fixed positions and high z-index */
         .modal-overlay {
             background-color: rgba(0, 0, 0, 0.75); 
             z-index: 1000; 
@@ -63,7 +57,8 @@
         
         <nav class="flex justify-between items-center px-6 py-3">
             <a href="index.html" class="text-2xl font-bold flex items-center">
-                <i class="fas fa-moon text-purple-400 mr-2"></i> MoonRail
+                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="MoonRail Logo" class="h-8 w-8 rounded-full bg-white p-1">
+                &nbsp;<span class="text-2xl font-bold text-white">MoonRail</span>
             </a>
             <div class="hidden md:flex space-x-6">
                 <a href="index.html" class="hover:text-purple-400 transition-colors">Home</a>
@@ -199,26 +194,20 @@
 
    
     <script>
-    // --- Global Variables ---
-    // NOTE: resultsModal is removed/commented out since the results are now main content.
-    // The element with ID 'results-modal' is replaced by '#main-content-wrapper' in the HTML.
-    const bookingModal = document.getElementById('booking-modal');
+     const bookingModal = document.getElementById('booking-modal');
     const alertModal = document.getElementById('alert-modal'); // Added missing reference
     const mainContentWrapper = document.getElementById('main-content-wrapper'); // NEW: Reference the main content container
     const resultsHeaderText = document.getElementById('results-header-text'); // NEW: Reference the results title element
     const resultsContentArea = document.getElementById('results-content-area');
 
-    // Variables to store search query from the URL
     let ORIGIN = '';
     let DESTINATION = '';
     let SEARCH_DATE = ''; 
     let GUESTS = 0;
     let mockResults = {}; 
 
-    // --- Configuration ---
     const CURRENCY_SYMBOL = '₹';
 
-    // --- Punjab Cities & Route Configuration ---
     const PUNJAB_CITIES = [
         'Amritsar', 'Ludhiana', 'Jalandhar', 'Patiala', 'Chandigarh', 
         'Bathinda', 'Pathankot', 'Hoshiarpur', 'Moga', 'Sangrur', 'Rajpura'
@@ -253,14 +242,11 @@
         return true;
     }
 
-    // --- Helper Functions ---
-
     function closeModal(id) {
         document.getElementById(id).classList.add('hidden');
     }
 
     function showAlert(title, message, isError = true) {
-        // Ensure alertModal is correctly referenced before use
         if (!alertModal) return; 
 
         document.getElementById('alert-title').textContent = title;
@@ -276,10 +262,10 @@
         }
 
         document.getElementById('alert-message').textContent = message;
-        alertModal.classList.remove('hidden'); // Use the global reference
+        alertModal.classList.remove('hidden'); 
     }
 
-    // --- Mock Data Generation ---
+
 
     const generateMockData = (type, currentOrigin, currentDestination) => {
         const data = [];
@@ -352,7 +338,6 @@
         return data;
     };
 
-    // --- Render Functions ---
 
     function generateResultsHTML(type, data) {
         let icon;
@@ -455,11 +440,8 @@
         return html;
     }
 
-    // --- Main Workflow Logic (Modified for URL initialization) ---
-    // NOTE: This function no longer 'opens a modal', it just populates the content area.
-    function openResultsModal() {
+     function openResultsModal() {
         
-        // 1. Regenerate mock data based on URL locations
         mockResults = {
             flights: generateMockData('flights', ORIGIN, DESTINATION),
             buses: generateMockData('buses', ORIGIN, DESTINATION),
@@ -467,19 +449,17 @@
             cab: generateMockData('cab', ORIGIN, DESTINATION)
         };
         
-        // 2. Update the Search Results Header
-        // This is now handled slightly differently since the header is on the main page
-        if (resultsHeaderText) {
+           if (resultsHeaderText) {
             resultsHeaderText.innerHTML = `Search Results for ${SEARCH_DATE}: ${ORIGIN} <i class="fas fa-arrow-right text-purple-500 text-base mx-2"></i> ${DESTINATION}`;
         }
 
-        // 3. Generate and render content for all tabs
+     
         document.getElementById('flights-results').innerHTML = generateResultsHTML('flights', mockResults.flights);
         document.getElementById('buses-results').innerHTML = generateResultsHTML('buses', mockResults.buses);
         document.getElementById('trains-results').innerHTML = generateResultsHTML('trains', mockResults.trains);
         document.getElementById('cab-results').innerHTML = generateResultsHTML('cab', mockResults.cab);
 
-        // 4. Set the default active tab
+
         const flightsTab = document.querySelector('[data-tab-content="flights-results"]');
         const busesTab = document.querySelector('[data-tab-content="buses-results"]');
 
@@ -491,7 +471,6 @@
     }
 
 
-    // --- Validation, Booking, and Tab Logic ---
 
     function checkFormValidity() {
         const nameInput = document.getElementById('passenger-name');
@@ -521,8 +500,7 @@
 
 
     function openBookingForm(serviceType, detailsString, price) {
-        // Since results are main content, no need to explicitly close them here.
-        
+           
         const details = JSON.parse(detailsString);
         const formattedPrice = parseFloat(price).toFixed(2);
         
@@ -557,7 +535,7 @@
 
         document.getElementById('booking-form-content').innerHTML = formHtml;
         
-        // Attach listener after content injection
+       
         document.getElementById('pay-now-button').addEventListener('click', handlePayNow);
 
         bookingModal.classList.remove('hidden');
@@ -570,7 +548,7 @@
         
         const payButton = document.getElementById('pay-now-button');
         const message = document.getElementById('payment-message');
-        // Safely extract price for confirmation message
+       
         const initialPriceMatch = payButton.textContent.match(/\((.*?)\)/);
         const initialPrice = initialPriceMatch ? initialPriceMatch[1] : 'the total amount';
         
@@ -597,7 +575,7 @@
                 message.classList.remove('text-gray-500');
                 message.classList.add('text-blue-600', 'font-bold');
                 
-                // Remove the listener to prevent multiple confirmations
+               
                 const newPayButton = document.getElementById('pay-now-button');
                 if(newPayButton) newPayButton.removeEventListener('click', handlePayNow); 
                 
@@ -626,17 +604,11 @@
     }
 
 
-    // --- Event Listeners and Initialization ---
-
-    // Event listeners for results display/booking
-    // NOTE: Querying document for tabs since they are now part of the main page,
-    // not just inside a modal, but ensuring the selector targets the correct tabs.
-    document.querySelectorAll('.result-tab-button').forEach(button => {
+      document.querySelectorAll('.result-tab-button').forEach(button => {
         button.addEventListener('click', (e) => switchResultTab(e.currentTarget));
     });
 
-    // NOTE: Listener is still attached to resultsContentArea, which is fine
-    resultsContentArea.addEventListener('click', (e) => {
+        resultsContentArea.addEventListener('click', (e) => {
         const bookNowBtn = e.target.closest('.book-now-btn');
         if (bookNowBtn) {
             const serviceType = bookNowBtn.getAttribute('data-service-type');
@@ -646,39 +618,33 @@
         }
     });
 
-    /**
-     * Executes on page load to read URL parameters and start the search simulation.
-     */
+   
     document.addEventListener('DOMContentLoaded', () => {
-        // 1. Read URL Parameters
+     
         const urlParams = new URLSearchParams(window.location.search);
         ORIGIN = urlParams.get('origin');
         DESTINATION = urlParams.get('destination');
         SEARCH_DATE = urlParams.get('date');
         GUESTS = parseInt(urlParams.get('guests'));
 
-        // 🚨 CRITICAL FIX: Ensure all required parameters are present
+     
         if (ORIGIN && DESTINATION && SEARCH_DATE && !isNaN(GUESTS) && GUESTS > 0) {
             
-            // 2. Input is valid: Execute the Search and Render Results
+           
             openResultsModal();
             
-            // 3. Make the results content visible (if it was hidden by default in HTML)
             if (mainContentWrapper) {
                 mainContentWrapper.style.display = 'block'; 
             }
             
         } else {
-            // Handle case where user navigates directly without valid search data
-            
-            // 🚨 FIX: Ensure the results content is hidden if validation fails
-            if (mainContentWrapper) {
+                      if (mainContentWrapper) {
                 mainContentWrapper.style.display = 'none';
             }
             
             showAlert("Error", "No search criteria found. Redirecting back to the search page...", true);
             setTimeout(() => {
-                window.location.href = 'index.html'; // Redirects to your search page
+                window.location.href = 'index.html'; 
             }, 3000);
         }
     });
