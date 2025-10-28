@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
    
     <style>
-        /* Custom styles for the tabs */
         .tab-button.active {
             border-bottom: 2px solid white;
             color: white;
             font-weight: 600;
         }
-        /* Custom focus ring color */
         .focus-ring-purple {
             outline: 2px solid transparent;
             outline-offset: 2px;
-            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5); /* purple-500 with opacity */
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5); 
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -100,115 +100,17 @@
   <!-- Search Form -->
   <div class="searchbox" style="color:#000; ">
     <form id="search-form" class="gradient-bar rounded-b-2xl p-4 shadow-inner flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 items-center">
-                
                 <input id="input-origin" type="text" placeholder="Enter Location from" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required>
-                
                 <input id="input-destination" type="text" placeholder="Enter Location to" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required> 
-                
                 <input id="input-date" type="date" placeholder="dd-mm-yyyy" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required>
-                
                 <input id="input-guests" type="number" min="1" placeholder="Guests" class="flex-1 w-full p-3 rounded-xl border-0 focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-150 text-gray-900 shadow-md placeholder-gray-500" required>
-                
                 <button id="search-button" type="submit" class="w-full md:w-auto px-6 py-3 text-white font-bold bg-gray-900 hover:bg-black rounded-xl shadow-lg transition duration-200 transform hover:scale-[1.02] flex items-center justify-center">
                     <span class="spinner"></span>
                     <i class="fas fa-search mr-2 button-icon"></i> 
                     <span class="button-text">Finding Journeys...</span>
                 </button>
             </form>
-    <script>
-    document.getElementById('search-form').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        
-        const form = this;
-        const button = document.getElementById('search-button');
-        
-        button.classList.add('loading');
-        
-        const actionUrl = form.getAttribute('action');
-        const formData = new FormData(form);
-        const searchParams = new URLSearchParams(formData);
-        const finalUrl = actionUrl + '?' + searchParams.toString();
-        
-        setTimeout(function() {
-            window.location.href = finalUrl;
-        }, 2500); 
-    });
-    // ==========================================================
-//                 JAVASCRIPT FOR index.html (Search Page)
-// ==========================================================
-
-const searchForm = document.getElementById('search-form');
-const searchButton = document.getElementById('search-button');
-
-function showAlert(title, message) {
-    // Simple alert mechanism for validation errors on the search page.
-    alert(`${title}: ${message}`);
-}
-
-searchButton.addEventListener('click', function(e) {
-    e.preventDefault(); // Stop the form from submitting normally
-
-    // 1. Get Input Values by their unique IDs
-    const originInput = document.getElementById('input-origin');
-    const destinationInput = document.getElementById('input-destination');
-    const dateInput = document.getElementById('input-date');
-    const guestsInput = document.getElementById('input-guests');
-
-    const origin = originInput.value.trim();
-    const destination = destinationInput.value.trim();
-    const date = dateInput.value;
-    const guests = guestsInput.value;
-
-    // 2. Validation
-    if (!origin || !destination || !date || !guests) {
-        showAlert("Validation Error", "Please fill in all search details (Origin, Destination, Date, Guests).");
-        return;
-    }
-    
-    // Validate number of guests
-    const numGuests = parseInt(guests);
-    if (numGuests <= 0 || isNaN(numGuests)) {
-        showAlert("Validation Error", "The number of guests must be a valid number greater than 0.");
-        return;
-    }
-
-    // 3. Add Loading State to Button
-    const buttonIcon = document.querySelector('#search-button .button-icon');
-    const buttonText = document.querySelector('#search-button .button-text');
-    const spinner = document.querySelector('#search-button .spinner');
-    
-    // Switch to loading text and show spinner
-    if (buttonIcon) buttonIcon.style.display = 'none';
-    if (buttonText) buttonText.textContent = 'Searching...';
-    if (spinner) spinner.style.display = 'inline-block';
-    searchButton.disabled = true;
-
-    // 4. Prepare URL Parameters
-    const params = new URLSearchParams({
-        origin: origin,
-        destination: destination,
-        date: date,
-        guests: guests
-    }).toString();
-
-    // 5. Redirect after a slight delay
-    setTimeout(() => {
-        // 🚨 TARGET CHANGE HERE 🚨
-        // Redirect to booking.html, passing the search query in the URL
-        window.location.href = `booking.html?${params}`; 
-    }, 500); // 500ms delay to show the loading state
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Set today's date as the minimum selectable date for the calendar
-    const dateInput = document.getElementById('input-date');
-    if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-    }
-});
-</script>
+   
 </div>
 
   <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -283,8 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   </div>
 
-  <!-- arrows as labels tied to radios -->
-  <!-- arrows visible only when certain radio is checked -->
   <label for="pkg3" class="arrow left first"><span>&lsaquo;</span></label>
   <label for="pkg2" class="arrow right first"><span>&rsaquo;</span></label>
 
@@ -314,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
   <section class="parallax3 " style="--parallax-h:120vh;background-color: rgb(239, 241, 243); ">
   
   <div class="parallax-content">
-    <!-- <h2>The Best Rooms Offers with Rooms </h2> -->
      <br><br>
     <div class="fourcards-container">
 
@@ -531,59 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<script>
-  const data = {
-    manali: `
-      <h2>Manali</h2>
-      <img src="../img/man.jpg" style="width:100%;border-radius:10px;margin-bottom:15px;">
-      <p>Manali, nestled in the Himalayas, is a paradise for nature lovers. Enjoy snow-capped peaks, adventure sports, and cozy cottages.</p>
-      <ul>
-        <li><strong>Best Time:</strong> October – February</li>
-        <li><strong>Famous For:</strong> Snowfall, Solang Valley, Rohtang Pass</li>
-        <li><strong>Activities:</strong> Skiing, Trekking, River Rafting</li>
-      </ul>
-    `,
-    lakshadweep: `
-      <h2>Lakshadweep</h2>
-      <img src="../img/lakshdweep.jpg" style="width:100%;border-radius:10px;margin-bottom:15px;">
-      <p>Experience the untouched beauty of India's tropical islands. Perfect for water sports, relaxation, and coral exploration.</p>
-      <ul>
-        <li><strong>Best Time:</strong> November – May</li>
-        <li><strong>Famous For:</strong> Coral Reefs, Scuba Diving, Clear Blue Water</li>
-        <li><strong>Activities:</strong> Kayaking, Snorkeling, Beach Walks</li>
-      </ul>
-    `,
-    agra: `
-      <h2>Agra</h2>
-      <img src="../img/agra.jpg" style="width:100%;border-radius:10px;margin-bottom:15px;">
-      <p>Home to the Taj Mahal — one of the Seven Wonders of the World — Agra is a city rich in Mughal history and architecture.</p>
-      <ul>
-        <li><strong>Best Time:</strong> October – March</li>
-        <li><strong>Famous For:</strong> Taj Mahal, Agra Fort, Fatehpur Sikri</li>
-        <li><strong>Activities:</strong> Heritage Walks, Shopping, Local Cuisine</li>
-      </ul>
-    `
-  };
-
-  const modal = document.getElementById("destinationModal");
-  const modalBody = document.getElementById("modal-body");
-  const closeBtn = document.querySelector(".close");
-
-  document.querySelectorAll('.read-more').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const dest = btn.getAttribute('data-destination');
-      modalBody.innerHTML = data[dest];
-      modal.style.display = 'flex';
-    });
-  });
-
-  closeBtn.onclick = () => modal.style.display = 'none';
-  window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
-</script>
-
-  
-
-
 </div>
   </div>
 
@@ -603,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="parallax-content">
     <section class="contact-section">
       
-      <!-- Left Side (Image Only) -->
+      <!-- Left Side (Image ) -->
       <div class="contact-left">
         <img src="../img/yess.jpg" alt="Contact Image" height="700px" width="650px">
       </div>
@@ -629,67 +475,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-  <script>
-    (function(){
-      emailjs.init("9OUznPEKzdAmAGhO9"); 
-    })();
-
-    const form = document.getElementById('contact-form');
-    const popup = document.getElementById('successPopup');
-    const closePopup = document.getElementById('closePopup');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      clearErrors();
-
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const subject = form.title.value.trim();
-      const message = form.message.value.trim();
-
-      let isValid = true;
-
-      if (!name) { showError(form.name, "Name is required."); isValid = false; }
-      if (!subject) { showError(form.title, "Subject is required."); isValid = false; }
-      if (!message) { showError(form.message, "Message is required."); isValid = false; }
-      if (!validateEmail(email)) { showError(form.email, "Invalid email."); isValid = false; }
-
-      if (!isValid) return;
-
-      emailjs.sendForm('service_shnaj1l', 'template_bx1wc3a', this)
-      .then(() => {
-        showPopup();
-        form.reset();
-      })
-      .catch((error) => {
-        alert('❌ Failed to send message: ' + JSON.stringify(error));
-      });
-    });
-
-    function validateEmail(email) {
-      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return pattern.test(email);
-    }
-
-    function showError(input, message) {
-      const error = document.createElement('div');
-      error.className = 'error-message';
-      error.textContent = message;
-      input.insertAdjacentElement('afterend', error);
-    }
-
-    function clearErrors() {
-      document.querySelectorAll('.error-message').forEach(el => el.remove());
-    }
-
-    function showPopup() {
-      popup.style.display = 'flex';
-      closePopup.addEventListener('click', () => popup.style.display = 'none');
-      setTimeout(() => popup.style.display = 'none', 3000);
-    }
-  </script>
 
 
     </section>
@@ -756,4 +541,5 @@ document.addEventListener('DOMContentLoaded', () => {
     </footer>
 </body>
  <script src="../js/auth.js"></script>
+  <script src="../js/index.js"></script>
 </html>
